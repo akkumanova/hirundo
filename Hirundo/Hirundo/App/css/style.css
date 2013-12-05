@@ -1,0 +1,49 @@
+﻿/*navbar*/
+li.dropdown-split-right > a
+{
+  padding-left: 4px;
+}
+
+li.dropdown-split-left > a
+{
+  padding-right: 0px;
+}
+
+.nav ul.dropdown-menu {
+    background-color: #333333;
+}
+
+.nav ul.dropdown-menu a {
+    color: #999999;
+}
+
+.nav ul.dropdown-menu a:hover, .nav ul.dropdown-menu a:focus {
+    color: #ffffff;
+    background-color: #333333;
+}
+
+.navbar-right button {
+    background-color: transparent;
+    border-color: transparent;
+    padding: 0px;
+    color: #999999;
+    margin-top: 9px;
+}
+
+.navbar-right button:hover, .navbar-right button:focus {
+    background-color: transparent;
+    border-color: transparent;
+    color: #ffffff;
+}
+
+form.navbar-form input {
+    background-color: #ccc;
+}
+
+form.navbar-form input:focus {
+    background-color: #ffffff;
+}
+
+form.navbar-form button {
+    background-color: #999999;
+}

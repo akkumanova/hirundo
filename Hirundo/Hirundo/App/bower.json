@@ -1,0 +1,11 @@
+{
+  "name": "hirundo",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "1.2.0",
+    "angular-ui-router": "0.2.0",
+    "angular-bootstrap": "angular-ui/bootstrap#0c5d6398948ea3c3e9c3641937ba740069669ce8",
+    "bootstrap": "angelyordanov/bootstrap#229469e0598a230c8b11890d128a57618df838d4",
+    "lodash": "2.1.0"
+  }
+}

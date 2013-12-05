@@ -10,7 +10,7 @@ namespace Hirundo.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return File(Server.MapPath("~/App/index.html"), "text/html");
         }
     }
 }

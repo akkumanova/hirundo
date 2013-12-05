@@ -1,0 +1,71 @@
+﻿<div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="navigation.NavbarCtrl">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse navbar-inverse">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li ng-repeat-start="item in items"
+          ng-class="{'active': item.active, 'dropdown': item.items.length > 0 && !item.url, 'dropdown\-split\-left': item.items.length > 0 && item.url}">
+          <a ng-if="item.url" ng-href="{{item.url}}" target="{{item.newTab && '_blank' || '_self' }}">
+            <span ng-if="item.icon" class="glyphicon" ng-class="item.icon"></span>
+            <span>{{item.text}}</span>
+          </a>
+          <a ng-if="item.items.length > 0 && !item.url" class="dropdown-toggle">
+            <span ng-if="item.icon" class="glyphicon" ng-class="item.icon"></span>
+            <span>{{item.text}}</span>
+            <b class="caret"></b>
+          </a>
+          <ul ng-if="item.items.length > 0 && !item.url" class="dropdown-menu">
+            <li ng-repeat="item in item.items">
+              <a ng-href="{{item.url}}" target="{{item.newTab && '_blank' || '_self' }}">
+                <span ng-if="item.icon" class="glyphicon" ng-class="item.icon"></span>
+                <span>{{item.text}}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li ng-repeat-end ng-show="item.items.length > 0 && item.url" class="dropdown dropdown-split-right hidden-phone">
+          <a class="dropdown-toggle">
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li ng-repeat="item in item.items">
+              <a ng-href="{{item.url}}" target="{{item.newTab && '_blank' || '_self' }}">
+                <span ng-if="item.icon" class="glyphicon" ng-class="item.icon"></span>
+                <span>{{item.text}}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" style="width: 25%;" role="search">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control input-sm" placeholder="search">
+            <span class="input-group-btn">
+              <button class="btn btn-sm" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>
+        </div>
+      </form>
+      <div class="navbar-right" style="width:25%;">
+        <div class="pull-right" style="margin-top: 3px;">
+          <span style="font-weight: bold;color: #999999;">{{userFullName}}</span>
+        </div>
+        <div class="pull-right" style="margin-right:20px;">
+          <button class="btn btn-default btn-lg" tooltip-placement="bottom" tooltip="Direct messages">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </button>
+          <button class="btn btn-lg" tooltip-placement="bottom" tooltip="Compose new hirundo" style="margin-left:10px;">
+            <span class="glyphicon glyphicon-send"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
