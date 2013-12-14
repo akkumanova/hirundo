@@ -1,12 +1,12 @@
 ﻿/*navbar*/
-li.dropdown-split-right > a
-{
-  padding-left: 4px;
+.nav li > a.dropdown-toggle {
+    padding-left: 0px;
+    margin-left: 0px;
 }
 
-li.dropdown-split-left > a
-{
-  padding-right: 0px;
+.nav li.dropdown > a:first-child {
+    margin-right: -4px;
+    padding-right: 5px;
 }
 
 .nav ul.dropdown-menu {
@@ -20,6 +20,10 @@ li.dropdown-split-left > a
 .nav ul.dropdown-menu a:hover, .nav ul.dropdown-menu a:focus {
     color: #ffffff;
     background-color: #333333;
+}
+
+.nav li.dropdown a {
+    display: inline-block;
 }
 
 .navbar-right button {
