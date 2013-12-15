@@ -51,3 +51,13 @@ form.navbar-form input:focus {
 form.navbar-form button {
     background-color: #999999;
 }
+
+/*page*/
+.page-view {
+    padding-top: 25px;
+    padding-bottom: 0px;
+}
+
+.page-content {
+    background-color: rgba(177, 236, 175, 0.54);
+}
