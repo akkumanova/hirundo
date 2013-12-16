@@ -158,8 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\css\style.css" />
-    <Content Include="App\img\background.jpg" />
-    <Content Include="App\img\initial-loader.gif" />
     <Content Include="App\js\app.js" />
     <Content Include="App\index.html" />
     <Content Include="App\js\home\controllers\homeCtrl.js" />
