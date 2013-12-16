@@ -1,0 +1,42 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ output extension=".log" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#
+	string mongodFile = Host.TemplateFile.Replace("CreateDatabase.tt", "RunMongod.bat");
+	Process mongod = new Process();
+	mongod.StartInfo.UseShellExecute = false;
+	mongod.StartInfo.CreateNoWindow = true;
+	mongod.StartInfo.RedirectStandardOutput = true;
+	mongod.StartInfo.RedirectStandardError = true;
+	mongod.StartInfo.FileName = mongodFile;
+	mongod.StartInfo.WorkingDirectory = Path.GetDirectoryName(Host.TemplateFile);
+
+	string batFile = Host.TemplateFile.Replace(".tt", ".bat");
+	Process p = new Process();
+	p.StartInfo.UseShellExecute = false;
+	p.StartInfo.CreateNoWindow = true;
+	p.StartInfo.RedirectStandardOutput = true;
+	p.StartInfo.RedirectStandardError = true;
+	p.StartInfo.FileName = batFile;
+	p.StartInfo.WorkingDirectory = Path.GetDirectoryName(Host.TemplateFile);
+	
+	mongod.Start();
+	p.Start();
+	
+	string stdOut = p.StandardOutput.ReadToEnd();
+	string stdErr = p.StandardError.ReadToEnd();
+	
+	p.WaitForExit();
+
+	int exitCode = p.ExitCode;
+#>
+Run at <#= DateTime.Now #>
+============== STDOUT ==============
+<#= stdOut #>
+
+============== STDERR ==============
+<#= stdErr #>
+
+============== EXITCODE ==============
+<#= exitCode #>

@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3FDFE4
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirundo.Database", "Hirundo.Database\Hirundo.Database.csproj", "{6D65775A-BCBB-4263-8D8F-76BA0CD6EBF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{B1A1B6CE-1C22-48E2-9F5D-79D6AE6EA5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1A1B6CE-1C22-48E2-9F5D-79D6AE6EA5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1A1B6CE-1C22-48E2-9F5D-79D6AE6EA5D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D65775A-BCBB-4263-8D8F-76BA0CD6EBF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D65775A-BCBB-4263-8D8F-76BA0CD6EBF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D65775A-BCBB-4263-8D8F-76BA0CD6EBF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D65775A-BCBB-4263-8D8F-76BA0CD6EBF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

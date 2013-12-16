@@ -17,3 +17,7 @@ hirundo
     `cd ..\..\`
   * Build the js app with `grunt`
 5. Open the solution `Hirundo.sln` and run the web project `Hirundo`
+
+#### Create database
+First install Mongo as described here: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
+Then in the Hirundo.Database run CreateDatabase.tt tool.
