@@ -1,8 +1,8 @@
-﻿hirundo = db.getSiblingDB('hirundo');
+﻿var hirundo = db.getSiblingDB('hirundo');
 hirundo.dropDatabase();
 
 hirundo = db.getSiblingDB('hirundo');
-users = [
+var users = [
   {
     "username": "user1", 
     "email": "alabala@yahoo.com", 
@@ -30,5 +30,5 @@ users = [
 ]
 hirundo.users.insert(users)
 
-admin = db.getSiblingDB('admin');
+var admin = db.getSiblingDB('admin');
 admin.shutdownServer() ;

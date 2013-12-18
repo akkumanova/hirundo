@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Hirundo
+namespace Hirundo.Web
 {
     public class FilterConfig
     {

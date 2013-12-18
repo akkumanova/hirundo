@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Hirundo
+namespace Hirundo.Web
 {
     public class BundleConfig
     {

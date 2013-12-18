@@ -67,3 +67,7 @@ form.navbar-form button {
 .page-content {
     background-color: rgba(219, 219, 185, 0.54);
 }
+
+div.row {
+    margin: 0px;
+}

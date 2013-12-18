@@ -5,7 +5,7 @@ hirundo
 1. Install [NodeJS](http://nodejs.org/)
 2. Install `grunt-cli` globally with `npm install -g grunt-cli`
 3. Install `bower` globally with `npm install -g bower`
-4. In the js app folder `cd .\Hirundo\Hirundo\App`
+4. In the js app folder `cd .\Hirundo.Web\App`
   * Install the required npm packages with `npm install`
   * Install the required bower components with `bower install`
   * Build the js app with `grunt`
@@ -16,7 +16,7 @@ hirundo
     `grunt after-test`  
     `cd ..\..\`
   * Build the js app with `grunt`
-5. Open the solution `Hirundo.sln` and run the web project `Hirundo`
+5. Open the solution `Hirundo.sln` and run the web project `Hirundo.Web`
 
 #### Create database
 First install Mongo as described here: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
