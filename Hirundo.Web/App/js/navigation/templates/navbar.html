@@ -7,7 +7,7 @@
     </button>
   </div>
   <div class="collapse navbar-collapse">
-    <div class="container">
+    <div class="container-medium">
       <ul class="nav navbar-nav">
         <li ng-repeat="item in items"
           ng-class="{'active': item.active, 'dropdown': item.items.length > 0}">
@@ -40,7 +40,7 @@
       </form>
       <div class="navbar-right" style="width:25%;">
         <div class="pull-right" style="margin-top: 3px;">
-          <span style="font-weight: bold;color: #999999;">{{userFullName}}</span>
+          <span style="font-weight: bold;color: #999999;">{{username}}</span>
         </div>
         <div class="pull-right" style="margin-right:20px;">
           <button class="btn btn-default btn-lg" tooltip-placement="bottom" tooltip="Direct messages">

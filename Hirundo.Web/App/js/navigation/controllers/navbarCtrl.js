@@ -2,7 +2,7 @@
 (function (angular) {
   'use strict';
   
-  function NavbarCtrl($scope, $state, navigationConfig) {
+  function NavbarCtrl($scope, $state, $window, navigationConfig) {
     function mapItems(items) {
       return items.filter(function (item) {
         return (item.permissions || []).reduce(function (hasPermissions, permission) {
@@ -29,11 +29,9 @@
     }
 
     $scope.items = mapItems(navigationConfig.items);
-    $scope.userFullName = navigationConfig.userFullName;
-    $scope.userHasPassword = navigationConfig.userHasPassword;
-
+    $scope.username = $window.user.username;
   }
-  NavbarCtrl.$inject = [ '$scope', '$state', 'navigation.NavigationConfig'];
+  NavbarCtrl.$inject = ['$scope', '$state', '$window', 'navigation.NavigationConfig'];
 
   angular.module('navigation').controller('navigation.NavbarCtrl', NavbarCtrl);
 }(angular));

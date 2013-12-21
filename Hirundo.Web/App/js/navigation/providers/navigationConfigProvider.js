@@ -19,20 +19,6 @@
     this.items.push(item);
     return this;
   };
-  
-  NavigationConfigProvider.prototype.setUserFullName = function (userFullName) {
-    this.userFullName = userFullName;
-    return this;
-  };
-  NavigationConfigProvider.prototype.setUserHasPassword = function (userHasPassword) {
-    this.userHasPassword = userHasPassword;
-    return this;
-  };
-
-  NavigationConfigProvider.prototype.showBreadcrumbBar = function (showBreadcrumbBar ) {
-    this.showBreadcrumbBar = showBreadcrumbBar;
-    return this;
-  };
 
   angular.module('navigation').provider('navigation.NavigationConfig', NavigationConfigProvider);
 }(angular));

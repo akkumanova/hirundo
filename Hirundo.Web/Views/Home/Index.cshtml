@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Hirundo.Web.Models.UserModel
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Hirundo</title>
@@ -17,6 +19,12 @@
 
   <div id="root" ui-view="rootView">
   </div>
+
+  <script type="text/javascript">
+    window.user = {};
+    window.user.username = '@(Model.Username)';
+    window.user.userId = "@(Model.UserId)";
+  </script>
 
   <script src="/app/bower_components/angular/angular.js"></script>
   <script src="/app/bower_components/angular-ui-router/release/angular-ui-router.js"></script>

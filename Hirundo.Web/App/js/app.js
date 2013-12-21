@@ -21,16 +21,19 @@
       $urlRouterProvider.otherwise('/home');
 
       navigationConfigProvider
-        .addItem({ text: 'Home', icon: 'glyphicon-home' , url: '/home', items: []})
-        .addItem({ text: 'Connect', url: '/connect', items: []})
-        .addItem({ text: 'Discover', url: '/discover', items: []})
-        .addItem({ text: 'Me', icon: 'glyphicon-user', url: '/me', items: [
-          { text: 'Edit profile', url: '/edit' },
-          { text: 'Settings', url: '/settings' },
-          { text: 'Sign out', url: '/signOut' }
-        ]})
-        .setUserFullName('Admin')
-        .setUserHasPassword(true);
+        .addItem({ text: 'Home', icon: 'glyphicon-home', url: '/home', items: [] })
+        .addItem({ text: 'Connect', url: '/connect', items: [] })
+        .addItem({ text: 'Discover', url: '/discover', items: [] })
+        .addItem({
+          text: 'Me',
+          icon: 'glyphicon-user',
+          url: '/me',
+          items: [
+            { text: 'Edit profile', url: '/edit' },
+            { text: 'Settings', url: '/settings' },
+            { text: 'Sign out', url: '/signOut' }
+          ]
+        });
     }
   ]);
 }(angular));

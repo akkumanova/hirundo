@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Hirundo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="/app/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+  <link href="/app/css/style.css" rel="stylesheet" />
+</head>
+<body background="/app/img/background.jpg">
+  <div class="container-min sign-in">
+    <div class="row">
+      <div class="col-sm-5">
+        <h1>Hirundo</h1>
+        <p>connecting people....</p>
+      </div>
+      <div class="col-sm-6">
+        <form action="@Url.Content("~/login?ReturnUrl=" + Url.Encode(Request.QueryString["ReturnUrl"]))" method="post">
+          <input name="username" class="form-control" type="text" placeholder="username">
+          <input name="password" class="form-control" type="password" placeholder="password">
+          <div class="error @(ViewBag.ErrorMessage != null ? "" : "hide")">
+            @ViewBag.ErrorMessage
+          </div>
+          <div class="buttons">
+            <button type="submit" class="btn btn-info">Sign in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

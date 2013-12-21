@@ -1,4 +1,63 @@
-﻿/*navbar*/
+﻿/*containers*/
+.container-min, .container-medium {
+    margin: 0 auto;
+}
+
+.container-medium.page-content {
+    padding: 10px;
+}
+
+@media (min-width: 600px) {
+    .container-min {
+        width: 570px;
+        padding-top: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-medium {
+        width: 740px;
+    }
+}
+
+/*sign-in*/
+.sign-in h1 {
+    font-size:63px;
+    font-family:serif;
+}
+
+.sign-in p {
+    font-size:21px;
+}
+
+.sign-in form {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 4px;
+}
+.sign-in form input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.sign-in form input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.sign-in form div.buttons {
+    text-align: center;
+}
+
+/*errors*/
+.error {
+     color: red;
+     margin-bottom: 10px;
+}
+
+/*navbar*/
 .nav li > a.dropdown-toggle {
     padding-left: 0px;
     margin-left: 0px;
