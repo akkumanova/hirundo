@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirundo.Database", "Hirundo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirundo.Web", "Hirundo.Web\Hirundo.Web.csproj", "{FCBB16B1-7173-4734-BA7C-BEAF351990F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirundo.Model", "Hirundo.Model\Hirundo.Model.csproj", "{7A7313D7-9D76-4148-8870-1861E9814178}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{FCBB16B1-7173-4734-BA7C-BEAF351990F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCBB16B1-7173-4734-BA7C-BEAF351990F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCBB16B1-7173-4734-BA7C-BEAF351990F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A7313D7-9D76-4148-8870-1861E9814178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A7313D7-9D76-4148-8870-1861E9814178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A7313D7-9D76-4148-8870-1861E9814178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A7313D7-9D76-4148-8870-1861E9814178}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
