@@ -1,34 +1,35 @@
 ﻿var hirundo = db.getSiblingDB('hirundo');
 hirundo.dropDatabase();
 
+// passowrds: alabala
 hirundo = db.getSiblingDB('hirundo');
 var users = [
   {
-    "username": "user1", 
-    "email": "alabala@yahoo.com", 
-    "password": "1234",
-    "registrationDate": new Date("2013-07-09"),
-    "follows": [ "user2", "user3" ],
-    "verified": false
+    "Username": "albsi", 
+    "Email": "akumanova@yahoo.com", 
+    "PasswordHash": "ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==",
+    "PasswordSalt": "chyK78xfQ1mOZtWFNN/Oug==",
+    "RegistrationDate": new Date("2013-07-09"),
+    "Follows": [ "hrisito", "user3" ]
   },
   {
-    "username": "user2", 
-    "email": "niki@yahoo.com", 
-    "password": "1234", 
-    "registrationDate": new Date("2013-07-10"),
-    "follows": [ "user3" ],
-    "verified": false
+    "Username": "hrisito", 
+    "Email": "hristina.sim@gmail.com",
+    "PasswordHash": "ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==",
+    "PasswordSalt": "chyK78xfQ1mOZtWFNN/Oug==",
+    "RegistrationDate": new Date("2013-07-10"),
+    "Follows": [ "user3" ]
   },
   {
-    "username": "user3", 
-    "email": "kosta@yahoo.com", 
-    "password": "1234", 
-    "registrationDate": new Date("2013-10-09"),
-    "follows": [ "user1", "user2" ],
-  "verified": false
+    "Username": "user3", 
+    "Email": "kosta@yahoo.com", 
+    "PasswordHash": "ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==",
+    "PasswordSalt": "chyK78xfQ1mOZtWFNN/Oug==",
+    "RegistrationDate": new Date("2013-10-09"),
+    "Follows": [ "albsi", "hrisito" ]
   }
 ]
-hirundo.users.insert(users)
+hirundo.user.insert(users)
 
 var admin = db.getSiblingDB('admin');
 admin.shutdownServer() ;
