@@ -31,7 +31,7 @@
           items: [
             { text: 'Edit profile', url: '/edit' },
             { text: 'Settings', url: '/settings' },
-            { text: 'Sign out', url: '/signOut' }
+            { text: 'Sign out', url: '/logout' }
           ]
         });
     }
