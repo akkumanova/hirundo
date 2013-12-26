@@ -20,6 +20,17 @@
     }
 }
 
+/*errors*/
+.error {
+     color: red;
+     margin-bottom: 10px;
+}
+
+/*hirundo form*/
+form.hirundo textarea {
+    max-width: 100%;
+}
+
 /*sign-in*/
 .sign-in h1 {
     font-size:63px;
@@ -49,12 +60,6 @@
 
 .sign-in form div.buttons {
     text-align: center;
-}
-
-/*errors*/
-.error {
-     color: red;
-     margin-bottom: 10px;
 }
 
 /*navbar*/
@@ -129,4 +134,46 @@ form.navbar-form button {
 
 div.row {
     margin: 0px;
+}
+
+/*card*/
+div.card {
+    padding: 0px;
+}
+
+div.card a {
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    div.card a.inline-item {
+        display: inline-block;
+    }
+
+    div.card a.inline-item:not(:last-of-type) {
+        margin-right: -5px;
+    }
+}
+
+@media (max-width: 768px) {
+    div.card a.inline-item h4 {
+        display: inline;
+    }
+}
+
+div.card a.inline-item {
+    font-size: 11px;
+    text-align: -webkit-center;
+}
+
+div.card a.inline-item:last-of-type {
+    padding-right: 9px;
+}
+
+div.card a:hover, div.card a:focus {
+    background-color: #FAF4F4;
+}
+
+div.card a > img {
+    width: 35px;
 }

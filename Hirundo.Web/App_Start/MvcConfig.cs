@@ -31,7 +31,7 @@ namespace Hirundo.Web.App_Start
 
             routes.MapRoute(
                 name: null,
-                url: "",
+                url: string.Empty,
                 defaults: new { controller = "Home", action = "Index" });
 
             routes.MapRoute(

@@ -1,4 +1,5 @@
-﻿using Hirundo.Web.App_Start;
+﻿using System.Web.Http;
+using Hirundo.Web.App_Start;
 using Ninject;
 
 namespace Hirundo.Web
@@ -11,6 +12,7 @@ namespace Hirundo.Web
             NinjectConfig.RegisterServices(kernel);
 
             MvcConfig.Register(kernel);
+            WebApiConfig.Register(kernel, GlobalConfiguration.Configuration);
         }
     }
 }

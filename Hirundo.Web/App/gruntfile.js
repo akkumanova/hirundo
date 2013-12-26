@@ -87,6 +87,11 @@ module.exports = function (grunt) {
         src: [ 'js/home/**/*.html' ],
         dest: '<%= buildDir %>/templates/home.js',
         module: 'home.templates'
+      },
+      directives: {
+        src: ['js/directives/**/*.html'],
+        dest: '<%= buildDir %>/templates/directives.js',
+        module: 'directives.templates'
       }
     },
     watch:{

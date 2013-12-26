@@ -3,7 +3,9 @@
   'use strict';
   angular.module('app', [
     'ng',
+    'ngResource',
     'ui.router',
+    'directives',
     'navigation',
     'home'
   ]).config([
@@ -21,7 +23,7 @@
       $urlRouterProvider.otherwise('/home');
 
       navigationConfigProvider
-        .addItem({ text: 'Home', icon: 'glyphicon-home', url: '/home', items: [] })
+        .addItem({ text: 'Home', icon: 'glyphicon-home', state: 'home', items: [] })
         .addItem({ text: 'Connect', url: '/connect', items: [] })
         .addItem({ text: 'Discover', url: '/discover', items: [] })
         .addItem({

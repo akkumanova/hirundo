@@ -16,7 +16,7 @@ namespace Hirundo.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new UserModel
+            var model = new HomeModel
             {
                 UserId = this.userContext.UserId,
                 Username = this.userContext.Username

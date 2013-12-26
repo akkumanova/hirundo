@@ -1,15 +1,53 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Routing;
+using Hirundo.Model.Converters;
+using Hirundo.Model.Utils;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Ninject;
 
 namespace Hirundo.Web
 {
     public static class WebApiConfig
     {
-        public static void Register(HttpConfiguration config)
+        public static void Register(IKernel kernel, HttpConfiguration config)
+        {
+            config.DependencyResolver = new NinjectDependencyResolver(kernel);
+
+            config.Formatters.JsonFormatter.SerializerSettings =
+                new JsonSerializerSettings()
+                {
+                    Formatting = Newtonsoft.Json.Formatting.Indented,
+                    Converters = { new ObjectIdConverter() },
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
+                    NullValueHandling = NullValueHandling.Ignore,
+                    DefaultValueHandling = DefaultValueHandling.Include,
+                    DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
+
+            RegisterRoutes(config);
+        }
+
+        public static void RegisterRoutes(HttpConfiguration config)
+        {
+            //User
+            MapRoute(config, HttpMethod.Get, "api/user", "User", "GetUser");
+
+            //Comments
+            MapRoute(config, HttpMethod.Get,  "api/comments/{userId}", "Comment", "GetComments");
+            MapRoute(config, HttpMethod.Post, "api/comments"         , "Comment", "PostComment");
+        }
+
+        private static void MapRoute(HttpConfiguration config, HttpMethod method, string route, string controller, string action)
         {
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional } );
+                name: Guid.NewGuid().ToString(),
+                routeTemplate: route,
+                defaults: new { controller = controller, action = action },
+                constraints: new { httpMethod = new HttpMethodConstraint(method) });
         }
     }
 }

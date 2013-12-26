@@ -1,7 +1,23 @@
 ﻿<div class="container-medium page-content">
   <div class="row">
-    <div class="col-xs-4 well">
-      <img src="/app/img/powerpuff_girls_cn08.jpg" class="img-circle" style="width:50px;">
+    <div class="col-xs-4 list-group card">
+      <a href="#" class="list-group-item">
+        <img ng-src="{{user.image}}" class="img-circle">
+        <strong>{{user.fullname}}</strong>
+      </a>
+      <a href="#" class="list-group-item inline-item">
+        <h4 class="list-group-item-heading"><span class="badge">{{user.commentsCount}}</span></h4>
+        <span class="list-group-item-text">HIRUNDOS</span>
+      </a>
+      <a href="#" class="list-group-item inline-item">
+        <h4 class="list-group-item-heading"><span class="badge">{{user.followingCount}}</span></h4>
+        <span class="list-group-item-text">FOLLOWING</span>
+      </a>
+      <a href="#" class="list-group-item inline-item">
+        <h4 class="list-group-item-heading"><span class="badge">{{user.followersCount}}</span></h4>
+        <span class="list-group-item-text">FOLLOWERS</span>
+      </a>
+      <hd-hirundo class="list-group-item" model="hirundo" send="sendHirundo()"></hd-hirundo>
     </div>
   </div>
 </div>
