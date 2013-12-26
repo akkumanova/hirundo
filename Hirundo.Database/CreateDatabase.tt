@@ -12,6 +12,8 @@
 	mongod.StartInfo.FileName = mongodFile;
 	mongod.StartInfo.WorkingDirectory = Path.GetDirectoryName(Host.TemplateFile);
 
+	mongod.Start();
+
 	string batFile = Host.TemplateFile.Replace(".tt", ".bat");
 	Process p = new Process();
 	p.StartInfo.UseShellExecute = false;
@@ -21,13 +23,23 @@
 	p.StartInfo.FileName = batFile;
 	p.StartInfo.WorkingDirectory = Path.GetDirectoryName(Host.TemplateFile);
 	
-	mongod.Start();
 	p.Start();
 	
 	string stdOut = p.StandardOutput.ReadToEnd();
 	string stdErr = p.StandardError.ReadToEnd();
 	
 	p.WaitForExit();
+
+	string stopMongodFile = Host.TemplateFile.Replace("CreateDatabase.tt", "StopMongod.bat");
+	Process stopMongod = new Process();
+	stopMongod.StartInfo.UseShellExecute = false;
+	stopMongod.StartInfo.CreateNoWindow = true;
+	stopMongod.StartInfo.RedirectStandardOutput = true;
+	stopMongod.StartInfo.RedirectStandardError = true;
+	stopMongod.StartInfo.FileName = stopMongodFile;
+	stopMongod.StartInfo.WorkingDirectory = Path.GetDirectoryName(Host.TemplateFile);
+
+	stopMongod.Start();
 
 	int exitCode = p.ExitCode;
 #>

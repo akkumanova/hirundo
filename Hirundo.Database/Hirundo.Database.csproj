@@ -48,6 +48,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="StopMongod.bat" />
     <None Include="CreateDatabase.bat" />
     <None Include="CreateDatabase.log">
       <AutoGen>True</AutoGen>
@@ -62,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateDatabase.js" />
+    <Content Include="StopMongod.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

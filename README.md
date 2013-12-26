@@ -20,4 +20,7 @@ hirundo
 
 #### Create database
 First install Mongo as described here: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
+In Hirundo.Database folder install lodash and mongodb with the following commands:
+  * `npm install mongodb` 
+  * `npm install lodash`
 Then in the Hirundo.Database run CreateDatabase.tt tool.

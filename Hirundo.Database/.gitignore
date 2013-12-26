@@ -4,4 +4,7 @@ bin/**/*
 obj/*
 obj/**/*
 
+node_modules/*
+node_modules/**/*
+
 CreateDatabase.log
