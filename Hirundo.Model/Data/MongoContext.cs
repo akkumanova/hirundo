@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data.Entity;
 using MongoDB.Driver;
+using MongoDB.Driver.GridFS;
 
 namespace Hirundo.Model.Data
 {
@@ -20,6 +21,11 @@ namespace Hirundo.Model.Data
             string name = typeof(TCollection).Name.ToLower();
 
             return this.database.GetCollection<TCollection>(name);
+        }
+
+        public MongoGridFS GetGridFs()
+        {
+            return this.database.GridFS;
         }
 
         private MongoServer Connect()

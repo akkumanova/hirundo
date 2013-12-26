@@ -11,7 +11,7 @@ namespace Hirundo.Model.Models
     {
         public User()
         {
-            this.Follows = new List<string>();
+            this.Following = new List<ObjectId>();
         }
 
         public ObjectId Id { get; set; }
@@ -19,21 +19,20 @@ namespace Hirundo.Model.Models
         [BsonRequired]
         public string Username { get; set; }
 
+        public string Fullname { get; set; }
+
         public string Email { get; set; }
 
-        [BsonIgnore]
-        public string Password { get; set; }
+        public ObjectId ImgId { get; set; }
 
-        [JsonIgnore]
         public string PasswordHash { get; set; }
 
-        [JsonIgnore]
         public string PasswordSalt { get; set; }
 
         [BsonDateTimeOptions(DateOnly = true)]
         public DateTime RegistrationDate { get; set; }
 
-        public List<string> Follows { get; set; }
+        public List<ObjectId> Following { get; set; }
 
         public void SetPassword(string password)
         {
