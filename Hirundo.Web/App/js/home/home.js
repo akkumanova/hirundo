@@ -5,6 +5,7 @@
     'ng',
     'ui.router',
     'ui.bootstrap',
+    'angularMoment',
     'navigation',
     'home.templates'
   ]).config(['$stateProvider', function ($stateProvider) {

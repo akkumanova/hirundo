@@ -1,4 +1,10 @@
-﻿/*containers*/
+﻿body
+{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/*containers*/
 .container-min, .container-medium {
     margin: 0 auto;
 }
@@ -176,4 +182,44 @@ div.card a:hover, div.card a:focus {
 
 div.card a > img {
     width: 35px;
+}
+
+/*timeline*/
+.timeline div.list-group-item {
+    cursor: pointer;
+}
+
+.timeline div.list-group-item:hover {
+    background-color: #FAF4F4;
+}
+
+.timeline div.list-group-item:hover div.actions a {
+    color: #999;
+}
+
+.timeline .panel-heading {
+    background-color: #FFFEF9;
+    border-bottom: 1px solid #dddddd;
+}
+
+.timeline div.list-group-item img {
+    height: 50px;
+    margin-right: 10px
+}
+
+.timeline div.list-group-item div.actions {
+    text-align: right;
+}
+
+.timeline div.list-group-item span.timestamp, .timeline div.list-group-item div.actions a {
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.timeline div.list-group-item span.timestamp {
+    color: #999;
+}
+
+.timeline div.list-group-item div.actions a {
+    color: #ddd;
 }

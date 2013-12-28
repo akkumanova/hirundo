@@ -3,6 +3,11 @@
   'use strict';
 
   angular.module('home').factory('User', ['$resource', function ($resource) {
-    return $resource('api/user');
+    var userFactory = {
+      userData: $resource('api/user'),
+      userComments: $resource('api/user/:userId/comments', { userId: '@userId' })
+    };
+
+    return userFactory;
   }]);
 }(angular));

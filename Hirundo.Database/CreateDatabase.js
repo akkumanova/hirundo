@@ -42,7 +42,7 @@ var users = [
 
 var comments = [];
 
-for (var i = 0; i < 20; i++) {
+for (var i = 0; i < 15; i++) {
   comments.push({
     'Author': albsiId,
     'Content': 'albsi comment' + i,
@@ -50,7 +50,7 @@ for (var i = 0; i < 20; i++) {
   });
 }
 
-for (var i = 0; i < 20; i++) {
+for (var i = 0; i < 15; i++) {
   comments.push({
     'Author': hrtisitoId,
     'Content': 'hrisito comment' + i,

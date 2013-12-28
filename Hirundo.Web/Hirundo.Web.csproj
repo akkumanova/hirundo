@@ -142,8 +142,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentDO.cs" />
     <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\UserCommentsDO.cs" />
     <Compile Include="Models\UserDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -153,6 +153,7 @@
     <Content Include="App\js\directives\directives.js" />
     <Content Include="App\js\directives\hirundo\hirundoDirective.html" />
     <Content Include="App\js\directives\hirundo\hirundoDirective.js" />
+    <Content Include="App\js\directives\whenScrolled\whenScrolledDirective.js" />
     <Content Include="App\js\home\controllers\homeCtrl.js" />
     <Content Include="App\js\home\home.js" />
     <Content Include="App\js\home\resources\comment.js" />
