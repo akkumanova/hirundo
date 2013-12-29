@@ -1,10 +1,12 @@
 ﻿using System;
 using MongoDB.Bson;
 
-namespace Hirundo.Web.Models
+namespace Hirundo.Web.Models.Comment
 {
-    public class CommentDO
+    public class CommentDataDO
     {
+        public ObjectId CommentId { get; set; }
+
         public string Author { get; set; }
 
         public ObjectId AuthorId { get; set; }

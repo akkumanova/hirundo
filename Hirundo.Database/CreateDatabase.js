@@ -46,7 +46,24 @@ for (var i = 0; i < 15; i++) {
   comments.push({
     'Author': albsiId,
     'Content': 'albsi comment' + i,
-    'PublishDate': new Date()
+    'Retweets': 20 + i,
+    'Favorites': 10 + i,
+    'Replies': [
+      {
+        'Author': albsiId,
+        'Content': 'reply1',
+        'PublishDate': new Date()
+      }, {
+        'Author': hrtisitoId,
+        'Content': 'reply2',
+        'PublishDate': new Date()
+      }, {
+        'Author': userId,
+        'Content': 'reply3',
+        'PublishDate': new Date()
+      }
+    ],
+    'PublishDate': new Date('2013-10-' + (i + 1))
   });
 }
 
@@ -54,7 +71,24 @@ for (var i = 0; i < 15; i++) {
   comments.push({
     'Author': hrtisitoId,
     'Content': 'hrisito comment' + i,
-    'PublishDate': new Date()
+    'Retweets': 20 + i,
+    'Favorites': 10 + i,
+    'Replies': [
+      {
+        'Author': albsiId,
+        'Content': 'reply1',
+        'PublishDate': new Date()
+      }, {
+        'Author': hrtisitoId,
+        'Content': 'reply2',
+        'PublishDate': new Date()
+      }, {
+        'Author': userId,
+        'Content': 'reply3',
+        'PublishDate': new Date()
+      }
+    ],
+    'PublishDate': new Date('2013-9-' + (i + 1))
   });
 }
 

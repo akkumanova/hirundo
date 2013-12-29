@@ -1,18 +1,30 @@
 ﻿using System;
-using Hirundo.Model.Converters;
+using System.Collections.Generic;
 using MongoDB.Bson;
-using Newtonsoft.Json;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Hirundo.Model.Models
 {
     public class Comment
     {
-        [JsonConverter(typeof(ObjectIdConverter))]
+        public Comment()
+        {
+            this.Replies = new List<Reply>();
+        }
+
         public ObjectId Id { get; set; }
 
         public ObjectId Author { get; set; }
 
         public string Content { get; set; }
+
+        [BsonDefaultValue(0)]
+        public int Retweets { get; set; }
+
+        [BsonDefaultValue(0)]
+        public int Favorites { get; set; }
+
+        public List<Reply> Replies { get; set; }
 
         public DateTime PublishDate { get; set; }
     }

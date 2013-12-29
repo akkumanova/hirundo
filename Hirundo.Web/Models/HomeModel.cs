@@ -1,5 +1,4 @@
-﻿
-namespace Hirundo.Web.Models
+﻿namespace Hirundo.Web.Models
 {
     public class HomeModel
     {

@@ -1,7 +1,7 @@
 ﻿<form class="hirundo">
   <div class="row">
     <div class="form-group">
-    <textarea rows="1" class="form-control" placeholder="Compose new hirundo..."
+    <textarea rows="1" class="form-control" placeholder="{{placeholder}}"
               ng-focus="focused(true)" ng-blur="focused(false)"
               ng-model="model"></textarea>
     </div>
@@ -11,7 +11,7 @@
       <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-camera"></span></button>
       <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-map-marker"></span></button>
     </div>
-    <div class="form-group col-xs-6" style="padding-right: 0px;text-align:center">
+    <div class="form-group col-xs-6" style="padding-right: 0px;text-align:right">
       <span ng-class="{'error': model.length > 140}">{{140 - model.length}}</span>
       <button class="btn btn-info btn-sm" ng-disabled="!model || model.length > 140" ng-click="sendHirundo()">Send</button>
     </div>

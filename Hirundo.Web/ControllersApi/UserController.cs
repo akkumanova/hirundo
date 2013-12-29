@@ -8,6 +8,7 @@ using Hirundo.Model.Repositories.CommentRepository;
 using Hirundo.Model.Repositories.ImagesRepository;
 using Hirundo.Model.Repositories.UserRepository;
 using Hirundo.Web.Models;
+using Hirundo.Web.Models.Comment;
 using MongoDB.Bson;
 
 namespace Hirundo.Web.ControllersApi
@@ -19,10 +20,11 @@ namespace Hirundo.Web.ControllersApi
         private ICommentRepository commentRepository;
         private IImageRepository imageRepository;
 
-        public UserController(IUserContextProvider userContextProvider,
-                              IUserRepository userRepository,
-                              IImageRepository imageRepository,
-                              ICommentRepository commentRepository)
+        public UserController(
+            IUserContextProvider userContextProvider,
+            IUserRepository userRepository,
+            IImageRepository imageRepository,
+            ICommentRepository commentRepository)
         {
             this.userContext = userContextProvider.GetCurrentUserContext();
             this.userRepository = userRepository;
@@ -59,22 +61,23 @@ namespace Hirundo.Web.ControllersApi
             userIds.Add(id);
             List<Comment> comments = this.commentRepository.GetComments(userIds, skip);
 
-            List<CommentDO> commentDOs = new List<CommentDO>();
+            List<CommentDataDO> commentsData = new List<CommentDataDO>();
             foreach (var comment in comments)
             {
-                CommentDO commentDO = new CommentDO();
-                commentDO.Content = comment.Content;
-                commentDO.PublishDate = comment.PublishDate;
-                commentDO.AuthorId = comment.Author;
+                CommentDataDO commentData = new CommentDataDO();
+                commentData.CommentId = comment.Id;
+                commentData.Content = comment.Content;
+                commentData.PublishDate = comment.PublishDate;
+                commentData.AuthorId = comment.Author;
 
                 var author = this.userRepository.FindById(comment.Author);
-                commentDO.Author = author.Username;
-                commentDO.AuthorImg = this.imageRepository.GetImage(author.ImgId);
+                commentData.Author = author.Username;
+                commentData.AuthorImg = this.imageRepository.GetImage(author.ImgId);
 
-                commentDOs.Add(commentDO);
+                commentsData.Add(commentData);
             }
 
-            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, commentDOs);
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, commentsData);
         }
     }
 }

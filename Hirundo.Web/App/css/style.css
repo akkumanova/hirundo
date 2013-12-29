@@ -32,6 +32,13 @@
      margin-bottom: 10px;
 }
 
+/*loaders*/
+img.loader {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+}
+
 /*hirundo form*/
 form.hirundo textarea {
     max-width: 100%;
@@ -152,11 +159,11 @@ div.card a {
 }
 
 @media (min-width: 768px) {
-    div.card a.inline-item {
+    div.list-group a.inline-item {
         display: inline-block;
     }
 
-    div.card a.inline-item:not(:last-of-type) {
+    div.list-group a.inline-item:not(:last-of-type) {
         margin-right: -5px;
     }
 }
@@ -167,7 +174,7 @@ div.card a {
     }
 }
 
-div.card a.inline-item {
+div.list-group a.inline-item {
     font-size: 11px;
     text-align: -webkit-center;
 }
@@ -185,21 +192,39 @@ div.card a > img {
 }
 
 /*timeline*/
-.timeline div.list-group-item {
+.timeline div.list-group-item:first-child {
+    border-radius: 0px;
+}
+
+.timeline div.list-group-item .data {
     cursor: pointer;
 }
 
-.timeline div.list-group-item:hover {
+.timeline div.list-group-item:hover, .timeline div.list-group-item:focus {
     background-color: #FAF4F4;
 }
 
-.timeline div.list-group-item:hover div.actions a {
+.timeline div.list-group-item:hover div.actions a, .timeline div.list-group-item.selected div.actions a {
     color: #999;
 }
 
-.timeline .panel-heading {
+.timeline div.list-group-item.selected, .timeline div.list-group-item.selected:hover, .timeline div.list-group-item.selected:focus {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.timeline .title {
     background-color: #FFFEF9;
     border-bottom: 1px solid #dddddd;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-bottom: -1px;
+    margin-top: 0px;
+    padding: 5px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-weight: bold;
 }
 
 .timeline div.list-group-item img {
@@ -222,4 +247,38 @@ div.card a > img {
 
 .timeline div.list-group-item div.actions a {
     color: #ddd;
+}
+
+.timeline div.list-group-item div.details a {
+    border-radius: 0px;
+    padding: 4px;
+}
+
+.timeline div.list-group-item div.details a:first-child {
+    border: 1px solid #ACA7A7;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.timeline div.list-group-item div.details.list-group a:last-child {
+    border: 1px solid #ACA7A7;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.timeline div.list-group-item div.details .details, .timeline div.list-group-item div.details .date {
+    font-size:12px;
+    color: #999;
+}
+
+.timeline div.list-group-item div.replies .reply {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    min-height: 50px;
+    padding: 5px;
+}
+
+.timeline div.list-group-item div.replies .reply > img {
+    height:40px;
 }

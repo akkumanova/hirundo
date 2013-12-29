@@ -2,35 +2,9 @@
 (function (angular) {
   'use strict';
 
-  function HomeCtrl($scope, $q, $window, $state, User, Comment) {
-    var skip;
-
+  function HomeCtrl($scope, $q, $window, User, Comment) {
     $scope.hirundo = null;
-    $scope.pending = false;
-
-    $q.all({
-      userData: User.userData.get().$promise,
-      comments: User.userComments.query({ userId: $window.user.userId }).$promise
-    }).then(function (res) {
-      $scope.user = res.userData;
-      $scope.comments = res.comments;
-
-      skip = 20;
-    });
-
-    $scope.loadMore = function () {
-      if (!$scope.pending) {
-        $scope.pending = true;
-        return User.userComments.query({ userId: $scope.user.userId, skip: skip })
-            .$promise.then(function (comments) {
-              $scope.comments = $scope.comments.concat(comments);
-              skip += 20;
-              $scope.pending = false;
-
-              return comments.length !== 0;
-            });
-      }
-    };
+    $scope.loaded = false;
 
     $scope.sendHirundo = function () {
       var newComment = {
@@ -39,13 +13,26 @@
         'PublishDate': new Date()
       };
 
-      return Comment.save(newComment).$promise.then(function () {
-        $state.go('home');
+      return Comment.comment.save(newComment).$promise.then(function () {
+        getData();
       });
     };
+
+    var getData = function () {
+      $q.all({
+        userData: User.userData.get().$promise,
+        comments: User.userComments.query({ userId: $window.user.userId }).$promise
+      }).then(function (res) {
+        $scope.user = res.userData;
+        $scope.comments = res.comments;
+        $scope.loaded = true;
+      });
+    };
+
+    getData();
   }
 
-  HomeCtrl.$inject = ['$scope', '$q', '$window', '$state', 'User', 'Comment'];
+  HomeCtrl.$inject = ['$scope', '$q', '$window', 'User', 'Comment'];
 
   angular.module('home').controller('home.HomeCtrl', HomeCtrl);
 }(angular));

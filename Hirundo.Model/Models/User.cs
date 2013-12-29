@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web.Helpers;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Newtonsoft.Json;
 
 namespace Hirundo.Model.Models
 {

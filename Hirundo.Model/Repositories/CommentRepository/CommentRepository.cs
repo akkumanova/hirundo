@@ -35,9 +35,23 @@ namespace Hirundo.Model.Repositories.CommentRepository
                         .ToList();
         }
 
+        public Comment GetComment(ObjectId commentId)
+        {
+            var query = Query<Comment>.EQ(c => c.Id, commentId);
+            return this.commentCollection.FindOne(query);
+        }
+
         public void SaveComment(Comment comment)
         {
             this.commentCollection.Insert(comment);
+        }
+
+        public void SaveReply(ObjectId commentId, Reply reply)
+        {
+            var query = Query<Comment>.EQ(c => c.Id, commentId);
+            var update = Update<Comment>.Push<Reply>(c => c.Replies, reply);
+
+            this.commentCollection.Update(query, update);
         }
     }
 }

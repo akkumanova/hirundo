@@ -3,6 +3,12 @@
   'use strict';
 
   angular.module('home').factory('Comment', ['$resource', function ($resource) {
-    return $resource('api/comments/:commentId', { userId: '@commentId' });
+    var commentFactory = {
+      comment: $resource('api/comments/:commentId', { commentId: '@commentId' }),
+      commentDetails: $resource('api/comments/:commentId/details', { commentId: '@commentId' }),
+      reply: $resource('api/comments/:commentId/reply', { commentId: '@commentId' })
+    };
+
+    return commentFactory;
   }]);
 }(angular));

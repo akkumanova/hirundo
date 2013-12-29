@@ -1,0 +1,45 @@
+﻿<div class="col-xs-8 timeline" hd-when-scrolled="loadMore()">
+  <h4 class="title">{{category}}</h4>
+  <div class="list-group">
+    <div class="list-group-item" ng-repeat="comment in model track by comment.commentId" ng-class="{selected: comment.isExpanded}">
+      <div class="data" ng-click="commentClick(comment)">
+        <img class="pull-left img-thumbnail" ng-src="{{comment.authorImg}}">
+        <strong>{{comment.author}}</strong>
+        <span am-time-ago="comment.publishDate" class="pull-right timestamp"></span>
+        <p>{{comment.content}}</p>
+        <div class="actions">
+          <a href="#"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+          <a href="#" ng-hide="comment.authorId === userId"><span class="glyphicon glyphicon-retweet"></span> Retweet</a>
+          <a href="#" ng-show="comment.authorId === userId"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+          <a href="#"><span class="glyphicon glyphicon-star"></span> Favorite</a>
+        </div>
+        <div class="details" ng-show="comment.isExpanded">
+          <div class="list-group details" style="margin-bottom:8px;">
+            <a href="#" class="list-group-item inline-item" ng-if="comment.retweets">
+              <strong class="list-group-item-heading">{{comment.retweets | number: 0}}</strong><br>
+              <span class="list-group-item-text">RETWEETS</span>
+            </a>
+            <a href="#" class="list-group-item inline-item" ng-if="comment.favorites">
+              <strong class="list-group-item-heading">{{comment.favorites | number: 0}}</strong><br>
+              <span class="list-group-item-text">FAVORITES</span>
+            </a>
+          </div>
+          <span class="date">{{comment.publishDate | date:'h:mma - dd MMM yyyy'}}</span> · <a class="details" href="#">Details</a>
+        </div>
+      </div>
+      <div class="replies" ng-show="comment.isExpanded">
+        <div class="reply">
+          <img ng-src="{{userImg}}" class="img-thumbnail">
+          <hd-hirundo model="comment.newReply" send="sendReply(comment)" rows="5" placeholder="Reply to {{comment.author}}..." style="width:85%;display:inline-block;"></hd-hirundo>
+        </div>
+        <div class="reply" ng-repeat="reply in comment.replies" style="margin: 0px;background-color:#F8ECEC;">
+          <img class="pull-left img-thumbnail" ng-src="{{reply.authorImg}}">
+          <strong>{{reply.author}}</strong>
+          <span am-time-ago="reply.publishDate" class="pull-right timestamp"></span>
+          <p>{{reply.content}}</p>
+        </div>
+      </div>
+    </div>
+    <img src="/app/img/initial-loader.gif" ng-show="pending" class="loader">
+  </div>
+</div>

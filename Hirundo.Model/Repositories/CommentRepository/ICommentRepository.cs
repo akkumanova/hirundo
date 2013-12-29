@@ -10,6 +10,10 @@ namespace Hirundo.Model.Repositories.CommentRepository
 
         List<Comment> GetComments(List<ObjectId> userIds, int skip);
 
+        Comment GetComment(ObjectId commentId);
+
         void SaveComment(Comment comment);
+
+        void SaveReply(ObjectId commentId, Reply reply);
     }
 }
