@@ -16,5 +16,7 @@ namespace Hirundo.Web.Models.Comment
         public string Content { get; set; }
 
         public DateTime PublishDate { get; set; }
+
+        public bool IsRetweeted { get; set; }
     }
 }

@@ -53,7 +53,7 @@ namespace Hirundo.Web.ControllersApi
             CommentDetailsDO commentDetails = new CommentDetailsDO();
             commentDetails.CommentId = comment.Id;
             commentDetails.Favorites = comment.Favorites;
-            commentDetails.Retweets = comment.Retweets;
+            commentDetails.Retweets = comment.RetweetedBy.Count;
 
             var repliesToDisplay = comment.Replies.OrderByDescending(r => r.PublishDate).Take(2);
             foreach (var reply in repliesToDisplay)
@@ -71,6 +71,15 @@ namespace Hirundo.Web.ControllersApi
             }
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, commentDetails);
+        }
+
+        public HttpResponseMessage PostRetweet(string commentId)
+        {
+            this.commentRepository.AddRetweet(
+                new ObjectId(commentId),
+                new ObjectId(this.userContext.UserId));
+
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

@@ -4,7 +4,19 @@
 (function (angular) {
   'use strict';
 
-  function CommentsDirective($window, User, Comment) {
+  var RetweetModalCtrl = function ($scope, $modalInstance, commentData) {
+    $scope.commentData = commentData;
+
+    $scope.cancel = function () {
+      $modalInstance.close(false);
+    };
+
+    $scope.ok = function () {
+      $modalInstance.close(true);
+    };
+  };
+
+  function CommentsDirective($window, $modal, User, Comment) {
     return {
       restrict: 'E',
       replace: true,
@@ -44,9 +56,13 @@
 
           return Comment.reply.save({ commentId: comment.commentId }, reply)
                         .$promise.then(function () {
-            Comment.commentDetails.get({commentId: comment.commentId})
-                   .$promise.then(function (commentDetails) {
-              comment.replies = commentDetails.replies;
+            comment.replies.pop();
+            comment.replies.unshift({
+              author: $window.user.username,
+              authorId: reply.Author,
+              authorImg: $scope.userImg,
+              content: reply.Content,
+              publishDate: reply.PublishDate
             });
           });
         };
@@ -63,11 +79,38 @@
             });
           }
         };
+
+        $scope.retweetComment = function (comment) {
+          var modalInstance = $modal.open({
+            templateUrl: 'directives/comments/retweetModal.html',
+            controller: RetweetModalCtrl,
+            windowClass: 'retweet-modal',
+            resolve: {
+              commentData: function () {
+                return {
+                  author: comment.author,
+                  authorImg: comment.authorImg,
+                  publishDate: comment.publishDate,
+                  content: comment.content
+                };
+              }
+            }
+          });
+
+          modalInstance.result.then(function (result) {
+            if (result) {
+              Comment.retweet.save({ commentId: comment.commentId }).$promise.then(function () {
+                comment.isRetweeted = true;
+                comment.retweets += 1;
+              });
+            }
+          });
+        };
       }
     };
   }
 
-  CommentsDirective.$inject = ['$window', 'User', 'Comment'];
+  CommentsDirective.$inject = ['$window', '$modal', 'User', 'Comment'];
 
   angular.module('directives').directive('hdComments', CommentsDirective);
 }(angular));

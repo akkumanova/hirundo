@@ -43,10 +43,18 @@ var users = [
 var comments = [];
 
 for (var i = 0; i < 15; i++) {
+  var retweetedBy = [];
+
+  if (i % 3 === 0) {
+    retweetedBy.push(hrtisitoId);
+  }
+  if (i % 5 === 0) {
+    retweetedBy.push(userId);
+  }
+
   comments.push({
     'Author': albsiId,
     'Content': 'albsi comment' + i,
-    'Retweets': 20 + i,
     'Favorites': 10 + i,
     'Replies': [
       {
@@ -63,15 +71,24 @@ for (var i = 0; i < 15; i++) {
         'PublishDate': new Date()
       }
     ],
-    'PublishDate': new Date('2013-10-' + (i + 1))
+    'PublishDate': new Date('2013-10-' + (i + 1)),
+    'RetweetedBy': retweetedBy
   });
 }
 
 for (var i = 0; i < 15; i++) {
+  var retweetedBy = [];
+
+  if (i % 3 === 0) {
+    retweetedBy.push(albsiId);
+  }
+  if (i % 5 === 0) {
+    retweetedBy.push(userId);
+  }
+
   comments.push({
     'Author': hrtisitoId,
     'Content': 'hrisito comment' + i,
-    'Retweets': 20 + i,
     'Favorites': 10 + i,
     'Replies': [
       {
@@ -88,7 +105,8 @@ for (var i = 0; i < 15; i++) {
         'PublishDate': new Date()
       }
     ],
-    'PublishDate': new Date('2013-9-' + (i + 1))
+    'PublishDate': new Date('2013-9-' + (i + 1)),
+    'RetweetedBy': retweetedBy
   });
 }
 

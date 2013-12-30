@@ -69,6 +69,7 @@ namespace Hirundo.Web.ControllersApi
                 commentData.Content = comment.Content;
                 commentData.PublishDate = comment.PublishDate;
                 commentData.AuthorId = comment.Author;
+                commentData.IsRetweeted = comment.RetweetedBy.Contains(id);
 
                 var author = this.userRepository.FindById(comment.Author);
                 commentData.Author = author.Username;

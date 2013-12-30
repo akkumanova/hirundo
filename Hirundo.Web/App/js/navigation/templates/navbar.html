@@ -18,7 +18,7 @@
           <a ng-if="item.items.length > 0" class="dropdown-toggle">
             <b class="caret"></b>
           </a>
-          <ul ng-if="item.items.length > 0" class="dropdown-menu">
+          <ul ng-if="item.items.length > 0" class="dropdown-menu pull-right">
             <li ng-repeat="item in item.items">
               <a ng-href="{{item.url}}" target="{{item.newTab && '_blank' || '_self' }}">
                 <span ng-if="item.icon" class="glyphicon" ng-class="item.icon"></span>

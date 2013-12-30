@@ -6,7 +6,8 @@
     var commentFactory = {
       comment: $resource('api/comments/:commentId', { commentId: '@commentId' }),
       commentDetails: $resource('api/comments/:commentId/details', { commentId: '@commentId' }),
-      reply: $resource('api/comments/:commentId/reply', { commentId: '@commentId' })
+      reply: $resource('api/comments/:commentId/reply', { commentId: '@commentId' }),
+      retweet: $resource('api/comments/:commentId/retweet', { commentId: '@commentId' })
     };
 
     return commentFactory;

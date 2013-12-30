@@ -28,7 +28,6 @@ namespace Hirundo.Model.Models
 
         public string PasswordSalt { get; set; }
 
-        [BsonDateTimeOptions(DateOnly = true)]
         public DateTime RegistrationDate { get; set; }
 
         public List<ObjectId> Following { get; set; }

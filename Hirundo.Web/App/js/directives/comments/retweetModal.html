@@ -1,0 +1,15 @@
+﻿<div class="retweet">
+  <div class="modal-header">
+    <h4>Retweet this to your followers?</h4>
+  </div>
+  <div class="modal-body">
+    <img class="pull-left img-thumbnail" ng-src="{{commentData.authorImg}}">
+    <strong>{{commentData.author}}</strong>
+    <span am-time-ago="commentData.publishDate" class="pull-right timestamp"></span>
+    <p>{{commentData.content}}</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-sm btn-primary" ng-click="ok()">Retweet</button>
+  </div>
+</div>
