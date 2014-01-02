@@ -5,14 +5,14 @@
   function WhenScrolledDirective($window) {
     return {
       restrict: 'A',
-      link: function ($scope, element, attr) {
+      link: function ($scope, element, attrs) {
         var raw = element[0],
             haveMore = true;
 
         angular.element($window).bind('scroll', function () {
           if (haveMore &&
               $window.innerHeight + $window.pageYOffset >= raw.scrollHeight + raw.offsetTop) {
-            $scope.$eval(attr.hdWhenScrolled).then(function (result) {
+            $scope.$eval(attrs.hdWhenScrolled).then(function (result) {
               haveMore = result;
             });
           }
