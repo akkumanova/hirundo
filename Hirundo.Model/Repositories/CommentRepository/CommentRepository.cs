@@ -51,7 +51,7 @@ namespace Hirundo.Model.Repositories.CommentRepository
             var query = Query<Comment>.EQ(c => c.Id, commentId);
             var update = Update<Comment>.Push<Reply>(c => c.Replies, reply);
 
-            this.commentCollection.Update(query, update);
+            this.commentCollection.Update(query, update, WriteConcern.Acknowledged);
         }
 
         public void AddRetweet(ObjectId commentId, ObjectId userId)
@@ -59,7 +59,7 @@ namespace Hirundo.Model.Repositories.CommentRepository
             var query = Query<Comment>.EQ(c => c.Id, commentId);
             var update = Update<Comment>.Push<ObjectId>(c => c.RetweetedBy, userId);
 
-            this.commentCollection.Update(query, update);
+            this.commentCollection.Update(query, update, WriteConcern.Acknowledged);
         }
     }
 }
