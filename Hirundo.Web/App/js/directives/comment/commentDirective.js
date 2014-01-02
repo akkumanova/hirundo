@@ -4,8 +4,10 @@
 (function (angular) {
   'use strict';
 
-  var RetweetModalCtrl = function ($scope, $modalInstance, commentData) {
+  var ModalCtrl = function ($scope, $modalInstance, commentData, modalData) {
     $scope.commentData = commentData;
+    $scope.header = modalData.header;
+    $scope.action = modalData.action;
 
     $scope.cancel = function () {
       $modalInstance.close(false);
@@ -16,7 +18,7 @@
     };
   };
 
-  function CommentDirective($window, $modal, Comment) {
+  function CommentDirective($window, $modal, $state, Comment) {
     function CommentLink($scope) {
       $scope.userId = $window.user.userId;
 
@@ -51,9 +53,9 @@
 
       $scope.retweetComment = function () {
         var modalInstance = $modal.open({
-          templateUrl: 'directives/comment/retweetModal.html',
-          controller: RetweetModalCtrl,
-          windowClass: 'retweet-modal',
+          templateUrl: 'directives/comment/modal.html',
+          controller: ModalCtrl,
+          windowClass: 'comment-modal',
           resolve: {
             commentData: function () {
               return {
@@ -61,6 +63,12 @@
                 authorImg: $scope.model.authorImg,
                 publishDate: $scope.model.publishDate,
                 content: $scope.model.content
+              };
+            },
+            modalData: function () {
+              return {
+                header: 'Retweet this to your followers?',
+                action: 'Retweet'
               };
             }
           }
@@ -80,6 +88,40 @@
           }
         });
       };
+
+      $scope.deleteComment = function () {
+        var modalInstance = $modal.open({
+          templateUrl: 'directives/comment/modal.html',
+          controller: ModalCtrl,
+          windowClass: 'comment-modal',
+          resolve: {
+            commentData: function () {
+              return {
+                author: $scope.model.author,
+                authorImg: $scope.model.authorImg,
+                publishDate: $scope.model.publishDate,
+                content: $scope.model.content
+              };
+            },
+            modalData: function () {
+              return {
+                header: 'Are you sure you want to delete this hirundo?',
+                action: 'Delete'
+              };
+            }
+          }
+        });
+
+        modalInstance.result.then(function (result) {
+          if (result) {
+            var commentId = $scope.model.commentId;
+
+            Comment.comment['delete']({ commentId: commentId }).$promise.then(function () {
+              $state.go('home', {}, { reload: true });
+            });
+          }
+        });
+      };
     }
 
     return {
@@ -94,7 +136,7 @@
     };
   }
 
-  CommentDirective.$inject = ['$window', '$modal', 'Comment'];
+  CommentDirective.$inject = ['$window', '$modal', '$state', 'Comment'];
 
   angular.module('directives').directive('hdComment', CommentDirective);
 }(angular));

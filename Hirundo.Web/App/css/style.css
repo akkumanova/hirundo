@@ -13,21 +13,21 @@
     margin: 0px;
 }
 
-.retweet {
+.comment {
     min-height: 50px;
 }
 
-.retweet img {
+.comment img {
     height: 50px;
     margin-right: 10px
 }
 
-.retweet .timestamp {
+.comment .timestamp {
     font-size:12px;
     color: #999;
 }
 
-.retweet-modal > * {
+.comment-modal > * {
     width: 450px;
 }
 

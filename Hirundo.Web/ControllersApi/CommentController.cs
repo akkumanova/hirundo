@@ -38,6 +38,12 @@ namespace Hirundo.Web.ControllersApi
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        public HttpResponseMessage DeleteComment(string commentId)
+        {
+            this.commentRepository.DeleteComment(new ObjectId(commentId));
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         public HttpResponseMessage PostReply(Reply reply, string commentId)
         {
             ObjectId id = new ObjectId(commentId);

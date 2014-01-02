@@ -155,7 +155,7 @@
     <Content Include="App\js\app.js" />
     <Content Include="App\js\directives\comments\commentsDirective.html" />
     <Content Include="App\js\directives\comments\commentsDirective.js" />
-    <Content Include="App\js\directives\comment\retweetModal.html" />
+    <Content Include="App\js\directives\comment\modal.html" />
     <Content Include="App\js\directives\comment\commentDirective.html" />
     <Content Include="App\js\directives\comment\commentDirective.js" />
     <Content Include="App\js\directives\directives.js" />

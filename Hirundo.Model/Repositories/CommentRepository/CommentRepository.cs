@@ -41,6 +41,12 @@ namespace Hirundo.Model.Repositories.CommentRepository
             return this.commentCollection.FindOne(query);
         }
 
+        public void DeleteComment(ObjectId commentId)
+        {
+            var query = Query<Comment>.EQ(c => c.Id, commentId);
+            this.commentCollection.Remove(query);
+        }
+
         public void SaveComment(Comment comment)
         {
             this.commentCollection.Insert(comment);

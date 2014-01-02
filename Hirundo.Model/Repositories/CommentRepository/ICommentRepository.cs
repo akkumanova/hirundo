@@ -12,6 +12,8 @@ namespace Hirundo.Model.Repositories.CommentRepository
 
         Comment GetComment(ObjectId commentId);
 
+        void DeleteComment(ObjectId commentId);
+
         void SaveComment(Comment comment);
 
         void SaveReply(ObjectId commentId, Reply reply);
