@@ -30,11 +30,11 @@
           'PublishDate': new Date()
         };
 
-        return Comment.reply.save({ commentId: commentId }, reply).$promise.then(function () {
-          Comment.commentDetails.get({ commentId: commentId }).$promise
-                 .then(function (commentDetails) {
-            $scope.model.replies = commentDetails.replies;
-          });
+        return Comment.reply.save({ commentId: commentId }, reply).$promise
+                            .then(function (commentDetails) {
+          $scope.model.retweets = commentDetails.retweets;
+          $scope.model.favorites = commentDetails.favorites;
+          $scope.model.replies = commentDetails.replies;
         });
       };
 
@@ -49,6 +49,17 @@
             $scope.model.replies = commentDetails.replies;
           });
         }
+      };
+
+      $scope.favoriteComment = function () {
+        var commentId = $scope.model.commentId;
+
+        Comment.favorite.save({ commentId: commentId }).$promise.then(function (commentDetails) {
+          $scope.model.isFavorited = true;
+          $scope.model.retweets = commentDetails.retweets;
+          $scope.model.favorites = commentDetails.favorites;
+          $scope.model.replies = commentDetails.replies;
+        });
       };
 
       $scope.retweetComment = function () {
@@ -78,12 +89,11 @@
           if (result) {
             var commentId = $scope.model.commentId;
 
-            Comment.retweet.save({ commentId: commentId }).$promise.then(function () {
-              Comment.commentDetails.get({ commentId: commentId }).$promise
-                      .then(function (commentDetails) {
-                $scope.model.isRetweeted = true;
-                $scope.model.retweets = commentDetails.retweets;
-              });
+            Comment.retweet.save({ commentId: commentId }).$promise.then(function (commentDetails) {
+              $scope.model.isRetweeted = true;
+              $scope.model.retweets = commentDetails.retweets;
+              $scope.model.favorites = commentDetails.favorites;
+              $scope.model.replies = commentDetails.replies;
             });
           }
         });

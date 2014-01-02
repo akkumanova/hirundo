@@ -47,18 +47,53 @@ namespace Hirundo.Web.ControllersApi
         public HttpResponseMessage PostReply(Reply reply, string commentId)
         {
             ObjectId id = new ObjectId(commentId);
-
             this.commentRepository.SaveReply(id, reply);
-            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
+
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetCommentDetails(id));
         }
 
         public HttpResponseMessage GetCommentDetails(string commentId)
         {
-            var comment = this.commentRepository.GetComment(new ObjectId(commentId));
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetCommentDetails(new ObjectId(commentId)));
+        }
+
+        public HttpResponseMessage PostRetweet(string commentId)
+        {
+            var id = new ObjectId(commentId);
+
+            this.commentRepository.AddRetweet(
+                id,
+                new ObjectId(this.userContext.UserId));
+
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetCommentDetails(id));
+        }
+
+        public HttpResponseMessage PostFavorite(string commentId)
+        {
+            var id = new ObjectId(commentId);
+
+            this.commentRepository.AddFavotite(
+                id,
+                new ObjectId(this.userContext.UserId));
+
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetCommentDetails(id));
+        }
+
+        private CommentDetailsDO GetCommentDetails(ObjectId commentId)
+        {
+            var comment = this.commentRepository.GetComment(commentId);
 
             CommentDetailsDO commentDetails = new CommentDetailsDO();
             commentDetails.CommentId = comment.Id;
-            commentDetails.Favorites = comment.Favorites;
+            commentDetails.Favorites = comment.FavoritedBy.Count;
             commentDetails.Retweets = comment.RetweetedBy.Count;
 
             var repliesToDisplay = comment.Replies.OrderByDescending(r => r.PublishDate).Take(2);
@@ -76,16 +111,7 @@ namespace Hirundo.Web.ControllersApi
                 commentDetails.Replies.Add(replyDO);
             }
 
-            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, commentDetails);
-        }
-
-        public HttpResponseMessage PostRetweet(string commentId)
-        {
-            this.commentRepository.AddRetweet(
-                new ObjectId(commentId),
-                new ObjectId(this.userContext.UserId));
-
-            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
+            return commentDetails;
         }
     }
 }

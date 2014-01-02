@@ -44,12 +44,12 @@ namespace Hirundo.Model.Repositories.CommentRepository
         public void DeleteComment(ObjectId commentId)
         {
             var query = Query<Comment>.EQ(c => c.Id, commentId);
-            this.commentCollection.Remove(query);
+            this.commentCollection.Remove(query, WriteConcern.Acknowledged);
         }
 
         public void SaveComment(Comment comment)
         {
-            this.commentCollection.Insert(comment);
+            this.commentCollection.Insert(comment, WriteConcern.Acknowledged);
         }
 
         public void SaveReply(ObjectId commentId, Reply reply)
@@ -64,6 +64,14 @@ namespace Hirundo.Model.Repositories.CommentRepository
         {
             var query = Query<Comment>.EQ(c => c.Id, commentId);
             var update = Update<Comment>.Push<ObjectId>(c => c.RetweetedBy, userId);
+
+            this.commentCollection.Update(query, update, WriteConcern.Acknowledged);
+        }
+
+        public void AddFavotite(ObjectId commentId, ObjectId userId)
+        {
+            var query = Query<Comment>.EQ(c => c.Id, commentId);
+            var update = Update<Comment>.Push<ObjectId>(c => c.FavoritedBy, userId);
 
             this.commentCollection.Update(query, update, WriteConcern.Acknowledged);
         }

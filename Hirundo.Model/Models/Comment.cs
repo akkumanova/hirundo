@@ -18,13 +18,12 @@ namespace Hirundo.Model.Models
 
         public string Content { get; set; }
 
-        [BsonDefaultValue(0)]
-        public int Favorites { get; set; }
-
         public List<Reply> Replies { get; set; }
 
         public DateTime PublishDate { get; set; }
 
         public List<ObjectId> RetweetedBy { get; set; }
+
+        public List<ObjectId> FavoritedBy { get; set; }
     }
 }

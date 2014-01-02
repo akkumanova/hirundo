@@ -6,10 +6,11 @@
     <p>{{model.content}}</p>
     <div class="actions">
       <a href="#"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
-      <a ng-hide="model.authorId === userId && !model.isRetweeted" ng-click="retweetComment();$event.stopPropagation()"><span class="glyphicon glyphicon-retweet"></span> Retweet</a>
+      <a ng-hide="model.authorId === userId || model.isRetweeted" ng-click="retweetComment();$event.stopPropagation()"><span class="glyphicon glyphicon-retweet"></span> Retweet</a>
       <span ng-show="model.isRetweeted" style="color: #609928;"><span class="glyphicon glyphicon-retweet"></span> Retweeted</span>
       <a ng-show="model.authorId === userId" ng-click="deleteComment();$event.stopPropagation()"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-      <a href="#"><span class="glyphicon glyphicon-star"></span> Favorite</a>
+      <a ng-hide="model.isFavorited" ng-click="favoriteComment();$event.stopPropagation()"><span class="glyphicon glyphicon-star"></span> Favorite</a>
+      <span ng-show="model.isFavorited" style="color: #ff9b00;"><span class="glyphicon glyphicon-star"></span> Favorited</span>
     </div>
     <div ng-show="model.isExpanded">
       <div class="list-group details" style="margin-bottom:8px;">

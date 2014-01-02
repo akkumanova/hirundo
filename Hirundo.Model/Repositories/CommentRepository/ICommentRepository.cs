@@ -19,5 +19,7 @@ namespace Hirundo.Model.Repositories.CommentRepository
         void SaveReply(ObjectId commentId, Reply reply);
 
         void AddRetweet(ObjectId commentId, ObjectId userId);
+
+        void AddFavotite(ObjectId commentId, ObjectId userId);
     }
 }

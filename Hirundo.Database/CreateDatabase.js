@@ -26,7 +26,7 @@ var users = [
     "PasswordHash": "ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==",
     "PasswordSalt": "chyK78xfQ1mOZtWFNN/Oug==",
     "RegistrationDate": new Date("2013-07-10"),
-    "Following": [userId]
+    "Following": [albsiId]
   },
   {
     "_id": userId, //passowrd: alabala
@@ -43,19 +43,24 @@ var users = [
 var comments = [];
 
 for (var i = 0; i < 15; i++) {
-  var retweetedBy = [];
+  var retweetedBy = [],
+      favoritedBy = [];
 
+  if (i % 2 === 0) {
+    favoritedBy.push(userId);
+  }
   if (i % 3 === 0) {
     retweetedBy.push(hrtisitoId);
+    favoritedBy.push(hrtisitoId);
   }
   if (i % 5 === 0) {
     retweetedBy.push(userId);
+    favoritedBy.push(albsiId);
   }
 
   comments.push({
     'Author': albsiId,
     'Content': 'albsi comment' + i,
-    'Favorites': 10 + i,
     'Replies': [
       {
         'Author': albsiId,
@@ -72,24 +77,30 @@ for (var i = 0; i < 15; i++) {
       }
     ],
     'PublishDate': new Date('2013-10-' + (i + 1)),
-    'RetweetedBy': retweetedBy
+    'RetweetedBy': retweetedBy,
+    'FavoritedBy': favoritedBy
   });
 }
 
 for (var i = 0; i < 15; i++) {
-  var retweetedBy = [];
+  var retweetedBy = [],
+      favoritedBy = [];
 
+  if (i % 2 === 0) {
+    favoritedBy.push(userId);
+  }
   if (i % 3 === 0) {
     retweetedBy.push(albsiId);
+    favoritedBy.push(hrtisitoId);
   }
   if (i % 5 === 0) {
     retweetedBy.push(userId);
+    favoritedBy.push(albsiId);
   }
 
   comments.push({
     'Author': hrtisitoId,
     'Content': 'hrisito comment' + i,
-    'Favorites': 10 + i,
     'Replies': [
       {
         'Author': albsiId,
@@ -106,7 +117,8 @@ for (var i = 0; i < 15; i++) {
       }
     ],
     'PublishDate': new Date('2013-9-' + (i + 1)),
-    'RetweetedBy': retweetedBy
+    'RetweetedBy': retweetedBy,
+    'FavoritedBy': favoritedBy
   });
 }
 
