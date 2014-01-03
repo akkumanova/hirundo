@@ -8,6 +8,8 @@ namespace Hirundo.Web.Models
 
         public string Fullname { get; set; }
 
+        public string Username { get; set; }
+
         public string Image { get; set; }
 
         public long FollowersCount { get; set; }

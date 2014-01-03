@@ -14,7 +14,7 @@
     </div>
     <div ng-show="model.isExpanded">
       <div class="list-group details" style="margin-bottom:8px;">
-        <a href="#" class="list-group-item inline-item" ng-show="model.retweets">
+        <a class="list-group-item inline-item" ng-show="model.retweets" ng-click="showRetweets();$event.stopPropagation()">
           <strong class="list-group-item-heading">{{model.retweets | number: 0}}</strong><br>
           <span class="list-group-item-text">RETWEETS</span>
         </a>

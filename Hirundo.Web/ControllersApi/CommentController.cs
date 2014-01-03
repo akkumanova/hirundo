@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -72,6 +73,30 @@ namespace Hirundo.Web.ControllersApi
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
                 this.GetCommentDetails(id));
+        }
+
+        public HttpResponseMessage GetRetweets(string commentId)
+        {
+            var userIds = this.commentRepository.GetComment(new ObjectId(commentId)).RetweetedBy;
+
+            var users = this.userRepository.GetUsers(userIds);
+
+            List<UserDO> userDOs = new List<UserDO>();
+            foreach (var user in users)
+            {
+                UserDO userDO = new UserDO
+                {
+                    UserId = user.Id,
+                    Fullname = user.Fullname,
+                    Username = user.Username,
+                    Image = this.imageRepository.GetImage(user.ImgId),
+                    FollowersCount = this.userRepository.GetFollowersCount(user.Id)
+                };
+
+                userDOs.Add(userDO);
+            }
+
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, userDOs);
         }
 
         public HttpResponseMessage PostFavorite(string commentId)

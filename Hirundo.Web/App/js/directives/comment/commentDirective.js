@@ -4,7 +4,7 @@
 (function (angular) {
   'use strict';
 
-  var ModalCtrl = function ($scope, $modalInstance, commentData, modalData) {
+  var CommentModalCtrl = function ($scope, $modalInstance, commentData, modalData) {
     $scope.commentData = commentData;
     $scope.header = modalData.header;
     $scope.action = modalData.action;
@@ -15,6 +15,21 @@
 
     $scope.ok = function () {
       $modalInstance.close(true);
+    };
+  };
+
+  var UsersModalCtrl = function ($scope, $modalInstance, commentData, modalData, users) {
+    $scope.commentData = commentData;
+    $scope.header = modalData.header;
+    $scope.loading = true;
+
+    users.$promise.then(function (result) {
+      $scope.users = result;
+      $scope.loading = false;
+    });
+
+    $scope.close = function () {
+      $modalInstance.dismiss('cancel');
     };
   };
 
@@ -64,8 +79,8 @@
 
       $scope.retweetComment = function () {
         var modalInstance = $modal.open({
-          templateUrl: 'directives/comment/modal.html',
-          controller: ModalCtrl,
+          templateUrl: 'directives/comment/commentsModal.html',
+          controller: CommentModalCtrl,
           windowClass: 'comment-modal',
           resolve: {
             commentData: function () {
@@ -101,8 +116,8 @@
 
       $scope.deleteComment = function () {
         var modalInstance = $modal.open({
-          templateUrl: 'directives/comment/modal.html',
-          controller: ModalCtrl,
+          templateUrl: 'directives/comment/commentsModal.html',
+          controller: CommentModalCtrl,
           windowClass: 'comment-modal',
           resolve: {
             commentData: function () {
@@ -129,6 +144,36 @@
             Comment.comment['delete']({ commentId: commentId }).$promise.then(function () {
               $state.go('home', {}, { reload: true });
             });
+          }
+        });
+      };
+
+      $scope.showRetweets = function () {
+        var commentId = $scope.model.commentId;
+
+        $modal.open({
+          templateUrl: 'directives/comment/usersModal.html',
+          controller: UsersModalCtrl,
+          windowClass: 'users-modal',
+          resolve: {
+            commentData: function () {
+              return {
+                author: $scope.model.author,
+                authorImg: $scope.model.authorImg,
+                publishDate: $scope.model.publishDate,
+                content: $scope.model.content
+              };
+            },
+            modalData: function () {
+              return {
+                header: 'Retweeted ' +
+                        $scope.model.retweets +
+                        ($scope.model.retweets === 1 ? ' time.' : ' times.')
+              };
+            },
+            users: function () {
+              return Comment.retweet.query({ commentId: commentId });
+            }
           }
         });
       };

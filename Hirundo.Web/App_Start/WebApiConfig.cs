@@ -43,6 +43,7 @@ namespace Hirundo.Web
             MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/details" , "Comment", "GetCommentDetails");
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/reply"   , "Comment", "PostReply");
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/retweet" , "Comment", "PostRetweet");
+            MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/retweet" , "Comment", "GetRetweets");
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/favorite", "Comment", "PostFavorite");
         }
 
