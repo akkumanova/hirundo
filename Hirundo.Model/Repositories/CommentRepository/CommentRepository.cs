@@ -35,6 +35,15 @@ namespace Hirundo.Model.Repositories.CommentRepository
                         .ToList();
         }
 
+        public List<Comment> GetLastComments(ObjectId userId, int count)
+        {
+            return this.commentCollection.AsQueryable<Comment>()
+                        .Where(c => c.Author == userId)
+                        .OrderByDescending(c => c.PublishDate)
+                        .Take(count)
+                        .ToList();
+        }
+
         public Comment GetComment(ObjectId commentId)
         {
             var query = Query<Comment>.EQ(c => c.Id, commentId);

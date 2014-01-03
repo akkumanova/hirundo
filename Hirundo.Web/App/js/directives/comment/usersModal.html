@@ -12,7 +12,7 @@
   <div class="modal-footer">
     <div class="list-group">
     <div class="list-group-item" ng-repeat="user in users">
-      <img class="pull-left img-thumbnail" ng-src="{{user.image}}">
+      <img class="pull-left img-thumbnail" hd-profile-summary="user.userId" ng-src="{{user.image}}">
       <div class="data pull-left">
         <strong>{{user.fullname}}</strong>
         <span>{{user.username}}</span><br />

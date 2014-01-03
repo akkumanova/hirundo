@@ -147,7 +147,8 @@
     <Compile Include="Models\Comment\CommentDetailsDO.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\ReplyDO.cs" />
-    <Compile Include="Models\UserDO.cs" />
+    <Compile Include="Models\User\UserCommentDO.cs" />
+    <Compile Include="Models\User\UserDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,8 @@
     <Content Include="App\js\directives\directives.js" />
     <Content Include="App\js\directives\hirundo\hirundoDirective.html" />
     <Content Include="App\js\directives\hirundo\hirundoDirective.js" />
+    <Content Include="App\js\directives\profileSummary\profileSummaryDirective.js" />
+    <Content Include="App\js\directives\profileSummary\userModal.html" />
     <Content Include="App\js\directives\whenScrolled\whenScrolledDirective.js" />
     <Content Include="App\js\home\controllers\homeCtrl.js" />
     <Content Include="App\js\home\home.js" />

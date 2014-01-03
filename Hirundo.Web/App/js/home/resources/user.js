@@ -4,7 +4,7 @@
 
   angular.module('home').factory('User', ['$resource', function ($resource) {
     var userFactory = {
-      userData: $resource('api/user'),
+      userData: $resource('api/user/:userId', { userId: '@userId' }),
       userComments: $resource('api/user/:userId/comments', { userId: '@userId' })
     };
 

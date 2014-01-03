@@ -10,6 +10,8 @@ namespace Hirundo.Model.Repositories.CommentRepository
 
         List<Comment> GetComments(List<ObjectId> userIds, int skip);
 
+        List<Comment> GetLastComments(ObjectId userId, int count);
+
         Comment GetComment(ObjectId commentId);
 
         void DeleteComment(ObjectId commentId);

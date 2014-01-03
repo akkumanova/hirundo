@@ -19,9 +19,11 @@
     };
 
     var getData = function () {
+      var userId = $window.user.userId;
+
       $q.all({
-        userData: User.userData.get().$promise,
-        comments: User.userComments.query({ userId: $window.user.userId }).$promise
+        userData: User.userData.get({ userId: userId }).$promise,
+        comments: User.userComments.query({ userId: userId }).$promise
       }).then(function (res) {
         $scope.user = res.userData;
         $scope.comments = res.comments;

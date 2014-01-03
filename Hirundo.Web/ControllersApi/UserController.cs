@@ -7,14 +7,16 @@ using Hirundo.Model.Models;
 using Hirundo.Model.Repositories.CommentRepository;
 using Hirundo.Model.Repositories.ImagesRepository;
 using Hirundo.Model.Repositories.UserRepository;
-using Hirundo.Web.Models;
 using Hirundo.Web.Models.Comment;
+using Hirundo.Web.Models.User;
 using MongoDB.Bson;
 
 namespace Hirundo.Web.ControllersApi
 {
     public class UserController : ApiController
     {
+        private const int UserComments = 2;
+
         private UserContext userContext;
         private IUserRepository userRepository;
         private ICommentRepository commentRepository;
@@ -32,19 +34,33 @@ namespace Hirundo.Web.ControllersApi
             this.commentRepository = commentRepository;
         }
 
-        public HttpResponseMessage GetUser()
+        public HttpResponseMessage GetUser(string userId)
         {
-            var currentUserId = new ObjectId(this.userContext.UserId);
-            var user = this.userRepository.FindById(currentUserId);
+            var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));
+            var user = this.userRepository.FindById(new ObjectId(userId));
+
+            var comments = this.commentRepository.GetLastComments(user.Id, UserComments);
+            List<UserCommentDO> userCommentsDO = new List<UserCommentDO>();
+            foreach (var comment in comments)
+            {
+                userCommentsDO.Add(new UserCommentDO
+                {
+                    Content = comment.Content,
+                    PublishDate = comment.PublishDate
+                });
+            }
 
             UserDO userDO = new UserDO
             {
                 UserId = user.Id,
                 Fullname = user.Fullname,
+                Username = user.Username,
                 Image = this.imageRepository.GetImage(user.ImgId),
-                FollowersCount = this.userRepository.GetFollowersCount(currentUserId),
+                FollowersCount = this.userRepository.GetFollowersCount(user.Id),
                 FollowingCount = user.Following.Count,
-                CommentsCount = this.commentRepository.GetCommentsCount(currentUserId)
+                IsFollowed = currentUser.Following.Contains(user.Id),
+                CommentsCount = this.commentRepository.GetCommentsCount(user.Id),
+                Comments = userCommentsDO
             };
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, userDO);

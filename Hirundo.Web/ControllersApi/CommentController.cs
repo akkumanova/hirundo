@@ -10,6 +10,7 @@ using Hirundo.Model.Repositories.ImagesRepository;
 using Hirundo.Model.Repositories.UserRepository;
 using Hirundo.Web.Models;
 using Hirundo.Web.Models.Comment;
+using Hirundo.Web.Models.User;
 using MongoDB.Bson;
 
 namespace Hirundo.Web.ControllersApi

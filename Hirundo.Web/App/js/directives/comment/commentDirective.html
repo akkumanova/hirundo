@@ -1,7 +1,7 @@
 ﻿<article class="list-group-item" ng-class="{selected: model.isExpanded}">
-  <img class="pull-left img-thumbnail" ng-src="{{model.authorImg}}">
+  <img class="pull-left img-thumbnail" ng-src="{{model.authorImg}}" hd-profile-summary="model.authorId">
   <div class="data" ng-click="commentClick()">
-    <strong>{{model.author}}</strong>
+    <strong hd-profile-summary="model.authorId">{{model.author}}</strong>
     <span am-time-ago="model.publishDate" class="pull-right timestamp"></span>
     <p>{{model.content}}</p>
     <div class="actions">
@@ -32,7 +32,7 @@
       <hd-hirundo model="model.newReply" send="sendReply()" rows="5" placeholder="Reply to {{model.author}}..." style="width:85%;display:inline-block;"></hd-hirundo>
     </div>
     <div class="reply" ng-repeat="reply in model.replies" style="margin: 0px;background-color:#F8ECEC;">
-      <img class="pull-left img-thumbnail" ng-src="{{reply.authorImg}}">
+      <img class="pull-left img-thumbnail" hd-profile-summary="reply.authorId" ng-src="{{reply.authorImg}}">
       <div class="reply-data">
         <strong>{{reply.author}}</strong>
         <span am-time-ago="reply.publishDate" class="pull-right timestamp"></span>

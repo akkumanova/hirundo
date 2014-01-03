@@ -1,9 +1,15 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using MongoDB.Bson;
 
-namespace Hirundo.Web.Models
+namespace Hirundo.Web.Models.User
 {
     public class UserDO
     {
+        public UserDO()
+        {
+            this.Comments = new List<UserCommentDO>();
+        }
+
         public ObjectId UserId { get; set; }
 
         public string Fullname { get; set; }
@@ -19,5 +25,7 @@ namespace Hirundo.Web.Models
         public bool IsFollowed { get; set; }
 
         public long CommentsCount { get; set; }
+
+        public List<UserCommentDO> Comments { get; set; }
     }
 }

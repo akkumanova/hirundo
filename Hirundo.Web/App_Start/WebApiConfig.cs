@@ -34,7 +34,7 @@ namespace Hirundo.Web
         public static void RegisterRoutes(HttpConfiguration config)
         {
             // User
-            MapRoute(config, HttpMethod.Get, "api/user"                  , "User", "GetUser");
+            MapRoute(config, HttpMethod.Get, "api/user/{userId}"         , "User", "GetUser");
             MapRoute(config, HttpMethod.Get, "api/user/{userId}/comments", "User", "GetTimeline");
 
             // Comments
