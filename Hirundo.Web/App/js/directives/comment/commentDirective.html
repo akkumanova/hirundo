@@ -18,7 +18,7 @@
           <strong class="list-group-item-heading">{{model.retweets | number: 0}}</strong><br>
           <span class="list-group-item-text">RETWEETS</span>
         </a>
-        <a href="#" class="list-group-item inline-item" ng-show="model.favorites">
+        <a class="list-group-item inline-item" ng-show="model.favorites" ng-click="showFavorites();$event.stopPropagation()">
           <strong class="list-group-item-heading">{{model.favorites | number: 0}}</strong><br>
           <span class="list-group-item-text">FAVORITES</span>
         </a>

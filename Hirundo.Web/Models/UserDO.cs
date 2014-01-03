@@ -16,6 +16,8 @@ namespace Hirundo.Web.Models
 
         public long FollowingCount { get; set; }
 
+        public bool IsFollowed { get; set; }
+
         public long CommentsCount { get; set; }
     }
 }

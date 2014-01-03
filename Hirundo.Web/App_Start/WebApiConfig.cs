@@ -45,6 +45,7 @@ namespace Hirundo.Web
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/retweet" , "Comment", "PostRetweet");
             MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/retweet" , "Comment", "GetRetweets");
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/favorite", "Comment", "PostFavorite");
+            MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/favorite", "Comment", "GetFavorites");
         }
 
         private static void MapRoute(HttpConfiguration config, HttpMethod method, string route, string controller, string action)

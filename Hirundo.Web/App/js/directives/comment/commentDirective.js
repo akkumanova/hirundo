@@ -21,6 +21,7 @@
   var UsersModalCtrl = function ($scope, $modalInstance, commentData, modalData, users) {
     $scope.commentData = commentData;
     $scope.header = modalData.header;
+    $scope.userId = modalData.userId;
     $scope.loading = true;
 
     users.$promise.then(function (result) {
@@ -168,11 +169,43 @@
               return {
                 header: 'Retweeted ' +
                         $scope.model.retweets +
-                        ($scope.model.retweets === 1 ? ' time.' : ' times.')
+                        ($scope.model.retweets === 1 ? ' time.' : ' times.'),
+                userId: $scope.userId
               };
             },
             users: function () {
               return Comment.retweet.query({ commentId: commentId });
+            }
+          }
+        });
+      };
+
+      $scope.showFavorites = function () {
+        var commentId = $scope.model.commentId;
+
+        $modal.open({
+          templateUrl: 'directives/comment/usersModal.html',
+          controller: UsersModalCtrl,
+          windowClass: 'users-modal',
+          resolve: {
+            commentData: function () {
+              return {
+                author: $scope.model.author,
+                authorImg: $scope.model.authorImg,
+                publishDate: $scope.model.publishDate,
+                content: $scope.model.content
+              };
+            },
+            modalData: function () {
+              return {
+                header: 'Favorited ' +
+                        $scope.model.favorites +
+                        ($scope.model.favorites === 1 ? ' time.' : ' times.'),
+                userId: $scope.userId
+              };
+            },
+            users: function () {
+              return Comment.favorite.query({ commentId: commentId });
             }
           }
         });

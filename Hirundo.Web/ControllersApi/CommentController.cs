@@ -78,8 +78,9 @@ namespace Hirundo.Web.ControllersApi
         public HttpResponseMessage GetRetweets(string commentId)
         {
             var userIds = this.commentRepository.GetComment(new ObjectId(commentId)).RetweetedBy;
-
             var users = this.userRepository.GetUsers(userIds);
+
+            var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));
 
             List<UserDO> userDOs = new List<UserDO>();
             foreach (var user in users)
@@ -90,7 +91,8 @@ namespace Hirundo.Web.ControllersApi
                     Fullname = user.Fullname,
                     Username = user.Username,
                     Image = this.imageRepository.GetImage(user.ImgId),
-                    FollowersCount = this.userRepository.GetFollowersCount(user.Id)
+                    FollowersCount = this.userRepository.GetFollowersCount(user.Id),
+                    IsFollowed = currentUser.Following.Contains(user.Id)
                 };
 
                 userDOs.Add(userDO);
@@ -110,6 +112,32 @@ namespace Hirundo.Web.ControllersApi
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
                 this.GetCommentDetails(id));
+        }
+
+        public HttpResponseMessage GetFavorites(string commentId)
+        {
+            var userIds = this.commentRepository.GetComment(new ObjectId(commentId)).FavoritedBy;
+            var users = this.userRepository.GetUsers(userIds);
+
+            var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));
+
+            List<UserDO> userDOs = new List<UserDO>();
+            foreach (var user in users)
+            {
+                UserDO userDO = new UserDO
+                {
+                    UserId = user.Id,
+                    Fullname = user.Fullname,
+                    Username = user.Username,
+                    Image = this.imageRepository.GetImage(user.ImgId),
+                    FollowersCount = this.userRepository.GetFollowersCount(user.Id),
+                    IsFollowed = currentUser.Following.Contains(user.Id)
+                };
+
+                userDOs.Add(userDO);
+            }
+
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, userDOs);
         }
 
         private CommentDetailsDO GetCommentDetails(ObjectId commentId)

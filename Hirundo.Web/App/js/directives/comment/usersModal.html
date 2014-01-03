@@ -18,7 +18,8 @@
         <span>{{user.username}}</span><br />
         <span>{{user.followersCount}} {{user.followersCount === 1 ? 'follower' : 'followers'}}</span>
       </div>
-      <button class="btn btn-info btn-sm pull-right">Follow</button>
+      <button class="btn btn-info btn-sm pull-right" ng-hide="user.userId === userId || user.isFollowed">Follow</button>
+      <button class="btn btn-info btn-sm pull-right" ng-show="user.isFollowed">Following</button>
     </div>
     </div>
     <img src="/app/img/initial-loader.gif" ng-show="loading" class="loader">
