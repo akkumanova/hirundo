@@ -2,7 +2,7 @@
 (function (angular) {
   'use strict';
 
-  function ProfileSummaryDirective($modal, $window, User) {
+  function ProfileSummaryDirective($modal, $window, $navigation, User) {
     var ProfileSummaryLink = function ($scope, element, attrs) {
       var userId = attrs.hdProfileSummary;
 
@@ -17,8 +17,11 @@
 
       element.bind('click', function (event) {
         var id = $scope.$eval(userId);
+        $navigation.loading = true;
 
         User.userData.get({ userId: id }).$promise.then(function (user) {
+          $navigation.loading = false;
+
           $modal.open({
             templateUrl: 'directives/profileSummary/userModal.html',
             controller: UserModalCtrl,
@@ -48,7 +51,12 @@
     };
   }
 
-  ProfileSummaryDirective.$inject = ['$modal', '$window', 'User'];
+  ProfileSummaryDirective.$inject = [
+    '$modal',
+    '$window',
+    'navigation.NavigationConfig',
+    'User'
+  ];
 
   angular.module('directives').directive('hdProfileSummary', ProfileSummaryDirective);
 }(angular));

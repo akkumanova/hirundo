@@ -4,12 +4,7 @@
   
   function NavbarCtrl($scope, $state, $window, navigationConfig) {
     function mapItems(items) {
-      return items.filter(function (item) {
-        return (item.permissions || []).reduce(function (hasPermissions, permission) {
-          permission = permission;
-          return hasPermissions && true;
-        }, true);
-      }).map(function (item) {
+      return items.map(function (item) {
         var newItem = {
           active: false,
           text: item.text,
@@ -28,7 +23,17 @@
       });
     }
 
+    $scope.$watch(
+      function () {
+        return navigationConfig.loading;
+      },
+      function (value) {
+        $scope.loading = value;
+      }
+    );
+
     $scope.items = mapItems(navigationConfig.items);
+    $scope.loading = navigationConfig.loading;
     $scope.username = $window.user.username;
   }
   NavbarCtrl.$inject = ['$scope', '$state', '$window', 'navigation.NavigationConfig'];

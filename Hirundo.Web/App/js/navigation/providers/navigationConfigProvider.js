@@ -4,14 +4,13 @@
 
   function NavigationConfigProvider() {
     this.items = [];
+    this.loading = false;
   }
   
   NavigationConfigProvider.prototype.$get = function () {
     return {
       items: this.items,
-      userFullName: this.userFullName,
-      userHasPassword: this.userHasPassword,
-      showBreadcrumbBar: this.showBreadcrumbBar
+      loading: this.loading
     };
   };
   

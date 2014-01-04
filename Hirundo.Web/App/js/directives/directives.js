@@ -5,6 +5,7 @@
   angular.module('directives', [
     'ng',
     'ui.bootstrap',
+    'navigation',
     'directives.templates'
   ]);
 }(angular));
