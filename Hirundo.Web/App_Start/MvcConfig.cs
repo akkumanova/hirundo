@@ -43,6 +43,11 @@ namespace Hirundo.Web.App_Start
                name: null,
                url: "logout",
                defaults: new { controller = "Account", action = "Logout" });
+
+            routes.MapRoute(
+                name: null,
+                url: "forgottenPassowrd",
+                defaults: new { controller = "Account", action = "ForgottenPassword" });
         }
     }
 }

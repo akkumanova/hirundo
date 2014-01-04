@@ -8,7 +8,11 @@ namespace Hirundo.Model.Repositories.UserRepository
     {
         User FindByUsername(string username);
 
+        User FindByEmail(string email);
+
         User FindById(ObjectId userId);
+
+        void ChangePassword(ObjectId id, string newPassword);
 
         List<User> GetUsers(List<ObjectId> userIds);
 

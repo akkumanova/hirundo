@@ -22,7 +22,8 @@
             @ViewBag.ErrorMessage
           </div>
           <div class="buttons">
-            <button type="submit" class="btn btn-info">Sign in</button>
+            <a href="@Url.Content("~/forgottenPassowrd?ReturnUrl=" + Url.Encode(Request.QueryString["ReturnUrl"]))">Forgotten password</a>
+            <button type="submit" class="btn btn-info pull-right">Sign in</button>
           </div>
         </form>
       </div>

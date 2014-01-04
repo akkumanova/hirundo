@@ -1,14 +1,17 @@
-﻿using System.Web.Mvc;
-using Hirundo.Model.Infrastructure;
-using Hirundo.Model.Models;
-using Hirundo.Model.Repositories.UserRepository;
-
-namespace Hirundo.Web.Controllers
+﻿namespace Hirundo.Web.Controllers
 {
+    using Hirundo.Model.Helpers;
+    using Hirundo.Model.Infrastructure;
+    using Hirundo.Model.Models;
+    using Hirundo.Model.Repositories.UserRepository;
+    using System.Net.Mail;
+    using System.Web.Mvc;
+
     public class AccountController : Controller
     {
         private IUserRepository userRepository;
         private IUserContextProvider userContextProvider;
+        private static int passwordLength = 7;
 
         public AccountController(IUserRepository userRepository, IUserContextProvider userContextProvider)
         {
@@ -80,6 +83,83 @@ namespace Hirundo.Web.Controllers
             {
                 ViewBag.ErrorMessage = errorMessage;
                 return this.View("Login");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ForgottenPassword()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult ForgottenPassword(string email, string username)
+        {
+            User user;
+
+            if (string.IsNullOrEmpty(email) && string.IsNullOrEmpty(username))
+            {
+                ViewBag.ErrorMessage = "Specify something!";
+                return this.View();
+            }
+
+            if (!string.IsNullOrEmpty(username))
+            {
+                user = this.userRepository.FindByUsername(username);
+
+                if (!string.IsNullOrEmpty(email) && user != null && user.Email != email)
+                {
+                    ViewBag.ErrorMessage = "The specified user has different email!";
+                    return this.View();
+                }
+            }
+            else
+            {
+                user = this.userRepository.FindByEmail(email);
+            }
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = "Invalid username or email!";
+                return this.View();
+            }
+
+            string newPassword = Password.CreateRandom(passwordLength);
+            this.userRepository.ChangePassword(user.Id, newPassword);
+
+            this.SendEmail(user, newPassword);
+
+            return this.View("Login");
+        }
+
+        private void SendEmail(User user, string newPassword)
+        {
+            SmtpClient smtp = new System.Net.Mail.SmtpClient();
+            smtp.Host = "smtp.gmail.com"; //Host is gmail
+            smtp.Port = 587;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new System.Net.NetworkCredential("hirundooo@gmail.com", "alabala123");
+            smtp.EnableSsl = true;
+
+            MailMessage message = new System.Net.Mail.MailMessage();
+            message.To.Add(user.Email);
+            message.Subject = "Forgotren Password Change - Hirundo Acount";
+            message.From = new System.Net.Mail.MailAddress("hirundooo@gmail.com");
+            message.Body = "Dear stupid " + user.Fullname + " !\nYour new password is " + newPassword;
+
+            // send message
+            try
+            {
+                smtp.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            { // Clean up.
+                message.Dispose();
             }
         }
     }

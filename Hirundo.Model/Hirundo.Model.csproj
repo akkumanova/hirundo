@@ -83,6 +83,7 @@
     <Compile Include="Converters\ObjectIdConverter.cs" />
     <Compile Include="Data\IMongoContext.cs" />
     <Compile Include="Data\MongoContext.cs" />
+    <Compile Include="Helpers\Password.cs" />
     <Compile Include="HirundoModelModule.cs" />
     <Compile Include="Infrastructure\IUserContextProvider.cs" />
     <Compile Include="Infrastructure\UserContext.cs" />

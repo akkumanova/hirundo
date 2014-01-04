@@ -6,6 +6,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
+using System.Web.Helpers;
 
 namespace Hirundo.Model.Repositories.UserRepository
 {
@@ -25,11 +26,30 @@ namespace Hirundo.Model.Repositories.UserRepository
             return this.userCollection.FindOne(query);
         }
 
+        public User FindByEmail(string email)
+        {
+            var query = Query<User>.Where(u => u.Email == email);
+
+            return this.userCollection.FindOne(query);
+        }
+
         public User FindById(ObjectId userId)
         {
             var query = Query<User>.EQ(u => u.Id, userId);
 
             return this.userCollection.FindOne(query);
+        }
+
+        public void ChangePassword(ObjectId id, string newPassword)
+        {
+            string passwordSalt = Crypto.GenerateSalt();
+            string passwordHash = Crypto.HashPassword(newPassword + passwordSalt);
+
+            var userQuery = Query<User>.EQ(u => u.Id, id);
+            var update = Update<User>.Set(u => u.PasswordHash, passwordHash)
+                                     .Set(u => u.PasswordSalt, passwordSalt);
+
+            this.userCollection.Update(userQuery, update);
         }
 
         public List<User> GetUsers(List<ObjectId> userIds)
