@@ -25,8 +25,10 @@
              <strong class="list-group-item-heading">{{user.followersCount | number:0}}</strong><br />FOLLOWERS
            </a>
         </div>
-        <button class="btn btn-info btn-sm pull-right">Edit profile</button>
-      </div>
+        <button class="btn btn-info btn-sm pull-right" ng-show="user.userId === currentUserId">Edit profile</button>
+        <button class="btn btn-info btn-sm pull-right" ng-show="user.userId !== currentUserId && user.isFollowed">Following</button>
+        <button class="btn btn-info btn-sm pull-right" ng-hide="user.userId === currentUserId || user.isFollowed">Follow</button>
+       </div>
     </div>
   </div>
 </div>

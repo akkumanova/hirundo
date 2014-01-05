@@ -544,7 +544,7 @@ div.card a > img {
 }
 
 .user-card .details .list-group {
-    margin-bottom: 0px;
+    margin: -1px;
 }
 
 .user-card .details .list-group-item:first-child {

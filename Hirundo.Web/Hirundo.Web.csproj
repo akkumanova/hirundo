@@ -154,9 +154,9 @@
   <ItemGroup>
     <Content Include="App\css\style.css" />
     <Content Include="App\js\app.js" />
-    <Content Include="App\js\details\controllers\detailsCtrl.js" />
-    <Content Include="App\js\details\details.js" />
-    <Content Include="App\js\details\templates\details.html" />
+    <Content Include="App\js\profile\controllers\profileCtrl.js" />
+    <Content Include="App\js\profile\profile.js" />
+    <Content Include="App\js\profile\templates\profile.html" />
     <Content Include="App\js\directives\comments\commentsDirective.html" />
     <Content Include="App\js\directives\comments\commentsDirective.js" />
     <Content Include="App\js\directives\comment\commentsModal.html" />

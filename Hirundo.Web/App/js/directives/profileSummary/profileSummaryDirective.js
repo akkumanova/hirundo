@@ -6,11 +6,16 @@
     var ProfileSummaryLink = function ($scope, element, attrs) {
       var userId = attrs.hdProfileSummary;
 
-      var UserModalCtrl = function ($scope, $modalInstance, user, currentUserId) {
+      var UserModalCtrl = function ($scope, $state, $modalInstance, user, currentUserId) {
         $scope.user = user;
         $scope.currentUserId = currentUserId;
 
         $scope.close = function () {
+          $modalInstance.dismiss('cancel');
+        };
+
+        $scope.fullProfile = function () {
+          $state.go('profile', { id: user.userId});
           $modalInstance.dismiss('cancel');
         };
       };

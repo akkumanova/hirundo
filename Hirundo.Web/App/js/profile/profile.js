@@ -1,26 +1,26 @@
 ﻿/*global angular*/
 (function (angular) {
   'use strict';
-  angular.module('details', [
+  angular.module('profile', [
     'ng',
     'navigation',
-    'details.templates'
+    'profile.templates'
   ]).config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state({
-        name: 'rootDetails',
-        url: '/details',
+        name: 'rootProfile',
+        url: '/profile',
         parent: 'root',
         'abstract': true
       })
       .state({
-        name: 'details',
-        parent: 'rootDetails',
-        url: '',
+        name: 'profile',
+        parent: 'rootProfile',
+        url: '/:id',
         views: {
           'pageView@root': {
-            templateUrl: 'details/templates/details.html',
-            controller: 'details.DetailsCtrl'
+            templateUrl: 'profile/templates/profile.html',
+            controller: 'profile.ProfileCtrl'
           }
         }
       });

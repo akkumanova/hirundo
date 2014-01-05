@@ -8,16 +8,18 @@
     'directives',
     'navigation',
     'home',
-    'details'
+    'profile'
   ]).config([
     '$urlRouterProvider',
     '$stateProvider',
     '$locationProvider',
+    '$windowProvider',
     'navigation.NavigationConfigProvider',
     function (
       $urlRouterProvider,
       $stateProvider,
       $locationProvider,
+      $windowProvider,
       navigationConfigProvider
     ) {
       $locationProvider.html5Mode(false);
@@ -30,7 +32,8 @@
         .addItem({
           text: 'Me',
           icon: 'glyphicon-user',
-          state: 'details',
+          state: 'profile',
+          stateParams: { id: $windowProvider.$get().user.userId },
           items: [
             { text: 'Edit profile', url: '/edit' },
             { text: 'Settings', url: '/settings' },
