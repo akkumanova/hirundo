@@ -24,11 +24,11 @@
         var username = usernameInput.val();
 
         if (username.length === 0) {
-          $('usernameRequiredError').show();
+          $('#usernameRequiredError').show();
           usernameInvalid = true;
         }
         else {
-          $('usernameRequiredError').hide();
+          $('#usernameRequiredError').hide();
           usernameInvalid = true;
 
           $.get(
@@ -58,11 +58,11 @@
         var email = emailInput.val();
 
         if (email.length === 0) {
-          $('emailRequiredError').show();
+          $('#emailRequiredError').show();
           emailInvalid = true;
         }
         else {
-          $('emailRequiredError').hide();
+          $('#emailRequiredError').hide();
           emailInvalid = true;
 
           $.get(
