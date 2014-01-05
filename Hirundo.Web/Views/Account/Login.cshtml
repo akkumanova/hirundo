@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-  <title>Hirundo</title>
+  <title>Create a Hirundo Account</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="/app/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
@@ -26,6 +26,7 @@
             <button type="submit" class="btn btn-info pull-right">Sign in</button>
           </div>
         </form>
+        New to Twitter? <a href="@Url.Content("~/signup?ReturnUrl=" + Url.Encode(Request.QueryString["ReturnUrl"]))">Sign up now »</a>
       </div>
     </div>
   </div>

@@ -1,8 +1,8 @@
-﻿using System;
-using MongoDB.Bson;
-
-namespace Hirundo.Web.Models
+﻿namespace Hirundo.Web.Models
 {
+    using System;
+    using MongoDB.Bson;
+
     public class ReplyDO
     {
         public string Author { get; set; }

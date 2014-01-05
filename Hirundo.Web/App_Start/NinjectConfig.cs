@@ -1,9 +1,9 @@
-﻿using System.Web;
-using Hirundo.Model;
-using Ninject;
-
-namespace Hirundo.Web.App_Start
+﻿namespace Hirundo.Web.App_Start
 {
+    using System.Web;
+    using Hirundo.Model;
+    using Ninject;
+
     public static class NinjectConfig
     {
         public static void RegisterServices(IKernel kernel)

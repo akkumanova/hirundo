@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Hirundo.Model.Infrastructure;
-using Hirundo.Model.Models;
-using Hirundo.Model.Repositories.CommentRepository;
-using Hirundo.Model.Repositories.ImagesRepository;
-using Hirundo.Model.Repositories.UserRepository;
-using Hirundo.Web.Models.Comment;
-using Hirundo.Web.Models.User;
-using MongoDB.Bson;
-
-namespace Hirundo.Web.ControllersApi
+﻿namespace Hirundo.Web.ControllersApi
 {
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+    using Hirundo.Model.Infrastructure;
+    using Hirundo.Model.Models;
+    using Hirundo.Model.Repositories.CommentRepository;
+    using Hirundo.Model.Repositories.ImagesRepository;
+    using Hirundo.Model.Repositories.UserRepository;
+    using Hirundo.Web.Models.Comment;
+    using Hirundo.Web.Models.User;
+    using MongoDB.Bson;
+
     public class UserController : ApiController
     {
         private const int UserComments = 2;
@@ -64,6 +64,25 @@ namespace Hirundo.Web.ControllersApi
             };
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, userDO);
+        }
+
+        public HttpResponseMessage GetUserExists(string username = null, string email = null)
+        {
+            bool userExists = false;
+
+            if (!string.IsNullOrWhiteSpace(username))
+            {
+                var user = this.userRepository.FindByUsername(username);
+                userExists = userExists || user != null;
+            }
+
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                var user = this.userRepository.FindByEmail(email);
+                userExists = userExists || user != null;
+            }
+
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, userExists);
         }
 
         public HttpResponseMessage GetTimeline(string userId, int skip = 0)

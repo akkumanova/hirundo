@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hirundo.Model.Data;
-using Hirundo.Model.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using MongoDB.Driver.Linq;
-
-namespace Hirundo.Model.Repositories.CommentRepository
+﻿namespace Hirundo.Model.Repositories.CommentRepository
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Hirundo.Model.Data;
+    using Hirundo.Model.Models;
+    using MongoDB.Bson;
+    using MongoDB.Driver;
+    using MongoDB.Driver.Builders;
+    using MongoDB.Driver.Linq;
+
     public class CommentRepository : ICommentRepository
     {
         private MongoCollection<Comment> commentCollection;

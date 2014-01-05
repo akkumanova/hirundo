@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Hirundo.Model.Models;
-using MongoDB.Bson;
-
-namespace Hirundo.Model.Repositories.CommentRepository
+﻿namespace Hirundo.Model.Repositories.CommentRepository
 {
+    using System.Collections.Generic;
+    using Hirundo.Model.Models;
+    using MongoDB.Bson;
+
     public interface ICommentRepository
     {
         long GetCommentsCount(ObjectId userId);

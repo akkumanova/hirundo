@@ -1,12 +1,12 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using Ninject;
-using Ninject.Activation.Blocks;
-
-namespace Hirundo.Model.Utils
+﻿namespace Hirundo.Model.Utils
 {
+    using System;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Ninject;
+    using Ninject.Activation.Blocks;
+
     public class NinjectControllerFactory : DefaultControllerFactory
     {
         private static readonly string ActivationBlockKey = "__NinjectControllerFactory_ActivationBlockKey__";
@@ -32,16 +32,14 @@ namespace Hirundo.Model.Utils
             {
                 throw new HttpException(
                     404,
-                    string.Format(
-                        "The controller for path '{0}' was not found or does not implement IController.",
+                    string.Format("The controller for path '{0}' was not found or does not implement IController.",
                         requestContext.HttpContext.Request.Path));
             }
 
             if (!typeof(IController).IsAssignableFrom(controllerType))
             {
                 throw new ArgumentException(
-                    string.Format("The controller type '{0}' must implement IController.", controllerType),
-                    "controllerType");
+                    string.Format("The controller type '{0}' must implement IController.", controllerType), "controllerType");
             }
 
             try

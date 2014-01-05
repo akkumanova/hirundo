@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Hirundo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="/app/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+  <link href="/app/css/style.css" rel="stylesheet" />
+</head>
+<body>
+  <script src="/app/bower_components/jquery/jquery.js"></script>
+  <script>
+    $(function () {
+      var usernameInput = $('input[name="username"]'),
+          emailInput = $('input[name="email"]'),
+          passwordInput = $('input[name="password"]'),
+          btn = $('button');
+
+      usernameInput.blur(function () {
+        var username = usernameInput.val();
+
+        $.get(
+          "api/user",
+          { username: username },
+          function (userExists) {
+            var usernameError = $('#usernameError');
+
+            if (userExists) {
+              usernameError.show();
+            }
+            else {
+              usernameError.hide();
+            }
+          }
+        );
+      });
+
+      emailInput.blur(function () {
+        var email = emailInput.val();
+
+        $.get(
+          "api/user",
+          { email: email },
+          function (userExists) {
+            var emailError = $('#emailError');
+
+            if (userExists) {
+              emailError.show();
+            }
+            else {
+              emailError.hide();
+            }
+          }
+        );
+      });
+    });
+  </script>
+
+  <div class="container-medium sign-up">
+    <div class="row">
+      <div class="col-sm-4">
+        <h1>Join Hirundo</h1>
+      </div>
+      <div class="col-sm-8">
+        <form action="@Url.Content("~/signup?ReturnUrl=" + Url.Encode(Request.QueryString["ReturnUrl"]))" method="post" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Full name</label>
+            <div class="col-sm-9">
+              <input name="fullname" class="form-control" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Username</label>
+            <div class="col-sm-9">
+              <input name="username" class="form-control" type="text" maxlength="16">
+              <span class="error" id="usernameError" style="display:none;">This username is already taken!</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Email address</label>
+            <div class="col-sm-9">
+              <input name="email" class="form-control" type="email">
+              <span class="error" id="emailError" style="display:none;">This email is already registered!</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Password</label>
+            <div class="col-sm-9">
+              <input name="password" class="form-control" type="password">
+            </div>
+          </div>
+          <div class="buttons">
+            <button type="submit" class="btn">Create account</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

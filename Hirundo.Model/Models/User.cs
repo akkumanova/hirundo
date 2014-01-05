@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Helpers;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace Hirundo.Model.Models
+﻿namespace Hirundo.Model.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Helpers;
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
+
     public class User
     {
         public User()

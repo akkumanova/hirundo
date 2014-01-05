@@ -1,22 +1,26 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hirundo.Model.Data;
-using Hirundo.Model.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using MongoDB.Driver.Linq;
-using System.Web.Helpers;
-
-namespace Hirundo.Model.Repositories.UserRepository
+﻿namespace Hirundo.Model.Repositories.UserRepository
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Helpers;
+    using Hirundo.Model.Data;
+    using Hirundo.Model.Models;
+    using MongoDB.Bson;
+    using MongoDB.Driver;
+    using MongoDB.Driver.Builders;
+    using MongoDB.Driver.Linq;
+    using System;
+    using MongoDB.Driver.GridFS;
+
     public class UserRepository : IUserRepository
     {
         private MongoCollection<User> userCollection;
+        private MongoGridFS gridFs;
 
         public UserRepository(IMongoContext mongoContext)
         {
             this.userCollection = mongoContext.GetCollection<User>();
+            this.gridFs = mongoContext.GetGridFs();
         }
 
         public User FindByUsername(string username)
@@ -66,6 +70,27 @@ namespace Hirundo.Model.Repositories.UserRepository
             var followers = this.userCollection.Find(followersQuery);
 
             return followers.Count();
+        }
+
+        public void AddUser(string fullname, string email, string password, string username)
+        {
+            string pwdSalt = Crypto.GenerateSalt();
+            string pwdHash = Crypto.HashPassword(password + pwdSalt);
+
+            var file = this.gridFs.FindOne("user.jpg");
+
+            var user = new User
+            { 
+                Username = username, 
+                Email = email, 
+                PasswordHash = pwdHash, 
+                PasswordSalt = pwdSalt, 
+                Fullname = fullname,
+                RegistrationDate = DateTime.Now,
+                ImgId = new ObjectId(file.Id.ToString())
+            };
+
+            this.userCollection.Insert(user);
         }
     }
 }

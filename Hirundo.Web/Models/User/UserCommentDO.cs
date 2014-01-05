@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Hirundo.Web.Models.User
+﻿namespace Hirundo.Web.Models.User
 {
+    using System;
+
     public class UserCommentDO
     {
         public string Content { get; set; }

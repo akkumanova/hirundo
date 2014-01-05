@@ -1,10 +1,10 @@
-﻿using System;
-using System.Security;
-using System.Web;
-using System.Web.Security;
-
-namespace Hirundo.Model.Infrastructure
+﻿namespace Hirundo.Model.Infrastructure
 {
+    using System;
+    using System.Security;
+    using System.Web;
+    using System.Web.Security;
+
     public class UserContextProvider : IUserContextProvider
     {
         public const string UserContextKey = "__UserContextKey__";
@@ -21,8 +21,12 @@ namespace Hirundo.Model.Infrastructure
             if (this.httpContext.Items[UserContextKey] == null)
             {
                 HttpCookie authCookie = this.httpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
-                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authCookie == null)
+                {
+                    return null;
+                }
 
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
                 if (authTicket == null || authTicket.Expired)
                 {
                     throw new SecurityException("Invalid authentication ticket.");

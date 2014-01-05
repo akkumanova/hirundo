@@ -1,10 +1,10 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
-using Hirundo.Model.Utils;
-using Ninject;
-
-namespace Hirundo.Web.App_Start
+﻿namespace Hirundo.Web.App_Start
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Hirundo.Model.Utils;
+    using Ninject;
+
     public class MvcConfig
     {
         public static void Register(IKernel kernel)
@@ -48,6 +48,11 @@ namespace Hirundo.Web.App_Start
                 name: null,
                 url: "forgottenPassowrd",
                 defaults: new { controller = "Account", action = "ForgottenPassword" });
+
+            routes.MapRoute(
+               name: null,
+               url: "signup",
+               defaults: new { controller = "Account", action = "Signup" });
         }
     }
 }

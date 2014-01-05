@@ -1,10 +1,10 @@
-﻿using System.Configuration;
-using System.Data.Entity;
-using MongoDB.Driver;
-using MongoDB.Driver.GridFS;
-
-namespace Hirundo.Model.Data
+﻿namespace Hirundo.Model.Data
 {
+    using System.Configuration;
+    using System.Data.Entity;
+    using MongoDB.Driver;
+    using MongoDB.Driver.GridFS;
+
     public class MongoContext : DbContext, IMongoContext
     {
         private MongoDatabase database;

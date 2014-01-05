@@ -1,10 +1,10 @@
-﻿using System;
-using MongoDB.Bson;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-namespace Hirundo.Model.Converters
+﻿namespace Hirundo.Model.Converters
 {
+    using System;
+    using MongoDB.Bson;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
     public class ObjectIdConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

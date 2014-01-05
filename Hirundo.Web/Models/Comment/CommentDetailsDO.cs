@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using MongoDB.Bson;
-
-namespace Hirundo.Web.Models.Comment
+﻿namespace Hirundo.Web.Models.Comment
 {
+    using System.Collections.Generic;
+    using MongoDB.Bson;
+
     public class CommentDetailsDO
     {
         public CommentDetailsDO()

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Hirundo.Model.Models;
-using MongoDB.Bson;
-
-namespace Hirundo.Model.Repositories.UserRepository
+﻿namespace Hirundo.Model.Repositories.UserRepository
 {
+    using System.Collections.Generic;
+    using Hirundo.Model.Models;
+    using MongoDB.Bson;
+
     public interface IUserRepository
     {
         User FindByUsername(string username);
@@ -17,5 +17,7 @@ namespace Hirundo.Model.Repositories.UserRepository
         List<User> GetUsers(List<ObjectId> userIds);
 
         long GetFollowersCount(ObjectId userId);
+
+        void AddUser(string fullname, string email, string password, string username);
     }
 }

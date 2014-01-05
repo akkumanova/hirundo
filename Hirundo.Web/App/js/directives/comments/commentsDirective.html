@@ -1,4 +1,4 @@
-﻿<section class="col-xs-8 comments" hd-when-scrolled="loadMore()">
+﻿<section class="col-xs-8 comments" hd-when-scrolled="loadMore()" ng-show="model">
   <h4 class="title">{{category}}</h4>
   <div class="list-group">
     <hd-comment ng-repeat="comment in model track by comment.commentId" model="comment" user-img="userImg"></hd-comment>

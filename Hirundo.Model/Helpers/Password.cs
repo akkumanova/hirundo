@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Hirundo.Model.Helpers
+﻿namespace Hirundo.Model.Helpers
 {
+    using System;
+
     public static class Password
     {
         private static string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-";

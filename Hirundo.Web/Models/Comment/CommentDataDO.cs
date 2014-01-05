@@ -1,8 +1,8 @@
-﻿using System;
-using MongoDB.Bson;
-
-namespace Hirundo.Web.Models.Comment
+﻿namespace Hirundo.Web.Models.Comment
 {
+    using System;
+    using MongoDB.Bson;
+
     public class CommentDataDO
     {
         public ObjectId CommentId { get; set; }

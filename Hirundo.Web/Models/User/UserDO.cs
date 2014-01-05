@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using MongoDB.Bson;
-
-namespace Hirundo.Web.Models.User
+﻿namespace Hirundo.Web.Models.User
 {
+    using System.Collections.Generic;
+    using MongoDB.Bson;
+
     public class UserDO
     {
         public UserDO()

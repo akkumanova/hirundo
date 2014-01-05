@@ -1,15 +1,15 @@
-﻿using System;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Routing;
-using Hirundo.Model.Converters;
-using Hirundo.Model.Utils;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Ninject;
-
-namespace Hirundo.Web
+﻿namespace Hirundo.Web
 {
+    using System;
+    using System.Net.Http;
+    using System.Web.Http;
+    using System.Web.Http.Routing;
+    using Hirundo.Model.Converters;
+    using Hirundo.Model.Utils;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+    using Ninject;
+
     public static class WebApiConfig
     {
         public static void Register(IKernel kernel, HttpConfiguration config)
@@ -34,6 +34,7 @@ namespace Hirundo.Web
         public static void RegisterRoutes(HttpConfiguration config)
         {
             // User
+            MapRoute(config, HttpMethod.Get, "api/user"                  , "User", "GetUserExists");
             MapRoute(config, HttpMethod.Get, "api/user/{userId}"         , "User", "GetUser");
             MapRoute(config, HttpMethod.Get, "api/user/{userId}/comments", "User", "GetTimeline");
 

@@ -1,9 +1,9 @@
-﻿using System.Web.Mvc;
-using Hirundo.Model.Infrastructure;
-using Hirundo.Web.Models;
-
-namespace Hirundo.Web.Controllers
+﻿namespace Hirundo.Web.Controllers
 {
+    using System.Web.Mvc;
+    using Hirundo.Model.Infrastructure;
+    using Hirundo.Web.Models;
+
     public class HomeController : Controller
     {
         private UserContext userContext;

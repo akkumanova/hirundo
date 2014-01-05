@@ -1,17 +1,18 @@
 ﻿namespace Hirundo.Web.Controllers
 {
+    using System.Net.Mail;
+    using System.Web.Mvc;
     using Hirundo.Model.Helpers;
     using Hirundo.Model.Infrastructure;
     using Hirundo.Model.Models;
     using Hirundo.Model.Repositories.UserRepository;
-    using System.Net.Mail;
-    using System.Web.Mvc;
 
     public class AccountController : Controller
     {
+        private static int passwordLength = 7;
+
         private IUserRepository userRepository;
         private IUserContextProvider userContextProvider;
-        private static int passwordLength = 7;
 
         public AccountController(IUserRepository userRepository, IUserContextProvider userContextProvider)
         {
@@ -133,10 +134,13 @@
             return this.View("Login");
         }
 
+        /// <summary> Send eMail to user with new password</summary>
+        /// <param name="user"> user db account</param>
+        /// <param name="newPassword"> new password</param>
         private void SendEmail(User user, string newPassword)
         {
             SmtpClient smtp = new System.Net.Mail.SmtpClient();
-            smtp.Host = "smtp.gmail.com"; //Host is gmail
+            smtp.Host = "smtp.gmail.com"; // Host is gmail
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new System.Net.NetworkCredential("hirundooo@gmail.com", "alabala123");
@@ -161,6 +165,21 @@
             { // Clean up.
                 message.Dispose();
             }
+        }
+
+        [HttpGet]
+        public ActionResult Signup()
+        {
+            return this.View();
+        }
+        
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Signup(string fullname, string email, string password, string username)
+        {
+            this.userRepository.AddUser(fullname, email, password, username);
+
+            return this.View("Login");
         }
     }
 }

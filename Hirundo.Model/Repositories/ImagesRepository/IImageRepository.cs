@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Bson;
-
-namespace Hirundo.Model.Repositories.ImagesRepository
+﻿namespace Hirundo.Model.Repositories.ImagesRepository
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using MongoDB.Bson;
+
     public interface IImageRepository
     {
         string GetImage(ObjectId imageId);

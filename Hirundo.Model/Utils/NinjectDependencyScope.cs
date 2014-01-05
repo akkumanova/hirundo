@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Http.Dependencies;
-using Ninject;
-using Ninject.Syntax;
-
-namespace Hirundo.Model.Utils
+﻿namespace Hirundo.Model.Utils
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Http.Dependencies;
+    using Ninject;
+    using Ninject.Syntax;
+
     public class NinjectDependencyScope : IDependencyScope
     {
         private IResolutionRoot resolutionRoot;

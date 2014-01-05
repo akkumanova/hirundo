@@ -1,8 +1,8 @@
-﻿using System.Web.Http.Dependencies;
-using Ninject;
-
-namespace Hirundo.Model.Utils
+﻿namespace Hirundo.Model.Utils
 {
+    using System.Web.Http.Dependencies;
+    using Ninject;
+
     public class NinjectDependencyResolver : NinjectDependencyScope, IDependencyResolver
     {
         private IKernel kernel;

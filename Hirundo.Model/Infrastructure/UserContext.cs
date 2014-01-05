@@ -1,7 +1,7 @@
-﻿using Hirundo.Model.Models;
-
-namespace Hirundo.Model.Infrastructure
+﻿namespace Hirundo.Model.Infrastructure
 {
+    using Hirundo.Model.Models;
+
     public class UserContext
     {
         private string userId;

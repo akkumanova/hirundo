@@ -1,9 +1,9 @@
-﻿using System.Web.Http;
-using Hirundo.Web.App_Start;
-using Ninject;
-
-namespace Hirundo.Web
+﻿namespace Hirundo.Web
 {
+    using System.Web.Http;
+    using Hirundo.Web.App_Start;
+    using Ninject;
+
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()

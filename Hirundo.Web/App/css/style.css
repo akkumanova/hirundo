@@ -2,6 +2,7 @@
 {
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-image:url('/app/img/background.jpg');
 }
 
 /*modal*/
@@ -211,6 +212,7 @@ form.hirundo textarea {
     padding: 10px;
     border-radius: 4px;
 }
+
 .sign-in form input[type="text"] {
     margin-bottom: -1px;
     border-bottom-left-radius: 0px;
@@ -230,6 +232,44 @@ form.hirundo textarea {
 .sign-in form div.buttons > a{
     vertical-align: -webkit-baseline-middle;
 }
+
+/*sign-up*/
+.sign-up {
+    margin-top: 50px;
+}
+
+
+.sign-up h1 {
+    font-size:63px;
+    font-family:serif;
+}
+
+.sign-up form {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.sign-up form .control-label {
+    padding-right: 0px;
+}
+
+.sign-up form .buttons {
+    text-align: right;
+}
+
+.sign-up form .buttons > button {
+    color: rgb(51, 51, 51);
+    font-weight: bold;
+    font-size: 13px;
+    background-image: linear-gradient(rgb(255, 236, 70), rgb(255, 170, 34));
+    border-color: rgb(253, 157, 0);
+}
+
+.sign-up form .buttons > button:hover, .sign-up form .buttons > button:focus {
+    background-image: linear-gradient(rgb(255, 236, 70), rgb(240, 150, 0));
+}
+
 
 /*forgotten-pass*/
 .forgotten-pass form {
