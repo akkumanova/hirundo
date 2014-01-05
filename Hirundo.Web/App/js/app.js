@@ -7,7 +7,8 @@
     'ui.router',
     'directives',
     'navigation',
-    'home'
+    'home',
+    'details'
   ]).config([
     '$urlRouterProvider',
     '$stateProvider',
@@ -29,7 +30,7 @@
         .addItem({
           text: 'Me',
           icon: 'glyphicon-user',
-          url: '/me',
+          state: 'details',
           items: [
             { text: 'Edit profile', url: '/edit' },
             { text: 'Settings', url: '/settings' },

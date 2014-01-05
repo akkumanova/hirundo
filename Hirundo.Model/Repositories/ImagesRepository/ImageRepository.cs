@@ -34,9 +34,12 @@
 
                 string imageBase64 = Convert.ToBase64String(bytes);
                 imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
-            } else {
+            }
+            else
+            {
                 imageSrc = "data:image/gif;base64,";
             }
+
             return imageSrc;
         }
     }

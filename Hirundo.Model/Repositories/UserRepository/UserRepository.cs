@@ -1,5 +1,6 @@
 ﻿namespace Hirundo.Model.Repositories.UserRepository
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Helpers;
@@ -8,9 +9,8 @@
     using MongoDB.Bson;
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
-    using MongoDB.Driver.Linq;
-    using System;
     using MongoDB.Driver.GridFS;
+    using MongoDB.Driver.Linq;
 
     public class UserRepository : IUserRepository
     {

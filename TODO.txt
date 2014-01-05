@@ -1,6 +1,8 @@
 ﻿Базата данни:
 * да се оправи user колекцията да използва db.reference в ImgId полето
 * да се добави уникален идекс на username и email в колекцията на user-ите
+    ** db.user.ensureIndex({ "Username": 1 }, { unique: true})
+    ** db.user.ensureIndex({ "Email": 1 }, { unique: true})
 
 Изпращане на хирундо:
 * hirundo директивата да поддържа качване на снимки и изпращане на местоположение

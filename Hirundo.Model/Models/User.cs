@@ -48,7 +48,14 @@
 
         public bool VerifyPassword(string password)
         {
-            return Crypto.VerifyHashedPassword(this.PasswordHash, password + this.PasswordSalt);
+            if (this.PasswordHash == null || this.PasswordSalt == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Crypto.VerifyHashedPassword(this.PasswordHash, password + this.PasswordSalt);
+            }
         }
     }
 }

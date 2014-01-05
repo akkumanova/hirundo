@@ -32,8 +32,7 @@
             {
                 throw new HttpException(
                     404,
-                    string.Format("The controller for path '{0}' was not found or does not implement IController.",
-                        requestContext.HttpContext.Request.Path));
+                    string.Format("The controller for path '{0}' was not found or does not implement IController.", requestContext.HttpContext.Request.Path));
             }
 
             if (!typeof(IController).IsAssignableFrom(controllerType))

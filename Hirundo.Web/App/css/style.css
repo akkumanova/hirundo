@@ -501,3 +501,60 @@ div.card a > img {
 .comments .list-group-item div.replies .reply > .reply-data {
     margin-left: 50px;
 }
+
+/*user-card*/
+.user-card .user-data {
+    padding: 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0,0,0,.5);
+    font-family: Arial,sans-serif;
+    color: #fff;
+    background-image: url("https://abs.twimg.com/a/1388694029/t1/img/grey_header_web.jpg");
+    border-radius: 4px 4px 0px 0px;
+}
+
+.user-card .user-data > * {
+    display: block;
+}
+
+.user-card .user-data img {
+    height: 70px;
+    margin: 0 auto;
+}
+
+.user-card .user-data h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 2px;
+}
+
+.user-card .user-data h2 {
+    font-size: 18px;
+    margin: 2px;
+}
+
+.user-card .details {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px 0px 4px 4px;
+    border: 1px solid #dddddd;
+}
+
+.user-card .details > * {
+    display: inline-block;
+}
+
+.user-card .details .list-group {
+    margin-bottom: 0px;
+}
+
+.user-card .details .list-group-item:first-child {
+    border-radius: 0px 0px 0px 4px;
+}
+
+.user-card .details .list-group-item:last-child {
+    border-radius: 0px;
+}
+
+.user-card .details button {
+    margin: 10px;
+}
