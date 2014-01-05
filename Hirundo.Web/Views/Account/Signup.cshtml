@@ -12,47 +12,120 @@
   <script>
     $(function () {
       var usernameInput = $('input[name="username"]'),
+          usernameInvalid = true,
           emailInput = $('input[name="email"]'),
+          emailInvalid = true,
           passwordInput = $('input[name="password"]'),
-          btn = $('button');
+          passwordInvalid = true,
+          fullnameInput = $('input[name="fullname"]'),
+          fullnameInvalid = true;
 
       usernameInput.blur(function () {
         var username = usernameInput.val();
 
-        $.get(
-          "api/user",
-          { username: username },
-          function (userExists) {
-            var usernameError = $('#usernameError');
+        if (username.length === 0) {
+          $('usernameRequiredError').show();
+          usernameInvalid = true;
+        }
+        else {
+          $('usernameRequiredError').hide();
+          usernameInvalid = true;
 
-            if (userExists) {
-              usernameError.show();
+          $.get(
+            "api/user",
+            { username: username },
+            function (userExists) {
+              var usernameError = $('#usernameExistsError');
+
+              if (userExists) {
+                usernameError.show();
+                usernameInvalid = true;
+              }
+              else {
+                usernameError.hide();
+                usernameInvalid = false;
+              }
+
+              canSubmit();
             }
-            else {
-              usernameError.hide();
-            }
-          }
-        );
+          );
+        }
+
+        canSubmit();
       });
 
       emailInput.blur(function () {
         var email = emailInput.val();
 
-        $.get(
-          "api/user",
-          { email: email },
-          function (userExists) {
-            var emailError = $('#emailError');
+        if (email.length === 0) {
+          $('emailRequiredError').show();
+          emailInvalid = true;
+        }
+        else {
+          $('emailRequiredError').hide();
+          emailInvalid = true;
 
-            if (userExists) {
-              emailError.show();
+          $.get(
+            "api/user",
+            { email: email },
+            function (userExists) {
+              var emailError = $('#emailExistsError');
+
+              if (userExists) {
+                emailError.show();
+                emailInvalid = true;
+              }
+              else {
+                emailError.hide();
+                emailInvalid = false;
+              }
+
+              canSubmit();
             }
-            else {
-              emailError.hide();
-            }
-          }
-        );
+          );
+        }
+
+        canSubmit();
       });
+
+      fullnameInput.blur(function () {
+        var fullnameError = $('#fullnameError');
+
+        if (fullnameInput.val().length === 0) {
+          fullnameError.show();
+          fullnameInvalid = true;
+        }
+        else {
+          fullnameError.hide();
+          fullnameInvalid = false;
+        }
+
+        canSubmit();
+      });
+
+      passwordInput.blur(function () {
+        var passwordError = $('#passwordError');
+
+        if (passwordInput.val().length < 6) {
+          passwordError.show();
+          passwordInvalid = true;
+        }
+        else {
+          passwordError.hide();
+          passwordInvalid = false;
+        }
+
+        canSubmit();
+      });
+
+      function canSubmit() {
+        if (usernameInvalid || emailInvalid || passwordInvalid || fullnameInvalid) {
+          $('button').attr('disabled', true);
+        }
+        else {
+         $('button').attr('disabled', false);
+        }
+      }
     });
   </script>
 
@@ -67,30 +140,34 @@
             <label class="col-sm-3 control-label">Full name</label>
             <div class="col-sm-9">
               <input name="fullname" class="form-control" type="text">
+              <span class="error" id="fullnameError" style="display:none;">You must enter fullname!</span>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Username</label>
             <div class="col-sm-9">
               <input name="username" class="form-control" type="text" maxlength="16">
-              <span class="error" id="usernameError" style="display:none;">This username is already taken!</span>
+              <span class="error" id="usernameExistsError" style="display:none;">This username is already taken!</span>
+              <span class="error" id="usernameRequiredError" style="display:none;">You must enter username!</span>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Email address</label>
             <div class="col-sm-9">
               <input name="email" class="form-control" type="email">
-              <span class="error" id="emailError" style="display:none;">This email is already registered!</span>
+              <span class="error" id="emailExistsError" style="display:none;">This email is already registered!</span>
+              <span class="error" id="emailRequiredError" style="display:none;">You must eneter some email!</span>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">Password</label>
             <div class="col-sm-9">
               <input name="password" class="form-control" type="password">
+              <span class="error" id="passwordError" style="display:none;">Password must be at least 6 characters!</span>
             </div>
           </div>
           <div class="buttons">
-            <button type="submit" class="btn">Create account</button>
+            <button type="submit" class="btn" disabled>Create account</button>
           </div>
         </form>
       </div>
