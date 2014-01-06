@@ -27,8 +27,6 @@
 
       navigationConfigProvider
         .addItem({ text: 'Home', icon: 'glyphicon-home', state: 'home', items: [] })
-        .addItem({ text: 'Connect', url: '/connect', items: [] })
-        .addItem({ text: 'Discover', url: '/discover', items: [] })
         .addItem({
           text: 'Me',
           icon: 'glyphicon-user',

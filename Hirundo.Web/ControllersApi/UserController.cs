@@ -85,17 +85,32 @@
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, userExists);
         }
 
-        public HttpResponseMessage GetTimeline(string userId, int skip = 0)
+        public HttpResponseMessage GetTimeline(string userId, int take, int skip = 0)
         {
             ObjectId id = new ObjectId(userId);
             User currentUser = this.userRepository.FindById(id);
 
-            long commentsCount = this.commentRepository.GetCommentsCount(id);
-
             var userIds = currentUser.Following;
             userIds.Add(id);
-            List<Comment> comments = this.commentRepository.GetComments(userIds, skip);
+            List<Comment> comments = this.commentRepository.GetComments(userIds, take, skip);
 
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetCommentData(comments, id));
+        }
+
+        public HttpResponseMessage GetComments(string userId, int take, int skip = 0)
+        {
+            ObjectId id = new ObjectId(userId);
+            List<Comment> comments = this.commentRepository.GetComments(id, take, skip);
+
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetCommentData(comments, id));
+        }
+
+        private List<CommentDataDO> GetCommentData(List<Comment> comments, ObjectId userId)
+        {
             List<CommentDataDO> commentsData = new List<CommentDataDO>();
             foreach (var comment in comments)
             {
@@ -104,8 +119,8 @@
                 commentData.Content = comment.Content;
                 commentData.PublishDate = comment.PublishDate;
                 commentData.AuthorId = comment.Author;
-                commentData.IsRetweeted = comment.RetweetedBy.Contains(id);
-                commentData.IsFavorited = comment.FavoritedBy.Contains(id);
+                commentData.IsRetweeted = comment.RetweetedBy.Contains(userId);
+                commentData.IsFavorited = comment.FavoritedBy.Contains(userId);
 
                 var author = this.userRepository.FindById(comment.Author);
                 commentData.Author = author.Username;
@@ -114,7 +129,7 @@
                 commentsData.Add(commentData);
             }
 
-            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, commentsData);
+            return commentsData;
         }
     }
 }

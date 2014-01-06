@@ -36,7 +36,8 @@
             // User
             MapRoute(config, HttpMethod.Get, "api/user"                  , "User", "GetUserExists");
             MapRoute(config, HttpMethod.Get, "api/user/{userId}"         , "User", "GetUser");
-            MapRoute(config, HttpMethod.Get, "api/user/{userId}/comments", "User", "GetTimeline");
+            MapRoute(config, HttpMethod.Get, "api/user/{userId}/timeline", "User", "GetTimeline");
+            MapRoute(config, HttpMethod.Get, "api/user/{userId}/comments", "User", "GetComments");
 
             // Comments
             MapRoute(config, HttpMethod.Post  , "api/comments"                     , "Comment", "PostComment");

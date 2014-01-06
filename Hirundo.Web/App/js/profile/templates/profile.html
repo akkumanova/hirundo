@@ -1,11 +1,8 @@
 ﻿<img src="/app/img/loading.gif" ng-hide="loaded" class="loader" style="width: 80px;">
 <div class="container-medium page-content" ng-show="loaded">
   <div class="row">
-    <div class="col-xs-4 list-group">
-      <a href="#" class="list-group-item"><strong>Hirundos</strong></a>
-      <a href="#" class="list-group-item"><strong>Following</strong></a>  
-      <a href="#" class="list-group-item"><strong>Followers</strong></a>
-      <a href="#" class="list-group-item"><strong>Favorites</strong></a>
+    <div class="col-xs-4 list-group menu">
+      <a ng-repeat="item in menu" class="list-group-item" ng-class="{active: item.isActive}" ng-click="activate(item)"><strong>{{item.name}}</strong></a>
     </div>
     <div class="col-xs-8 user-card">
        <div class="user-data">
@@ -15,7 +12,7 @@
        </div>
        <div class="details">
          <div class="list-group">
-           <a href="#" class="list-group-item inline-item">
+           <a ui-sref="profile.hirundos" class="list-group-item inline-item">
              <strong class="list-group-item-heading">{{user.commentsCount | number:0}}</strong><br />HIRUNDOS
            </a>
            <a href="#" class="list-group-item inline-item">
@@ -30,5 +27,8 @@
         <button class="btn btn-info btn-sm pull-right" ng-hide="user.userId === currentUserId || user.isFollowed">Follow</button>
        </div>
     </div>
+  </div>
+  <div class="row">
+    <div style="margin-top: 15px;" ui-view="personView"></div>
   </div>
 </div>

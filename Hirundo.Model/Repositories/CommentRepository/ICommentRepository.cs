@@ -8,7 +8,9 @@
     {
         long GetCommentsCount(ObjectId userId);
 
-        List<Comment> GetComments(List<ObjectId> userIds, int skip);
+        List<Comment> GetComments(List<ObjectId> userIds, int take, int skip);
+
+        List<Comment> GetComments(ObjectId userId, int take, int skip);
 
         List<Comment> GetLastComments(ObjectId userId, int count);
 

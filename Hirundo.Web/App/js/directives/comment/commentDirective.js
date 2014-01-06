@@ -37,6 +37,7 @@
   function CommentDirective($window, $modal, $state, Comment) {
     function CommentLink($scope) {
       $scope.userId = $window.user.userId;
+      $scope.userImg = $window.user.userImage;
 
       $scope.sendReply = function () {
         var commentId = $scope.model.commentId;
@@ -143,7 +144,7 @@
             var commentId = $scope.model.commentId;
 
             Comment.comment['delete']({ commentId: commentId }).$promise.then(function () {
-              $state.go('home', {}, { reload: true });
+              $state.go($state.$current, {}, { reload: true });
             });
           }
         });
@@ -217,8 +218,7 @@
       replace: true,
       templateUrl: 'directives/comment/commentDirective.html',
       scope: {
-        model: '=',
-        userImg: '='
+        model: '='
       },
       link: CommentLink
     };

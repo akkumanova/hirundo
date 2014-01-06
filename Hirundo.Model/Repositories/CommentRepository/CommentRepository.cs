@@ -1,5 +1,6 @@
 ﻿namespace Hirundo.Model.Repositories.CommentRepository
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Hirundo.Model.Data;
@@ -25,13 +26,24 @@
             return this.commentCollection.Find(commentsQuery).Count();
         }
 
-        public List<Comment> GetComments(List<ObjectId> userIds, int skip)
+        public List<Comment> GetComments(List<ObjectId> userIds, int take, int skip)
         {
             return this.commentCollection.AsQueryable<Comment>()
                         .Where(c => c.Author.In(userIds))
                         .OrderByDescending(c => c.PublishDate)
                         .Skip(skip)
-                        .Take(20)
+                        .Take(take)
+                        .ToList();
+        }
+
+        public List<Comment> GetComments(ObjectId userId, int take, int skip)
+        {
+            var query = Query<Comment>.EQ(c => c.Author, userId);
+
+            return this.commentCollection.Find(query)
+                        .OrderByDescending<Comment, DateTime>(c => c.PublishDate)
+                        .Skip(skip)
+                        .Take(take)
                         .ToList();
         }
 

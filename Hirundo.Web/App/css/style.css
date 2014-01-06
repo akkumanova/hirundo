@@ -185,6 +185,21 @@
      margin-bottom: 10px;
 }
 
+/*menu*/
+.menu a {
+    cursor: pointer; 
+}
+
+.menu a:hover, .menu.a:focus {
+    background-color: #FAF4F4;
+}
+
+.menu a.active, .menu a.active:hover, .menu a.active:focus {
+    background-image: linear-gradient(rgb(252, 251, 244), rgba(253, 180, 139, 0.91));
+    border-color: rgb(233, 217, 202);
+    color: black;
+}
+
 /*loaders*/
 img.loader {
     margin-left:auto;

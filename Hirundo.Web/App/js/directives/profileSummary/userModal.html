@@ -11,7 +11,7 @@
     </div>
     <div class="details">
       <div class="list-group">
-        <a href="#" class="list-group-item inline-item">
+        <a ui-sref="profile.hirundos({ id: user.userId })" ng-click="close()" class="list-group-item inline-item">
           <strong class="list-group-item-heading">{{user.commentsCount | number:0}}</strong><br />HIRUNDOS
         </a>
         <a href="#" class="list-group-item inline-item">
@@ -34,6 +34,6 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a ng-click="fullProfile()" style="cursor: pointer;">Go to full profile</a>
+    <a ui-sref="profile({ id: user.userId })" ng-click="close()">Go to full profile</a>
   </div>
 </div>

@@ -13,11 +13,6 @@
         $scope.close = function () {
           $modalInstance.dismiss('cancel');
         };
-
-        $scope.fullProfile = function () {
-          $state.go('profile', { id: user.userId});
-          $modalInstance.dismiss('cancel');
-        };
       };
 
       element.bind('click', function (event) {

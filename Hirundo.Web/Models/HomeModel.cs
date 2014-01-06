@@ -5,5 +5,7 @@
         public string UserId { get; set; }
 
         public string Username { get; set; }
+
+        public int ItemsToTake { get; set; }
     }
 }

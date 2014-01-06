@@ -6,15 +6,11 @@
     return {
       restrict: 'A',
       link: function ($scope, element, attrs) {
-        var raw = element[0],
-            haveMore = true;
+        var raw = element[0];
 
         angular.element($window).bind('scroll', function () {
-          if (haveMore &&
-              $window.innerHeight + $window.pageYOffset >= raw.scrollHeight + raw.offsetTop) {
-            $scope.$eval(attrs.hdWhenScrolled).then(function (result) {
-              haveMore = result;
-            });
+          if ($window.innerHeight + $window.pageYOffset >= raw.scrollHeight + raw.offsetTop) {
+            $scope.$eval(attrs.hdWhenScrolled);
           }
         });
       }

@@ -1,7 +1,7 @@
-﻿<section class="col-xs-8 comments" hd-when-scrolled="loadMore()" ng-show="model">
+﻿<section class="col-xs-8 comments" hd-when-scrolled="loadMore()" ng-show="comments">
   <h4 class="title">{{category}}</h4>
   <div class="list-group">
-    <hd-comment ng-repeat="comment in model track by comment.commentId" model="comment" user-img="userImg"></hd-comment>
+    <hd-comment ng-repeat="comment in comments track by comment.commentId" model="comment"></hd-comment>
     <img src="/app/img/initial-loader.gif" ng-show="pending" class="loader">
   </div>
 </section>

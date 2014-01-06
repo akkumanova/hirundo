@@ -6,7 +6,7 @@
         <img ng-src="{{user.image}}" class="img-circle">
         <strong>{{user.fullname}}</strong>
       </a>
-      <a href="#" class="list-group-item inline-item">
+      <a ui-sref="profile.hirundos({ id: user.userId })" class="list-group-item inline-item">
         <h4 class="list-group-item-heading"><span class="badge">{{user.commentsCount}}</span></h4>
         <span class="list-group-item-text">HIRUNDOS</span>
       </a>
@@ -20,6 +20,6 @@
       </a>
       <hd-hirundo class="list-group-item" model="hirundo" rows="8" send="sendHirundo()" placeholder="Compose new hirundo..."></hd-hirundo>
     </div>
-    <hd-comments category="Hirundos" user-img="user.image" model="comments"></hd-comments>
+    <hd-comments ng-if="user" category="Timeline" resource="userTimeline" user="{{user.userId}}"></hd-comments>
   </div>
 </div>

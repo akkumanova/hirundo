@@ -22,8 +22,10 @@
 
   <script type="text/javascript">
     window.user = {};
+    window.config = {};
     window.user.username = '@(Model.Username)';
     window.user.userId = "@(Model.UserId)";
+    window.config.itemsToTake = parseInt("@(Model.ItemsToTake)");
   </script>
 
   <script src="/app/bower_components/angular/angular.js"></script>
@@ -36,6 +38,8 @@
   <script src="/app/bower_components/angular-moment/angular-moment.js"></script>
 
   <script src="/app/js/app.js"></script>
+  <script src="/app/js/resources/user.js"></script>
+  <script src="/app/js/resources/comment.js"></script>
   <script src="/app/js/directives/directives.js"></script>
   <script src="/app/js/directives/hirundo/hirundoDirective.js"></script>
   <script src="/app/js/directives/comments/commentsDirective.js"></script>
@@ -50,13 +54,12 @@
   <script src="/app/build/templates/navigation.js"></script>
 
   <script src="/app/js/home/home.js"></script>
-  <script src="/app/js/home/resources/user.js"></script>
-  <script src="/app/js/home/resources/comment.js"></script>
   <script src="/app/js/home/controllers/homeCtrl.js"></script>
   <script src="/app/build/templates/home.js"></script>
 
   <script src="/app/js/profile/profile.js"></script>
   <script src="/app/js/profile/controllers/profileCtrl.js"></script>
+  <script src="/app/js/profile/controllers/hirundosCtrl.js"></script>
   <script src="/app/build/templates/profile.js"></script>
 
 </body>

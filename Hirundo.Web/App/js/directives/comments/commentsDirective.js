@@ -1,27 +1,38 @@
-﻿// Usage: <hd-comments category="<title>" load-more="<fn>" userImg="<img>"></hd-comments>
+﻿// Usage: <hd-comments category="<title>" resource="<user_resource>" user-id="<id>"></hd-comments>
 
 /*global angular*/
 (function (angular) {
   'use strict';
 
-  function CommentsDirective($window, User) {
-    function CommentsLink($scope) {
-      var skip = 20,
-          userId = $window.user.userId;
+  function CommentsDirective($navigation, $window, User) {
+    function CommentsLink($scope, element, attrs) {
+      var take = $window.config.itemsToTake,
+          skip = take,
+          userId = attrs.user,
+          resource = attrs.resource,
+          moreComments = true;
 
-      $scope.pending = false;
+      $navigation.loading = true;
+
+      User[resource].query({ userId: userId, take: take }).$promise.then(function (comments) {
+        $scope.comments = comments;
+        $navigation.loading = false;
+      });
 
       $scope.loadMore = function () {
-        if (!$scope.pending) {
+        if (moreComments && !$scope.pending) {
+          var promise = User[resource].query({ userId: userId, take: take, skip: skip }).$promise;
+
           $scope.pending = true;
-          return User.userComments.query({ userId: userId, skip: skip })
-              .$promise.then(function (comments) {
-            $scope.model = $scope.model.concat(comments);
-            skip += 20;
+          promise.then(function (comments) {
+            $scope.comments = $scope.comments.concat(comments);
+            skip += take;
             $scope.pending = false;
 
-            return comments.length !== 0;
+            moreComments = comments.length !== 0;
           });
+
+          return promise;
         }
       };
     }
@@ -31,16 +42,13 @@
       replace: true,
       templateUrl: 'directives/comments/commentsDirective.html',
       scope: {
-        category: '@',
-        loadMore: '&',
-        userImg: '=',
-        model: '='
+        category: '@'
       },
       link: CommentsLink
     };
   }
 
-  CommentsDirective.$inject = ['$window', 'User'];
+  CommentsDirective.$inject = ['navigation.NavigationConfig', '$window', 'User'];
 
   angular.module('directives').directive('hdComments', CommentsDirective);
 }(angular));

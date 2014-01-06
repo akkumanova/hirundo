@@ -10,6 +10,8 @@
         public Comment()
         {
             this.Replies = new List<Reply>();
+            this.RetweetedBy = new List<ObjectId>();
+            this.FavoritedBy = new List<ObjectId>();
         }
 
         public ObjectId Id { get; set; }

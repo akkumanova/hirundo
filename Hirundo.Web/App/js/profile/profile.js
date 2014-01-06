@@ -23,6 +23,17 @@
             controller: 'profile.ProfileCtrl'
           }
         }
+      })
+      .state({
+        name: 'profile.hirundos',
+        parent: 'profile',
+        url: '/hirundos',
+        views: {
+          'personView@profile': {
+            templateUrl: 'profile/templates/hirundos.html',
+            controller: 'profile.HirundosCtrl'
+          }
+        }
       });
   }]);
 }(angular));

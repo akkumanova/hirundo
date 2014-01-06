@@ -154,6 +154,7 @@
   <ItemGroup>
     <Content Include="App\css\style.css" />
     <Content Include="App\js\app.js" />
+    <Content Include="App\js\profile\controllers\hirundosCtrl.js" />
     <Content Include="App\js\profile\controllers\profileCtrl.js" />
     <Content Include="App\js\profile\profile.js" />
     <Content Include="App\js\profile\templates\profile.html" />
@@ -171,13 +172,14 @@
     <Content Include="App\js\directives\whenScrolled\whenScrolledDirective.js" />
     <Content Include="App\js\home\controllers\homeCtrl.js" />
     <Content Include="App\js\home\home.js" />
-    <Content Include="App\js\home\resources\comment.js" />
-    <Content Include="App\js\home\resources\user.js" />
+    <Content Include="App\js\resources\comment.js" />
+    <Content Include="App\js\resources\user.js" />
     <Content Include="App\js\home\templates\home.html" />
     <Content Include="App\js\navigation\controllers\navbarCtrl.js" />
     <Content Include="App\js\navigation\navigation.js" />
     <Content Include="App\js\navigation\providers\navigationConfigProvider.js" />
     <Content Include="App\js\navigation\templates\navbar.html" />
+    <Content Include="App\js\profile\templates\hirundos.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
