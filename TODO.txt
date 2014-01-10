@@ -16,7 +16,6 @@
 Страница с по-детайлен изглед за даден потребител:
 * Following
 * Followers
-* Favorites
 
 Profile summary:
 * да се добави действие към бутона follow / following

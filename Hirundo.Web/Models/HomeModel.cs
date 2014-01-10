@@ -6,6 +6,8 @@
 
         public string Username { get; set; }
 
+        public string UserImage { get; set; }
+
         public int ItemsToTake { get; set; }
     }
 }

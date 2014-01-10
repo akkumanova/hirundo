@@ -6,7 +6,8 @@
     var userFactory = {
       userData: $resource('api/user/:userId', { userId: '@userId' }),
       userTimeline: $resource('api/user/:userId/timeline', { userId: '@userId' }),
-      userComments: $resource('api/user/:userId/comments', { userId: '@userId' })
+      userComments: $resource( 'api/user/:userId/comments', { userId: '@userId' } ),
+      userFavorites: $resource( 'api/user/:userId/favorites', { userId: '@userId' } )
     };
 
     return userFactory;

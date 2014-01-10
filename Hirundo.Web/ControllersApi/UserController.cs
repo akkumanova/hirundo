@@ -109,6 +109,16 @@
                 this.GetCommentData(comments, id));
         }
 
+        public HttpResponseMessage GetFavorites(string userId, int take, int skip = 0)
+        {
+            ObjectId id = new ObjectId(userId);
+            List<Comment> comments = this.commentRepository.GetFavorites(id, take, skip);
+
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetCommentData(comments, id));
+        }
+
         private List<CommentDataDO> GetCommentData(List<Comment> comments, ObjectId userId)
         {
             List<CommentDataDO> commentsData = new List<CommentDataDO>();

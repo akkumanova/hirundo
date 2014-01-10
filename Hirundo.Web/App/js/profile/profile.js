@@ -34,6 +34,17 @@
             controller: 'profile.HirundosCtrl'
           }
         }
+      })
+      .state({
+        name: 'profile.favorites',
+        parent: 'profile',
+        url: '/favorites',
+        views: {
+          'personView@profile': {
+            templateUrl: 'profile/templates/favorites.html',
+            controller: 'profile.FavoritesCtrl'
+          }
+        }
       });
   }]);
 }(angular));

@@ -9,7 +9,7 @@
       { name: 'Hirundos', state: 'profile.hirundos', isActive: false },
       { name: 'Following', isActive: false },
       { name: 'Followers', isActive: false },
-      { name: 'Favorites', isActive: false }
+      { name: 'Favorites', state: 'profile.favorites', isActive: false }
     ];
 
     User.userData.get({ userId: $stateParams.id }).$promise.then(function (user) {

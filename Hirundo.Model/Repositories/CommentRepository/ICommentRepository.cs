@@ -12,6 +12,8 @@
 
         List<Comment> GetComments(ObjectId userId, int take, int skip);
 
+        List<Comment> GetFavorites(ObjectId userId, int take, int skip);
+
         List<Comment> GetLastComments(ObjectId userId, int count);
 
         Comment GetComment(ObjectId commentId);

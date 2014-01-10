@@ -47,6 +47,16 @@
                         .ToList();
         }
 
+        public List<Comment> GetFavorites(ObjectId userId, int take, int skip)
+        {
+            return this.commentCollection.AsQueryable<Comment>()
+                        .Where(c => c.FavoritedBy.Contains(userId))
+                        .OrderByDescending<Comment, DateTime>(c => c.PublishDate)
+                        .Skip(skip)
+                        .Take(take)
+                        .ToList();
+        }
+
         public List<Comment> GetLastComments(ObjectId userId, int count)
         {
             return this.commentCollection.AsQueryable<Comment>()
