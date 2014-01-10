@@ -60,6 +60,7 @@
         {
             return this.userCollection.AsQueryable<User>()
                         .Where(u => u.Id.In(userIds))
+                        .OrderBy(u => u.Username)
                         .Take(25)
                         .ToList();
         }
@@ -70,6 +71,17 @@
             var followers = this.userCollection.Find(followersQuery);
 
             return followers.Count();
+        }
+
+        public List<User> GetFollowers(ObjectId userId, int take, int skip)
+        {
+            var followersQuery = Query<User>.Where(u => u.Following.Contains(userId));
+
+            return this.userCollection.Find(followersQuery)
+                            .OrderBy(u => u.Username)
+                            .Skip(skip)
+                            .Take(take)
+                            .ToList();
         }
 
         public void AddUser(string fullname, string email, string password, string username)

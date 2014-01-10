@@ -45,6 +45,17 @@
             controller: 'profile.FavoritesCtrl'
           }
         }
+      })
+      .state({
+        name: 'profile.followers',
+        parent: 'profile',
+        url: '/followers',
+        views: {
+          'personView@profile': {
+            templateUrl: 'profile/templates/followers.html',
+            controller: 'profile.FollowersCtrl'
+          }
+        }
       });
   }]);
 }(angular));

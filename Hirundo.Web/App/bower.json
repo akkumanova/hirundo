@@ -10,5 +10,8 @@
     "bootstrap": "angelyordanov/bootstrap#229469e0598a230c8b11890d128a57618df838d4",
     "lodash": "2.1.0",
     "jquery": "2.0.3"
+  },
+  "resolutions": {
+    "angular": "1.2.0"
   }
 }

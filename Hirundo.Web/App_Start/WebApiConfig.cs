@@ -39,6 +39,7 @@
             MapRoute(config, HttpMethod.Get, "api/user/{userId}/timeline" , "User", "GetTimeline");
             MapRoute(config, HttpMethod.Get, "api/user/{userId}/comments" , "User", "GetComments");
             MapRoute(config, HttpMethod.Get, "api/user/{userId}/favorites", "User", "GetFavorites");
+            MapRoute(config, HttpMethod.Get, "api/user/{userId}/followers", "User", "GetFollowers");
 
             // Comments
             MapRoute(config, HttpMethod.Post  , "api/comments"                     , "Comment", "PostComment");

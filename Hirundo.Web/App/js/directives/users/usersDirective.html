@@ -1,0 +1,16 @@
+﻿<section class="users-list" hd-when-scrolled="loadMore()" ng-show="users">
+  <h4 class="title">{{category}}</h4>
+  <div class="list-group">
+    <article class="list-group-item" ng-repeat="user in users">
+      <img class="pull-left img-thumbnail" ng-src="{{user.image}}" hd-profile-summary="user.userId">
+      <div class="data pull-left">
+        <strong hd-profile-summary="user.userId">{{user.fullname}}</strong>
+        <span>{{user.username}}</span><br />
+        <span>{{user.followersCount}} {{user.followersCount === 1 ? 'follower' : 'followers'}}</span>
+      </div>
+      <button class="btn btn-info btn-sm pull-right" ng-hide="user.userId === currentUser || user.isFollowed">Follow</button>
+      <button class="btn btn-info btn-sm pull-right" ng-show="user.isFollowed">Following</button>
+    </article>
+    <img src="/app/img/initial-loader.gif" ng-show="pending" class="loader">
+  </div>
+</section>

@@ -18,6 +18,8 @@
 
         long GetFollowersCount(ObjectId userId);
 
+        List<User> GetFollowers(ObjectId userId, int take, int skip);
+
         void AddUser(string fullname, string email, string password, string username);
     }
 }

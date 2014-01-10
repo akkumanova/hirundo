@@ -119,6 +119,38 @@
                 this.GetCommentData(comments, id));
         }
 
+        public HttpResponseMessage GetFollowers(string userId, int take, int skip = 0)
+        {
+            List<User> users = this.userRepository.GetFollowers(new ObjectId(userId), take, skip);
+
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetUserData(users));
+        }
+
+        private List<UserDO> GetUserData(List<User> users)
+        {
+            var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));
+
+            List<UserDO> userDOs = new List<UserDO>();
+            foreach (var user in users)
+            {
+                UserDO userDO = new UserDO
+                {
+                    UserId = user.Id,
+                    Fullname = user.Fullname,
+                    Username = user.Username,
+                    Image = this.imageRepository.GetImage(user.ImgId),
+                    FollowersCount = this.userRepository.GetFollowersCount(user.Id),
+                    IsFollowed = currentUser.Following.Contains(user.Id)
+                };
+
+                userDOs.Add(userDO);
+            }
+
+            return userDOs;
+        }
+
         private List<CommentDataDO> GetCommentData(List<Comment> comments, ObjectId userId)
         {
             List<CommentDataDO> commentsData = new List<CommentDataDO>();

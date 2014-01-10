@@ -20,7 +20,7 @@
       });
 
       $scope.loadMore = function () {
-        if (moreComments && !$scope.pending) {
+        if (moreComments && !$scope.pending && !$navigation.loading) {
           var promise = User[resource].query({ userId: userId, take: take, skip: skip }).$promise;
 
           $scope.pending = true;
