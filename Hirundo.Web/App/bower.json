@@ -6,12 +6,9 @@
     "angular-ui-router": "0.2.5",
     "angular-moment": "0.6.0",
     "angular-resource": "1.2.0",
-    "angular-bootstrap": "angular-ui/bootstrap#d9e0f483ae60d14ceeb2ee59d90166baa556e912",
+    "angular-bootstrap": "0.9.0",
     "bootstrap": "angelyordanov/bootstrap#229469e0598a230c8b11890d128a57618df838d4",
     "lodash": "2.1.0",
     "jquery": "2.0.3"
-  },
-  "resolutions": {
-    "angular": "1.2.0"
   }
 }
