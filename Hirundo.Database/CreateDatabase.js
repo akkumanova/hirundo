@@ -122,17 +122,18 @@ for (var i = 0; i < 15; i++) {
   });
 }
 
-MongoClient.connect("mongodb://localhost:27017/hirundo", function (err, db) {
+MongoClient.connect('mongodb://localhost:27017/hirundo', function (err, db) {
   if (!err) {
-    console.log("We are connected");
+    console.log('We are connected');
   }
-  var inserted = _.after(2, close),
+  var inserted = _.after(2, createIndexes),
+      createdIndex = _.after(2, close)
       imageSaved = _.after(3, insertData);
 
-  console.log("Saving images...");
-  var bubblesGridStore = new GridStore(db, "bubbles.jpg", "w", { root: 'fs', content_type: "image/jpeg" });
+  console.log('Saving images...');
+  var bubblesGridStore = new GridStore(db, 'bubbles.jpg', 'w', { root: 'fs', content_type: 'image/jpeg' });
   bubblesGridStore.open(function (err, gridStore) {
-    gridStore.writeFile("./images/powerpuff_girls_1.jpg", function (err, fileInfo) {
+    gridStore.writeFile('./images/powerpuff_girls_1.jpg', function (err, fileInfo) {
       gridStore.close(function (err, fileData) {
         users[0].ImgId = fileData._id;
         imageSaved();
@@ -140,9 +141,9 @@ MongoClient.connect("mongodb://localhost:27017/hirundo", function (err, db) {
     });
   });
 
-  var blossomGridStore = new GridStore(db, "blossom.jpg", "w", { root: 'fs', content_type: "image/jpeg" });
+  var blossomGridStore = new GridStore(db, 'blossom.jpg', 'w', { root: 'fs', content_type: 'image/jpeg' });
   blossomGridStore.open(function (err, gridStore) {
-    gridStore.writeFile("./images/powerpuff_girls_2.jpg", function (err, fileInfo) {
+    gridStore.writeFile('./images/powerpuff_girls_2.jpg', function (err, fileInfo) {
       gridStore.close(function (err, fileData) {
         users[1].ImgId = fileData._id;
         imageSaved();
@@ -150,9 +151,9 @@ MongoClient.connect("mongodb://localhost:27017/hirundo", function (err, db) {
     });
   });
 
-  var userGridStore = new GridStore(db, "user.jpg", "w", { root: 'fs', content_type: "image/jpeg" });
+  var userGridStore = new GridStore(db, 'user.jpg', 'w', { root: 'fs', content_type: 'image/jpeg' });
   userGridStore.open(function (err, gridStore) {
-    gridStore.writeFile("./images/user.jpg", function (err, fileInfo) {
+    gridStore.writeFile('./images/user.jpg', function (err, fileInfo) {
       gridStore.close(function (err, fileData) {
         users[2].ImgId = fileData._id;
         imageSaved();
@@ -164,7 +165,7 @@ MongoClient.connect("mongodb://localhost:27017/hirundo", function (err, db) {
     db.collection('user').drop(function (err, reply) {
       var user = db.collection('user');
 
-      console.log("Inserting data into user collection.");
+      console.log('Inserting data into user collection.');
       user.insert(users, function (err, result) {
         inserted();
       });
@@ -173,10 +174,20 @@ MongoClient.connect("mongodb://localhost:27017/hirundo", function (err, db) {
     db.collection('comment').drop(function (err, reply) {
       var comment = db.collection('comment');
 
-      console.log("Inserting data into comment collection.");
+      console.log('Inserting data into comment collection.');
       comment.insert(comments, function (err, result) {
         inserted();
       });
+    });
+  }
+
+  function createIndexes() {
+    db.collection('user').createIndex('Username', { unique: true, name: 'username_unique' }, function () {
+      createdIndex();
+    });
+
+    db.collection('user').createIndex('Email', { unique: true, name: 'email_unique' }, function () {
+      createdIndex();
     });
   }
 
