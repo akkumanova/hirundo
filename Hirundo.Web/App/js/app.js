@@ -33,7 +33,6 @@
           state: 'profile',
           stateParams: { id: $windowProvider.$get().user.userId },
           items: [
-            { text: 'Edit profile', url: '/edit' },
             { text: 'Settings', url: '/settings' },
             { text: 'Sign out', url: '/logout' }
           ]

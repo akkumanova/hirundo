@@ -14,7 +14,7 @@
         <a ui-sref="profile.hirundos({ id: user.userId })" ng-click="close()" class="list-group-item inline-item">
           <strong class="list-group-item-heading">{{user.commentsCount | number:0}}</strong><br />HIRUNDOS
         </a>
-        <a href="#" class="list-group-item inline-item">
+        <a ui-sref="profile.following({ id: user.userId })" ng-click="close()" class="list-group-item inline-item">
           <strong class="list-group-item-heading">{{user.followingCount | number:0}}</strong><br />FOLLOWING
         </a>
         <a ui-sref="profile.followers({ id: user.userId })" ng-click="close()" class="list-group-item inline-item">

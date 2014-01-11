@@ -10,7 +10,7 @@
         <h4 class="list-group-item-heading"><span class="badge">{{user.commentsCount}}</span></h4>
         <span class="list-group-item-text">HIRUNDOS</span>
       </a>
-      <a href="#" class="list-group-item inline-item">
+      <a ui-sref="profile.following({ id: user.userId })" class="list-group-item inline-item">
         <h4 class="list-group-item-heading"><span class="badge">{{user.followingCount}}</span></h4>
         <span class="list-group-item-text">FOLLOWING</span>
       </a>

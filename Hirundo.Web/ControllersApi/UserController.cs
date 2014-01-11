@@ -128,6 +128,15 @@
                 this.GetUserData(users));
         }
 
+        public HttpResponseMessage GetFollowing(string userId, int take, int skip = 0)
+        {
+            List<User> users = this.userRepository.GetFollowing(new ObjectId(userId), take, skip);
+
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                this.GetUserData(users));
+        }
+
         private List<UserDO> GetUserData(List<User> users)
         {
             var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));

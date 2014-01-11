@@ -40,6 +40,7 @@
             MapRoute(config, HttpMethod.Get, "api/user/{userId}/comments" , "User", "GetComments");
             MapRoute(config, HttpMethod.Get, "api/user/{userId}/favorites", "User", "GetFavorites");
             MapRoute(config, HttpMethod.Get, "api/user/{userId}/followers", "User", "GetFollowers");
+            MapRoute(config, HttpMethod.Get, "api/user/{userId}/following", "User", "GetFollowing");
 
             // Comments
             MapRoute(config, HttpMethod.Post  , "api/comments"                     , "Comment", "PostComment");

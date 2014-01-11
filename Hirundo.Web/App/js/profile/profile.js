@@ -56,6 +56,17 @@
             controller: 'profile.FollowersCtrl'
           }
         }
+      })
+      .state({
+        name: 'profile.following',
+        parent: 'profile',
+        url: '/following',
+        views: {
+          'personView@profile': {
+            templateUrl: 'profile/templates/following.html',
+            controller: 'profile.FollowingCtrl'
+          }
+        }
       });
   }]);
 }(angular));

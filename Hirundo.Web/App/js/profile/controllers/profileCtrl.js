@@ -7,7 +7,7 @@
     $scope.currentUserId = $window.user.userId;
     $scope.menu = [
       { name: 'Hirundos', state: 'profile.hirundos', isActive: false },
-      { name: 'Following', isActive: false },
+      { name: 'Following', state: 'profile.following', isActive: false },
       { name: 'Followers', state: 'profile.followers', isActive: false },
       { name: 'Favorites', state: 'profile.favorites', isActive: false }
     ];

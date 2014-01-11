@@ -158,11 +158,13 @@
     <Content Include="App\js\directives\users\usersDirective.js" />
     <Content Include="App\js\profile\controllers\favoritesCtrl.js" />
     <Content Include="App\js\profile\controllers\followersCtrl.js" />
+    <Content Include="App\js\profile\controllers\followingCtrl.js" />
     <Content Include="App\js\profile\controllers\hirundosCtrl.js" />
     <Content Include="App\js\profile\controllers\profileCtrl.js" />
     <Content Include="App\js\profile\profile.js" />
     <Content Include="App\js\profile\templates\favorites.html" />
     <Content Include="App\js\profile\templates\followers.html" />
+    <Content Include="App\js\profile\templates\following.html" />
     <Content Include="App\js\profile\templates\profile.html" />
     <Content Include="App\js\directives\comments\commentsDirective.html" />
     <Content Include="App\js\directives\comments\commentsDirective.js" />

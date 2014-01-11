@@ -84,6 +84,19 @@
                             .ToList();
         }
 
+        public List<User> GetFollowing(ObjectId userId, int take, int skip)
+        {
+            var query = Query<User>.Where(u => u.Id == userId);
+            var userIds = this.userCollection.FindOne(query).Following;
+
+            return this.userCollection.AsQueryable<User>()
+                            .Where(u => u.Id.In(userIds))
+                            .OrderBy(u => u.Username)
+                            .Skip(skip)
+                            .Take(take)
+                            .ToList();
+        }
+
         public void AddUser(string fullname, string email, string password, string username)
         {
             string pwdSalt = Crypto.GenerateSalt();
