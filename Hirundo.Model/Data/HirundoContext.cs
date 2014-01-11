@@ -5,11 +5,11 @@
     using MongoDB.Driver;
     using MongoDB.Driver.GridFS;
 
-    public class MongoContext : DbContext, IMongoContext
+    public class HirundoContext : DbContext, IHirundoContext
     {
         private MongoDatabase database;
 
-        public MongoContext() 
+        public HirundoContext() 
             : base("name=MongoConnection")
         {
             MongoServer server = this.Connect();

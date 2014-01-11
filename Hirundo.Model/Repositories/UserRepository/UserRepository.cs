@@ -10,38 +10,57 @@
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
     using MongoDB.Driver.GridFS;
-    using MongoDB.Driver.Linq;
 
     public class UserRepository : IUserRepository
     {
         private MongoCollection<User> userCollection;
         private MongoGridFS gridFs;
 
-        public UserRepository(IMongoContext mongoContext)
+        public UserRepository(IHirundoContext mongoContext)
         {
             this.userCollection = mongoContext.GetCollection<User>();
             this.gridFs = mongoContext.GetGridFs();
         }
 
-        public User FindByUsername(string username)
+        public User GetUser(ObjectId userId)
+        {
+            var query = Query<User>.EQ(u => u.Id, userId);
+
+            return this.userCollection.FindOne(query);
+        }
+
+        public User GetByUsername(string username)
         {
             var query = Query<User>.EQ(u => u.Username, username);
 
             return this.userCollection.FindOne(query);
         }
 
-        public User FindByEmail(string email)
+        public User GetByEmail(string email)
         {
             var query = Query<User>.Where(u => u.Email == email);
 
             return this.userCollection.FindOne(query);
         }
 
-        public User FindById(ObjectId userId)
+        public void AddUser(string fullname, string email, string password, string username)
         {
-            var query = Query<User>.EQ(u => u.Id, userId);
+            string passwordSalt = Crypto.GenerateSalt();
+            string passwordHash = Crypto.HashPassword(password + passwordSalt);
+            var file = this.gridFs.FindOne("user.jpg");
 
-            return this.userCollection.FindOne(query);
+            User user = new User
+            {
+                Username = username,
+                Email = email,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Fullname = fullname,
+                RegistrationDate = DateTime.Now,
+                ImgId = new ObjectId(file.Id.ToString())
+            };
+
+            this.userCollection.Insert(user);
         }
 
         public void ChangePassword(ObjectId id, string newPassword)
@@ -49,73 +68,47 @@
             string passwordSalt = Crypto.GenerateSalt();
             string passwordHash = Crypto.HashPassword(newPassword + passwordSalt);
 
-            var userQuery = Query<User>.EQ(u => u.Id, id);
+            var query = Query<User>.EQ(u => u.Id, id);
             var update = Update<User>.Set(u => u.PasswordHash, passwordHash)
                                      .Set(u => u.PasswordSalt, passwordSalt);
 
-            this.userCollection.Update(userQuery, update);
-        }
-
-        public List<User> GetUsers(List<ObjectId> userIds)
-        {
-            return this.userCollection.AsQueryable<User>()
-                        .Where(u => u.Id.In(userIds))
-                        .OrderBy(u => u.Username)
-                        .Take(25)
-                        .ToList();
+            this.userCollection.Update(query, update);
         }
 
         public long GetFollowersCount(ObjectId userId)
         {
-            var followersQuery = Query<User>.Where(u => u.Following.Contains(userId));
-            var followers = this.userCollection.Find(followersQuery);
+            var query = Query<User>.Where(u => u.Following.Contains(userId));
 
-            return followers.Count();
+            return this.userCollection.Find(query).Count();
         }
 
-        public List<User> GetFollowers(ObjectId userId, int take, int skip)
+        public IEnumerable<User> GetUsers(List<ObjectId> userIds, int take, int skip)
         {
-            var followersQuery = Query<User>.Where(u => u.Following.Contains(userId));
+            var query = Query<User>.In<ObjectId>(u => u.Id, userIds);
 
-            return this.userCollection.Find(followersQuery)
+            return this.userCollection.Find(query)
+                        .OrderBy(u => u.Username)
+                        .Skip(skip)
+                        .Take(take)
+                        .ToList();
+        }
+
+        public IEnumerable<User> GetFollowers(ObjectId userId, int take, int skip)
+        {
+            var query = Query<User>.Where(u => u.Following.Contains(userId));
+
+            return this.userCollection.Find(query)
                             .OrderBy(u => u.Username)
                             .Skip(skip)
                             .Take(take)
                             .ToList();
         }
 
-        public List<User> GetFollowing(ObjectId userId, int take, int skip)
+        public IEnumerable<User> GetFollowing(ObjectId userId, int take, int skip)
         {
-            var query = Query<User>.Where(u => u.Id == userId);
-            var userIds = this.userCollection.FindOne(query).Following;
+            var user = this.GetUser(userId);
 
-            return this.userCollection.AsQueryable<User>()
-                            .Where(u => u.Id.In(userIds))
-                            .OrderBy(u => u.Username)
-                            .Skip(skip)
-                            .Take(take)
-                            .ToList();
-        }
-
-        public void AddUser(string fullname, string email, string password, string username)
-        {
-            string pwdSalt = Crypto.GenerateSalt();
-            string pwdHash = Crypto.HashPassword(password + pwdSalt);
-
-            var file = this.gridFs.FindOne("user.jpg");
-
-            var user = new User
-            { 
-                Username = username, 
-                Email = email, 
-                PasswordHash = pwdHash, 
-                PasswordSalt = pwdSalt, 
-                Fullname = fullname,
-                RegistrationDate = DateTime.Now,
-                ImgId = new ObjectId(file.Id.ToString())
-            };
-
-            this.userCollection.Insert(user);
+            return this.GetUsers(user.Following, take, skip);
         }
     }
 }

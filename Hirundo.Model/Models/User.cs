@@ -20,31 +20,20 @@
 
         public string Fullname { get; set; }
 
+        [BsonRequired]
         public string Email { get; set; }
 
         public ObjectId ImgId { get; set; }
 
+        [BsonRequired]
         public string PasswordHash { get; set; }
 
+        [BsonRequired]
         public string PasswordSalt { get; set; }
 
         public DateTime RegistrationDate { get; set; }
 
         public List<ObjectId> Following { get; set; }
-
-        public void SetPassword(string password)
-        {
-            if (password == null)
-            {
-                this.PasswordSalt = null;
-                this.PasswordHash = null;
-            }
-            else
-            {
-                this.PasswordSalt = Crypto.GenerateSalt();
-                this.PasswordHash = Crypto.HashPassword(password + this.PasswordSalt);
-            }
-        }
 
         public bool VerifyPassword(string password)
         {

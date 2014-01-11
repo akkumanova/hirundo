@@ -55,7 +55,7 @@
 
         private bool TrySetUserContext(string username, string password)
         {
-            User user = this.userRepository.FindByUsername(username);
+            User user = this.userRepository.GetByUsername(username);
 
             if (user != null && user.VerifyPassword(password))
             {
@@ -107,7 +107,7 @@
 
             if (!string.IsNullOrEmpty(username))
             {
-                user = this.userRepository.FindByUsername(username);
+                user = this.userRepository.GetByUsername(username);
 
                 if (!string.IsNullOrEmpty(email) && user != null && user.Email != email)
                 {
@@ -117,7 +117,7 @@
             }
             else
             {
-                user = this.userRepository.FindByEmail(email);
+                user = this.userRepository.GetByEmail(email);
             }
 
             if (user == null)

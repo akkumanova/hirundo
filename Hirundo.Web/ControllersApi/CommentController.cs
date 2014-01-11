@@ -17,6 +17,8 @@
 
     public class CommentController : ApiController
     {
+        private const int Users = 25;
+
         private UserContext userContext;
         private ICommentRepository commentRepository;
         private IUserRepository userRepository;
@@ -36,7 +38,7 @@
 
         public HttpResponseMessage PostComment(Comment comment)
         {
-            this.commentRepository.SaveComment(comment);
+            this.commentRepository.AddComment(comment);
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -49,7 +51,7 @@
         public HttpResponseMessage PostReply(Reply reply, string commentId)
         {
             ObjectId id = new ObjectId(commentId);
-            this.commentRepository.SaveReply(id, reply);
+            this.commentRepository.AddReply(id, reply);
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
@@ -79,9 +81,9 @@
         public HttpResponseMessage GetRetweets(string commentId)
         {
             var userIds = this.commentRepository.GetComment(new ObjectId(commentId)).RetweetedBy;
-            var users = this.userRepository.GetUsers(userIds);
+            var users = this.userRepository.GetUsers(userIds, Users, 0);
 
-            var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));
+            var currentUser = this.userRepository.GetUser(new ObjectId(this.userContext.UserId));
 
             List<UserDO> userDOs = new List<UserDO>();
             foreach (var user in users)
@@ -118,9 +120,9 @@
         public HttpResponseMessage GetFavorites(string commentId)
         {
             var userIds = this.commentRepository.GetComment(new ObjectId(commentId)).FavoritedBy;
-            var users = this.userRepository.GetUsers(userIds);
+            var users = this.userRepository.GetUsers(userIds, Users, 0);
 
-            var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));
+            var currentUser = this.userRepository.GetUser(new ObjectId(this.userContext.UserId));
 
             List<UserDO> userDOs = new List<UserDO>();
             foreach (var user in users)
@@ -158,7 +160,7 @@
                 replyDO.Content = reply.Content;
                 replyDO.PublishDate = reply.PublishDate;
 
-                var replyAuthor = this.userRepository.FindById(reply.Author);
+                var replyAuthor = this.userRepository.GetUser(reply.Author);
                 replyDO.Author = replyAuthor.Username;
                 replyDO.AuthorImg = this.imageRepository.GetImage(replyAuthor.ImgId);
 

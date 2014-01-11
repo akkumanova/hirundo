@@ -32,10 +32,7 @@
                     throw new SecurityException("Invalid authentication ticket.");
                 }
 
-                string[] userData = authTicket.UserData.Split(',');
-                string username = this.httpContext.Server.UrlDecode(userData[0]);
-
-                this.httpContext.Items[UserContextKey] = new UserContext(authTicket.Name, username);
+                this.httpContext.Items[UserContextKey] = new UserContext(authTicket.Name, authTicket.UserData);
             }
 
             return (UserContext)this.httpContext.Items[UserContextKey];

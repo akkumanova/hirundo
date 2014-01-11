@@ -13,7 +13,7 @@
         public override void Load()
         {
             Bind<IUserContextProvider>().To<UserContextProvider>();
-            Bind<IMongoContext>().To<MongoContext>();
+            Bind<IHirundoContext>().To<HirundoContext>();
             Bind<IUserRepository>().To<UserRepository>().InCallScope();
             Bind<ICommentRepository>().To<CommentRepository>().InCallScope();
             Bind<IImageRepository>().To<ImageRepository>();

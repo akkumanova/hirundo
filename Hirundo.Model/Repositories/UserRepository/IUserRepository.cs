@@ -6,22 +6,22 @@
 
     public interface IUserRepository
     {
-        User FindByUsername(string username);
+        User GetUser(ObjectId userId);
 
-        User FindByEmail(string email);
+        User GetByUsername(string username);
 
-        User FindById(ObjectId userId);
+        User GetByEmail(string email);
+
+        void AddUser(string fullname, string email, string password, string username);
 
         void ChangePassword(ObjectId id, string newPassword);
 
-        List<User> GetUsers(List<ObjectId> userIds);
-
         long GetFollowersCount(ObjectId userId);
 
-        List<User> GetFollowers(ObjectId userId, int take, int skip);
+        IEnumerable<User> GetUsers(List<ObjectId> userIds, int take, int skip);
 
-        List<User> GetFollowing(ObjectId userId, int take, int skip);
+        IEnumerable<User> GetFollowers(ObjectId userId, int take, int skip);
 
-        void AddUser(string fullname, string email, string password, string username);
+        IEnumerable<User> GetFollowing(ObjectId userId, int take, int skip);
     }
 }

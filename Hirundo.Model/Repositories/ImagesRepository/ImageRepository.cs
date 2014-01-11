@@ -1,10 +1,6 @@
 ﻿namespace Hirundo.Model.Repositories.ImagesRepository
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Hirundo.Model.Data;
     using MongoDB.Bson;
     using MongoDB.Driver.GridFS;
@@ -13,7 +9,7 @@
     {
         private MongoGridFS gridFs;
 
-        public ImageRepository(IMongoContext mongoContext)
+        public ImageRepository(IHirundoContext mongoContext)
         {
             this.gridFs = mongoContext.GetGridFs();
         }
@@ -37,7 +33,7 @@
             }
             else
             {
-                imageSrc = "data:image/gif;base64,";
+                throw new Exception(string.Format("Invalid image id: {0}", imageId.ToString()));
             }
 
             return imageSrc;

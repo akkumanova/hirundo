@@ -27,7 +27,7 @@ using Hirundo.Model.Repositories.ImagesRepository;
         [HttpGet]
         public ActionResult Index()
         {
-            var imageId = this.userRepository.FindById(new ObjectId(this.userContext.UserId)).ImgId;
+            var imageId = this.userRepository.GetUser(new ObjectId(this.userContext.UserId)).ImgId;
 
             var model = new HomeModel
             {

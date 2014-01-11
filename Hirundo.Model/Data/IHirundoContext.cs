@@ -3,7 +3,7 @@
     using MongoDB.Driver;
     using MongoDB.Driver.GridFS;
 
-    public interface IMongoContext
+    public interface IHirundoContext
     {
         MongoCollection<TCollection> GetCollection<TCollection>();
 

@@ -36,10 +36,10 @@
 
         public HttpResponseMessage GetUser(string userId)
         {
-            var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));
-            var user = this.userRepository.FindById(new ObjectId(userId));
+            var currentUser = this.userRepository.GetUser(new ObjectId(this.userContext.UserId));
+            var user = this.userRepository.GetUser(new ObjectId(userId));
 
-            var comments = this.commentRepository.GetLastComments(user.Id, UserComments);
+            var comments = this.commentRepository.GetComments(user.Id, UserComments, 0);
             List<UserCommentDO> userCommentsDO = new List<UserCommentDO>();
             foreach (var comment in comments)
             {
@@ -72,13 +72,13 @@
 
             if (!string.IsNullOrWhiteSpace(username))
             {
-                var user = this.userRepository.FindByUsername(username);
+                var user = this.userRepository.GetByUsername(username);
                 userExists = userExists || user != null;
             }
 
             if (!string.IsNullOrWhiteSpace(email))
             {
-                var user = this.userRepository.FindByEmail(email);
+                var user = this.userRepository.GetByEmail(email);
                 userExists = userExists || user != null;
             }
 
@@ -88,11 +88,11 @@
         public HttpResponseMessage GetTimeline(string userId, int take, int skip = 0)
         {
             ObjectId id = new ObjectId(userId);
-            User currentUser = this.userRepository.FindById(id);
+            User currentUser = this.userRepository.GetUser(id);
 
             var userIds = currentUser.Following;
             userIds.Add(id);
-            List<Comment> comments = this.commentRepository.GetComments(userIds, take, skip);
+            IEnumerable<Comment> comments = this.commentRepository.GetComments(userIds, take, skip);
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
@@ -102,7 +102,7 @@
         public HttpResponseMessage GetComments(string userId, int take, int skip = 0)
         {
             ObjectId id = new ObjectId(userId);
-            List<Comment> comments = this.commentRepository.GetComments(id, take, skip);
+            IEnumerable<Comment> comments = this.commentRepository.GetComments(id, take, skip);
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
@@ -112,7 +112,7 @@
         public HttpResponseMessage GetFavorites(string userId, int take, int skip = 0)
         {
             ObjectId id = new ObjectId(userId);
-            List<Comment> comments = this.commentRepository.GetFavorites(id, take, skip);
+            IEnumerable<Comment> comments = this.commentRepository.GetFavorites(id, take, skip);
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
@@ -121,7 +121,7 @@
 
         public HttpResponseMessage GetFollowers(string userId, int take, int skip = 0)
         {
-            List<User> users = this.userRepository.GetFollowers(new ObjectId(userId), take, skip);
+            IEnumerable<User> users = this.userRepository.GetFollowers(new ObjectId(userId), take, skip);
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
@@ -130,16 +130,16 @@
 
         public HttpResponseMessage GetFollowing(string userId, int take, int skip = 0)
         {
-            List<User> users = this.userRepository.GetFollowing(new ObjectId(userId), take, skip);
+            IEnumerable<User> users = this.userRepository.GetFollowing(new ObjectId(userId), take, skip);
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
                 this.GetUserData(users));
         }
 
-        private List<UserDO> GetUserData(List<User> users)
+        private List<UserDO> GetUserData(IEnumerable<User> users)
         {
-            var currentUser = this.userRepository.FindById(new ObjectId(this.userContext.UserId));
+            var currentUser = this.userRepository.GetUser(new ObjectId(this.userContext.UserId));
 
             List<UserDO> userDOs = new List<UserDO>();
             foreach (var user in users)
@@ -160,7 +160,7 @@
             return userDOs;
         }
 
-        private List<CommentDataDO> GetCommentData(List<Comment> comments, ObjectId userId)
+        private List<CommentDataDO> GetCommentData(IEnumerable<Comment> comments, ObjectId userId)
         {
             List<CommentDataDO> commentsData = new List<CommentDataDO>();
             foreach (var comment in comments)
@@ -173,7 +173,7 @@
                 commentData.IsRetweeted = comment.RetweetedBy.Contains(userId);
                 commentData.IsFavorited = comment.FavoritedBy.Contains(userId);
 
-                var author = this.userRepository.FindById(comment.Author);
+                var author = this.userRepository.GetUser(comment.Author);
                 commentData.Author = author.Username;
                 commentData.AuthorImg = this.imageRepository.GetImage(author.ImgId);
 
