@@ -13,6 +13,26 @@
         $scope.close = function () {
           $modalInstance.dismiss('cancel');
         };
+
+        $scope.follow = function () {
+          User.userFollowing.save({ userId: $scope.user.userId }).$promise.then(function () {
+            User.userData.get({ userId: $scope.user.userId }).$promise.then(function (user) {
+              $scope.user = user;
+            });
+
+            $state.go($state.$current, {}, { reload: true });
+          });
+        };
+
+        $scope.unfollow = function () {
+          User.userFollowing.remove({ userId: $scope.user.userId }).$promise.then(function () {
+            User.userData.get({ userId: $scope.user.userId }).$promise.then(function (user) {
+              $scope.user = user;
+            });
+
+            $state.go($state.$current, {}, { reload: true });
+          });
+        };
       };
 
       element.bind('click', function (event) {

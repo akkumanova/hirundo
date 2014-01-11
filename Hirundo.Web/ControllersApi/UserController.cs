@@ -137,6 +137,24 @@
                 this.GetUserData(users));
         }
 
+        public HttpResponseMessage PostFollowing(string userId)
+        {
+            this.userRepository.AddFollowing(
+                new ObjectId(this.userContext.UserId),
+                new ObjectId(userId));
+
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        public HttpResponseMessage DeleteFollowing(string userId)
+        {
+            this.userRepository.DeleteFollowing(
+                new ObjectId(this.userContext.UserId),
+                new ObjectId(userId));
+
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         private List<UserDO> GetUserData(IEnumerable<User> users)
         {
             var currentUser = this.userRepository.GetUser(new ObjectId(this.userContext.UserId));

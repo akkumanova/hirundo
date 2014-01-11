@@ -4,7 +4,7 @@
 (function (angular) {
   'use strict';
 
-  function UsersDirective($navigation, $window, User) {
+  function UsersDirective($navigation, $state, $window, User) {
     function UsersLink($scope, element, attrs) {
       var take = $window.config.itemsToTake,
           skip = take,
@@ -36,6 +36,18 @@
           return promise;
         }
       };
+
+      $scope.follow = function (userId) {
+        User.userFollowing.save({ userId: userId }).$promise.then(function () {
+          $state.go($state.$current, {}, { reload: true });
+        });
+      };
+
+      $scope.unfollow = function (userId) {
+        User.userFollowing.remove({ userId: userId }).$promise.then(function () {
+          $state.go($state.$current, {}, { reload: true });
+        });
+      };
     }
 
     return {
@@ -49,7 +61,7 @@
     };
   }
 
-  UsersDirective.$inject = ['navigation.NavigationConfig', '$window', 'User'];
+  UsersDirective.$inject = ['navigation.NavigationConfig', '$state', '$window', 'User'];
 
   angular.module('directives').directive('hdUsers', UsersDirective);
 }(angular));

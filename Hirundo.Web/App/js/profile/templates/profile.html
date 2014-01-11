@@ -23,9 +23,12 @@
            </a>
         </div>
         <button class="btn btn-info btn-sm pull-right" ng-show="user.userId === currentUserId">Edit profile</button>
-        <button class="btn btn-info btn-sm pull-right" ng-show="user.userId !== currentUserId && user.isFollowed">Following</button>
-        <button class="btn btn-info btn-sm pull-right" ng-hide="user.userId === currentUserId || user.isFollowed">Follow</button>
-       </div>
+        <button class="btn btn-info btn-sm pull-right" ng-click="follow()" ng-hide="user.userId === currentUserId || user.isFollowed">Follow</button>
+        <button class="btn btn-info btn-sm pull-right following" ng-click="unfollow()" ng-mouseover="focused=true" ng-mouseleave="focused=false;" ng-show="user.userId !== currentUserId && user.isFollowed">
+          <span ng-hide="focused">Following</span>
+          <span ng-show="focused" style="padding:2.5px;">Unfollow</span>
+        </button>
+      </div>
     </div>
   </div>
   <div class="row">

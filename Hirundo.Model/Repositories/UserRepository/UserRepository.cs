@@ -63,6 +63,22 @@
             this.userCollection.Insert(user);
         }
 
+        public void AddFollowing(ObjectId userId, ObjectId followedUserId)
+        {
+            var query = Query<User>.EQ(u => u.Id, userId);
+            var update = Update<User>.Push<ObjectId>(u => u.Following, followedUserId);
+
+            this.userCollection.Update(query, update, WriteConcern.Acknowledged);
+        }
+
+        public void DeleteFollowing(ObjectId userId, ObjectId followedUserId)
+        {
+            var query = Query<User>.EQ(u => u.Id, userId);
+            var update = Update<User>.Pull<ObjectId>(u => u.Following, followedUserId);
+
+            this.userCollection.Update(query, update, WriteConcern.Acknowledged);
+        }
+
         public void ChangePassword(ObjectId id, string newPassword)
         {
             string passwordSalt = Crypto.GenerateSalt();

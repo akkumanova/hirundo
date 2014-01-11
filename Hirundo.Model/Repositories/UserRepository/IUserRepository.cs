@@ -14,6 +14,10 @@
 
         void AddUser(string fullname, string email, string password, string username);
 
+        void AddFollowing(ObjectId userId, ObjectId followedUserId);
+
+        void DeleteFollowing(ObjectId userId, ObjectId followedUserId);
+
         void ChangePassword(ObjectId id, string newPassword);
 
         long GetFollowersCount(ObjectId userId);

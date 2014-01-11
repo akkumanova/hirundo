@@ -21,8 +21,11 @@
           <strong class="list-group-item-heading">{{user.followersCount | number:0}}</strong><br />FOLLOWERS
         </a>
       </div>
-      <button class="btn btn-info btn-sm pull-right" ng-hide="user.userId === currentUserId || user.isFollowed">Follow</button>
-      <button class="btn btn-info btn-sm pull-right" ng-show="user.isFollowed">Following</button>
+      <button class="btn btn-info btn-sm pull-right" ng-click="follow()" ng-hide="user.userId === currentUserId || user.isFollowed">Follow</button>
+      <button class="btn btn-info btn-sm pull-right following" ng-click="unfollow()" ng-mouseover="focused=true" ng-mouseleave="focused=false" ng-show="user.isFollowed">
+        <span ng-hide="focused">Following</span>
+        <span ng-show="focused" style="padding:2.5px;">Unfollow</span>
+      </button>
     </div>
     <div class="user-comment" ng-repeat="comment in user.comments">
       <img class="pull-left img-thumbnail" ng-src="{{user.image}}">

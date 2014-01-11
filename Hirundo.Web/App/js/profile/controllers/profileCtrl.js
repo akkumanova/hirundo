@@ -35,6 +35,18 @@
         }
       });
     });
+
+    $scope.follow = function () {
+      User.userFollowing.save({ userId: $stateParams.id }).$promise.then(function () {
+        $state.go($state.$current, {}, { reload: true });
+      });
+    };
+
+    $scope.unfollow = function () {
+      User.userFollowing.remove({ userId: $stateParams.id }).$promise.then(function () {
+        $state.go($state.$current, {}, { reload: true });
+      });
+    };
   }
 
   ProfileCtrl.$inject = ['$scope', '$window', '$state', '$stateParams', 'User'];
