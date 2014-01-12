@@ -4,10 +4,10 @@
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
+    using AutoMapper;
     using Hirundo.Model.Infrastructure;
     using Hirundo.Model.Models;
     using Hirundo.Model.Repositories.CommentRepository;
-    using Hirundo.Model.Repositories.ImagesRepository;
     using Hirundo.Model.Repositories.UserRepository;
     using Hirundo.Web.Models.Comment;
     using Hirundo.Web.Models.User;
@@ -20,50 +20,24 @@
         private UserContext userContext;
         private IUserRepository userRepository;
         private ICommentRepository commentRepository;
-        private IImageRepository imageRepository;
 
         public UserController(
             IUserContextProvider userContextProvider,
             IUserRepository userRepository,
-            IImageRepository imageRepository,
             ICommentRepository commentRepository)
         {
             this.userContext = userContextProvider.GetCurrentUserContext();
             this.userRepository = userRepository;
-            this.imageRepository = imageRepository;
             this.commentRepository = commentRepository;
         }
 
         public HttpResponseMessage GetUser(string userId)
         {
-            var currentUser = this.userRepository.GetUser(new ObjectId(this.userContext.UserId));
             var user = this.userRepository.GetUser(new ObjectId(userId));
 
-            var comments = this.commentRepository.GetComments(user.Id, UserComments, 0);
-            List<UserCommentDO> userCommentsDO = new List<UserCommentDO>();
-            foreach (var comment in comments)
-            {
-                userCommentsDO.Add(new UserCommentDO
-                {
-                    Content = comment.Content,
-                    PublishDate = comment.PublishDate
-                });
-            }
-
-            UserDO userDO = new UserDO
-            {
-                UserId = user.Id,
-                Fullname = user.Fullname,
-                Username = user.Username,
-                Image = this.imageRepository.GetImage(user.ImgId),
-                FollowersCount = this.userRepository.GetFollowersCount(user.Id),
-                FollowingCount = user.Following.Count,
-                IsFollowed = currentUser.Following.Contains(user.Id),
-                CommentsCount = this.commentRepository.GetCommentsCount(user.Id),
-                Comments = userCommentsDO
-            };
-
-            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, userDO);
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                Mapper.Map<User, UserDO>(user));
         }
 
         public HttpResponseMessage GetUserExists(string username = null, string email = null)
@@ -96,7 +70,7 @@
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
-                this.GetCommentData(comments, id));
+                Mapper.Map<IEnumerable<Comment>, List<CommentDataDO>>(comments));
         }
 
         public HttpResponseMessage GetComments(string userId, int take, int skip = 0)
@@ -106,7 +80,7 @@
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
-                this.GetCommentData(comments, id));
+                 Mapper.Map<IEnumerable<Comment>, List<CommentDataDO>>(comments));
         }
 
         public HttpResponseMessage GetFavorites(string userId, int take, int skip = 0)
@@ -116,7 +90,7 @@
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
-                this.GetCommentData(comments, id));
+                 Mapper.Map<IEnumerable<Comment>, List<CommentDataDO>>(comments));
         }
 
         public HttpResponseMessage GetFollowers(string userId, int take, int skip = 0)
@@ -125,7 +99,7 @@
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
-                this.GetUserData(users));
+                Mapper.Map<IEnumerable<User>, List<UserDO>>(users));
         }
 
         public HttpResponseMessage GetFollowing(string userId, int take, int skip = 0)
@@ -134,7 +108,7 @@
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
-                this.GetUserData(users));
+                Mapper.Map<IEnumerable<User>, List<UserDO>>(users));
         }
 
         public HttpResponseMessage PostFollowing(string userId)
@@ -153,52 +127,6 @@
                 new ObjectId(userId));
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
-        }
-
-        private List<UserDO> GetUserData(IEnumerable<User> users)
-        {
-            var currentUser = this.userRepository.GetUser(new ObjectId(this.userContext.UserId));
-
-            List<UserDO> userDOs = new List<UserDO>();
-            foreach (var user in users)
-            {
-                UserDO userDO = new UserDO
-                {
-                    UserId = user.Id,
-                    Fullname = user.Fullname,
-                    Username = user.Username,
-                    Image = this.imageRepository.GetImage(user.ImgId),
-                    FollowersCount = this.userRepository.GetFollowersCount(user.Id),
-                    IsFollowed = currentUser.Following.Contains(user.Id)
-                };
-
-                userDOs.Add(userDO);
-            }
-
-            return userDOs;
-        }
-
-        private List<CommentDataDO> GetCommentData(IEnumerable<Comment> comments, ObjectId userId)
-        {
-            List<CommentDataDO> commentsData = new List<CommentDataDO>();
-            foreach (var comment in comments)
-            {
-                CommentDataDO commentData = new CommentDataDO();
-                commentData.CommentId = comment.Id;
-                commentData.Content = comment.Content;
-                commentData.PublishDate = comment.PublishDate;
-                commentData.AuthorId = comment.Author;
-                commentData.IsRetweeted = comment.RetweetedBy.Contains(userId);
-                commentData.IsFavorited = comment.FavoritedBy.Contains(userId);
-
-                var author = this.userRepository.GetUser(comment.Author);
-                commentData.Author = author.Username;
-                commentData.AuthorImg = this.imageRepository.GetImage(author.ImgId);
-
-                commentsData.Add(commentData);
-            }
-
-            return commentsData;
         }
     }
 }

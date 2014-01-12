@@ -2,12 +2,13 @@
 (function (angular) {
   'use strict';
 
-  function ProfileSummaryDirective($modal, $window, $navigation, User) {
+  function ProfileSummaryDirective($modal, $q, $window, $navigation, User) {
     var ProfileSummaryLink = function ($scope, element, attrs) {
       var userId = attrs.hdProfileSummary;
 
-      var UserModalCtrl = function ($scope, $state, $modalInstance, user, currentUserId) {
+      var UserModalCtrl = function ($scope, $state, $modalInstance, user, currentUserId, comments) {
         $scope.user = user;
+        $scope.comments = comments;
         $scope.currentUserId = currentUserId;
 
         $scope.close = function () {
@@ -39,7 +40,10 @@
         var id = $scope.$eval(userId);
         $navigation.loading = true;
 
-        User.userData.get({ userId: id }).$promise.then(function (user) {
+        $q.all({
+          user: User.userData.get({ userId: id }).$promise,
+          comments: User.userComments.query({ userId: id, take: 2 }).$promise
+        }).then(function (res) {
           $navigation.loading = false;
 
           $modal.open({
@@ -48,10 +52,13 @@
             windowClass: 'user-modal',
             resolve: {
               user: function () {
-                return user;
+                return res.user;
               },
               currentUserId: function () {
                 return $window.user.userId;
+              },
+              comments: function () {
+                return res.comments;
               }
             }
           });
@@ -73,6 +80,7 @@
 
   ProfileSummaryDirective.$inject = [
     '$modal',
+    '$q',
     '$window',
     'navigation.NavigationConfig',
     'User'

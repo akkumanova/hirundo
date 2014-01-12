@@ -4,8 +4,10 @@
     using System.Net.Http;
     using System.Web.Http;
     using System.Web.Http.Routing;
+    using AutoMapper;
     using Hirundo.Model.Converters;
     using Hirundo.Model.Utils;
+    using Hirundo.Web.Mappers;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
     using Ninject;
@@ -29,6 +31,12 @@
                 };
 
             RegisterRoutes(config);
+
+            Mapper.Configuration.ConstructServicesUsing(x => kernel.Get(x));
+            foreach (IMapper mapper in kernel.GetAll<IMapper>())
+            {
+                mapper.CreateMap();
+            }
         }
 
         public static void RegisterRoutes(HttpConfiguration config)

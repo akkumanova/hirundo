@@ -11,6 +11,7 @@
             kernel.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
 
             kernel.Load(new HirundoModelModule());
+            kernel.Load(new HirundoWebIModule());
         }
     }
 }

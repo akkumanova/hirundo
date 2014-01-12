@@ -148,12 +148,24 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HirundoWebIModule.cs" />
+    <Compile Include="Mappers\CommentDataMapper.cs" />
+    <Compile Include="Mappers\CommentDetailsMapper.cs" />
+    <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Mappers\ReplyMapper.cs" />
+    <Compile Include="Mappers\Resolvers\CommentsCountResolver.cs" />
+    <Compile Include="Mappers\Resolvers\FollowedResolver.cs" />
+    <Compile Include="Mappers\Resolvers\FollowersResolver.cs" />
+    <Compile Include="Mappers\Resolvers\ImageResolver.cs" />
+    <Compile Include="Mappers\Resolvers\UserImageResolver.cs" />
+    <Compile Include="Mappers\Resolvers\UserInListResolver.cs" />
+    <Compile Include="Mappers\Resolvers\UsernameResolver.cs" />
+    <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Models\Comment\CommentDO.cs" />
     <Compile Include="Models\Comment\CommentDataDO.cs" />
     <Compile Include="Models\Comment\CommentDetailsDO.cs" />
     <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\ReplyDO.cs" />
-    <Compile Include="Models\User\UserCommentDO.cs" />
+    <Compile Include="Models\Comment\ReplyDO.cs" />
     <Compile Include="Models\User\UserDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

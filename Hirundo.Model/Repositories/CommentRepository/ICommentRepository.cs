@@ -6,7 +6,7 @@
 
     public interface ICommentRepository
     {
-        Comment GetComment(ObjectId commentId);
+        Comment GetComment(ObjectId commentId, int replies = 0);
 
         void AddComment(Comment comment);
 

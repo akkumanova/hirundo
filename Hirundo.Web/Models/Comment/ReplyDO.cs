@@ -1,4 +1,4 @@
-﻿namespace Hirundo.Web.Models
+﻿namespace Hirundo.Web.Models.Comment
 {
     using System;
     using MongoDB.Bson;

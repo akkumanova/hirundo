@@ -17,11 +17,15 @@
             this.commentCollection = mongoContext.GetCollection<Comment>();
         }
 
-        public Comment GetComment(ObjectId commentId)
+        public Comment GetComment(ObjectId commentId, int replies = 0)
         {
             var query = Query<Comment>.EQ(c => c.Id, commentId);
+            var comment = this.commentCollection.FindOne(query);
 
-            return this.commentCollection.FindOne(query);
+            comment.Replies = comment.Replies.OrderByDescending(r => r.PublishDate)
+                                    .Take(replies)
+                                    .ToList();
+            return comment;
         }
 
         public void AddComment(Comment comment)
