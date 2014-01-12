@@ -97,6 +97,11 @@ module.exports = function (grunt) {
         src: ['js/profile/**/*.html'],
         dest: '<%= buildDir %>/templates/profile.js',
         module: 'profile.templates'
+      },
+      hirundo: {
+        src: ['js/hirundo/**/*.html'],
+        dest: '<%= buildDir %>/templates/hirundo.js',
+        module: 'hirundo.templates'
       }
     },
     watch:{

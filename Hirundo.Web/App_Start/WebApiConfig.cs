@@ -45,9 +45,11 @@
             MapRoute(config, HttpMethod.Delete, "api/user/{userId}/following", "User", "DeleteFollowing");
 
             // Comments
+            MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}"         , "Comment", "GetComment");
             MapRoute(config, HttpMethod.Post  , "api/comments"                     , "Comment", "PostComment");
             MapRoute(config, HttpMethod.Delete, "api/comments/{commentId}"         , "Comment", "DeleteComment");
             MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/details" , "Comment", "GetCommentDetails");
+            MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/reply"   , "Comment", "GetReplies");
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/reply"   , "Comment", "PostReply");
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/retweet" , "Comment", "PostRetweet");
             MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/retweet" , "Comment", "GetRetweets");

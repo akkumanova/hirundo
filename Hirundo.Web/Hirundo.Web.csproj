@@ -41,6 +41,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MongoDB.Bson, Version=1.8.3.9, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -154,8 +160,20 @@
   <ItemGroup>
     <Content Include="App\css\style.css" />
     <Content Include="App\js\app.js" />
+    <Content Include="App\js\directives\deleteHirundo\deleteHirundoDirective.js" />
+    <Content Include="App\js\directives\deleteHirundo\deleteModal.html" />
+    <Content Include="App\js\directives\favoriteHirundo\favoriteHirundoDirective.js" />
+    <Content Include="App\js\directives\retweetHirundo\retweetHirundoDirective.js" />
+    <Content Include="App\js\directives\retweetHirundo\retweetsModal.html" />
+    <Content Include="App\js\directives\showFavorites\favoritesModal.html" />
+    <Content Include="App\js\directives\showFavorites\showFavoritesDirective.js" />
+    <Content Include="App\js\directives\showRetweets\retweetsModal.html" />
+    <Content Include="App\js\directives\showRetweets\showRetweetsDirective.js" />
     <Content Include="App\js\directives\users\usersDirective.html" />
     <Content Include="App\js\directives\users\usersDirective.js" />
+    <Content Include="App\js\hirundo\controllers\hirundoCtrl.js" />
+    <Content Include="App\js\hirundo\hirundo.js" />
+    <Content Include="App\js\hirundo\templates\hirundo.html" />
     <Content Include="App\js\profile\controllers\favoritesCtrl.js" />
     <Content Include="App\js\profile\controllers\followersCtrl.js" />
     <Content Include="App\js\profile\controllers\followingCtrl.js" />
@@ -168,10 +186,8 @@
     <Content Include="App\js\profile\templates\profile.html" />
     <Content Include="App\js\directives\comments\commentsDirective.html" />
     <Content Include="App\js\directives\comments\commentsDirective.js" />
-    <Content Include="App\js\directives\comment\commentsModal.html" />
     <Content Include="App\js\directives\comment\commentDirective.html" />
     <Content Include="App\js\directives\comment\commentDirective.js" />
-    <Content Include="App\js\directives\comment\usersModal.html" />
     <Content Include="App\js\directives\directives.js" />
     <Content Include="App\js\directives\hirundo\hirundoDirective.html" />
     <Content Include="App\js\directives\hirundo\hirundoDirective.js" />

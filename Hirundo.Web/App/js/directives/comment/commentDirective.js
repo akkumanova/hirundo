@@ -4,37 +4,7 @@
 (function (angular) {
   'use strict';
 
-  var CommentModalCtrl = function ($scope, $modalInstance, commentData, modalData) {
-    $scope.commentData = commentData;
-    $scope.header = modalData.header;
-    $scope.action = modalData.action;
-
-    $scope.cancel = function () {
-      $modalInstance.close(false);
-    };
-
-    $scope.ok = function () {
-      $modalInstance.close(true);
-    };
-  };
-
-  var UsersModalCtrl = function ($scope, $modalInstance, commentData, modalData, users) {
-    $scope.commentData = commentData;
-    $scope.header = modalData.header;
-    $scope.userId = modalData.userId;
-    $scope.loading = true;
-
-    users.$promise.then(function (result) {
-      $scope.users = result;
-      $scope.loading = false;
-    });
-
-    $scope.close = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  };
-
-  function CommentDirective($window, $modal, $state, Comment) {
+  function CommentDirective($window, Comment) {
     function CommentLink($scope) {
       $scope.userId = $window.user.userId;
       $scope.userImg = $window.user.userImage;
@@ -67,150 +37,6 @@
           });
         }
       };
-
-      $scope.favoriteComment = function () {
-        var commentId = $scope.model.commentId;
-
-        Comment.favorite.save({ commentId: commentId }).$promise.then(function (commentDetails) {
-          $scope.model.isFavorited = true;
-          $scope.model.retweets = commentDetails.retweets;
-          $scope.model.favorites = commentDetails.favorites;
-          $scope.model.replies = commentDetails.replies;
-        });
-      };
-
-      $scope.retweetComment = function () {
-        var modalInstance = $modal.open({
-          templateUrl: 'directives/comment/commentsModal.html',
-          controller: CommentModalCtrl,
-          windowClass: 'comment-modal',
-          resolve: {
-            commentData: function () {
-              return {
-                author: $scope.model.author,
-                authorImg: $scope.model.authorImg,
-                publishDate: $scope.model.publishDate,
-                content: $scope.model.content
-              };
-            },
-            modalData: function () {
-              return {
-                header: 'Retweet this to your followers?',
-                action: 'Retweet'
-              };
-            }
-          }
-        });
-
-        modalInstance.result.then(function (result) {
-          if (result) {
-            var commentId = $scope.model.commentId;
-
-            Comment.retweet.save({ commentId: commentId }).$promise.then(function (commentDetails) {
-              $scope.model.isRetweeted = true;
-              $scope.model.retweets = commentDetails.retweets;
-              $scope.model.favorites = commentDetails.favorites;
-              $scope.model.replies = commentDetails.replies;
-            });
-          }
-        });
-      };
-
-      $scope.deleteComment = function () {
-        var modalInstance = $modal.open({
-          templateUrl: 'directives/comment/commentsModal.html',
-          controller: CommentModalCtrl,
-          windowClass: 'comment-modal',
-          resolve: {
-            commentData: function () {
-              return {
-                author: $scope.model.author,
-                authorImg: $scope.model.authorImg,
-                publishDate: $scope.model.publishDate,
-                content: $scope.model.content
-              };
-            },
-            modalData: function () {
-              return {
-                header: 'Are you sure you want to delete this hirundo?',
-                action: 'Delete'
-              };
-            }
-          }
-        });
-
-        modalInstance.result.then(function (result) {
-          if (result) {
-            var commentId = $scope.model.commentId;
-
-            Comment.comment['delete']({ commentId: commentId }).$promise.then(function () {
-              $state.go($state.$current, {}, { reload: true });
-            });
-          }
-        });
-      };
-
-      $scope.showRetweets = function () {
-        var commentId = $scope.model.commentId;
-
-        $modal.open({
-          templateUrl: 'directives/comment/usersModal.html',
-          controller: UsersModalCtrl,
-          windowClass: 'users-modal',
-          resolve: {
-            commentData: function () {
-              return {
-                author: $scope.model.author,
-                authorImg: $scope.model.authorImg,
-                publishDate: $scope.model.publishDate,
-                content: $scope.model.content
-              };
-            },
-            modalData: function () {
-              return {
-                header: 'Retweeted ' +
-                        $scope.model.retweets +
-                        ($scope.model.retweets === 1 ? ' time.' : ' times.'),
-                userId: $scope.userId
-              };
-            },
-            users: function () {
-              return Comment.retweet.query({ commentId: commentId });
-            }
-          }
-        });
-      };
-
-      $scope.showFavorites = function () {
-        var commentId = $scope.model.commentId;
-
-        $modal.open({
-          templateUrl: 'directives/comment/usersModal.html',
-          controller: UsersModalCtrl,
-          windowClass: 'users-modal',
-          resolve: {
-            commentData: function () {
-              return {
-                author: $scope.model.author,
-                authorImg: $scope.model.authorImg,
-                publishDate: $scope.model.publishDate,
-                content: $scope.model.content
-              };
-            },
-            modalData: function () {
-              return {
-                header: 'Favorited ' +
-                        $scope.model.favorites +
-                        ($scope.model.favorites === 1 ? ' time.' : ' times.'),
-                userId: $scope.userId
-              };
-            },
-            users: function () {
-              return Comment.favorite.query({ commentId: commentId });
-            }
-          }
-        });
-      };
     }
 
     return {
@@ -224,7 +50,7 @@
     };
   }
 
-  CommentDirective.$inject = ['$window', '$modal', '$state', 'Comment'];
+  CommentDirective.$inject = ['$window', 'Comment'];
 
   angular.module('directives').directive('hdComment', CommentDirective);
 }(angular));

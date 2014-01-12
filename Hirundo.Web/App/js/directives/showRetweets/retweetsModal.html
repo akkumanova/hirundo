@@ -1,0 +1,25 @@
+﻿<div class="users">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-hidden="true">&times;</button>
+    <h4>{{header}}</h4>
+  </div>
+  <div class="modal-body">
+    <img class="pull-left img-thumbnail" ng-src="{{commentData.authorImg}}">
+    <strong>{{commentData.author}}</strong>
+    <span am-time-ago="commentData.publishDate" class="pull-right timestamp"></span>
+    <p>{{commentData.content}}</p>
+  </div>
+  <div class="modal-footer">
+    <div class="list-group">
+      <div class="list-group-item" ng-repeat="user in users">
+        <img class="pull-left img-thumbnail" ng-click="close()" hd-profile-summary="user.userId" ng-src="{{user.image}}">
+        <div class="data pull-left">
+          <strong>{{user.fullname}}</strong>
+          <span>{{user.username}}</span><br />
+          <span>{{user.followersCount}} {{user.followersCount === 1 ? 'follower' : 'followers'}}</span>
+        </div>
+      </div>
+    </div>
+    <img src="/app/img/initial-loader.gif" ng-show="loading" class="loader">
+  </div>
+</div>

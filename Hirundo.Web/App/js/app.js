@@ -8,7 +8,8 @@
     'directives',
     'navigation',
     'home',
-    'profile'
+    'profile',
+    'hirundo'
   ]).config([
     '$urlRouterProvider',
     '$stateProvider',

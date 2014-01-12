@@ -25,5 +25,7 @@
         IEnumerable<Comment> GetComments(ObjectId userId, int take, int skip);
 
         IEnumerable<Comment> GetFavorites(ObjectId userId, int take, int skip);
+
+        IEnumerable<Reply> GetReplies(ObjectId commentId, int take, int skip);
     }
 }

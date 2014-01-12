@@ -97,5 +97,16 @@
                         .Skip(skip)
                         .Take(take);
         }
+
+        public IEnumerable<Reply> GetReplies(ObjectId commentId, int take, int skip)
+        {
+            var query = Query<Comment>.EQ(c => c.Id, commentId);
+
+            return this.commentCollection.FindOne(query)
+                        .Replies
+                        .OrderByDescending(r => r.PublishDate)
+                        .Skip(skip)
+                        .Take(take);
+        }
     }
 }

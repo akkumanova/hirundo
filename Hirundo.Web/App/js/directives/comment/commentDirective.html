@@ -5,25 +5,37 @@
     <span am-time-ago="model.publishDate" class="pull-right timestamp"></span>
     <p>{{model.content}}</p>
     <div class="actions">
-      <a href="#"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
-      <a ng-hide="model.authorId === userId || model.isRetweeted" ng-click="retweetComment();$event.stopPropagation()"><span class="glyphicon glyphicon-retweet"></span> Retweet</a>
-      <span ng-show="model.isRetweeted" style="color: #609928;"><span class="glyphicon glyphicon-retweet"></span> Retweeted</span>
-      <a ng-show="model.authorId === userId" ng-click="deleteComment();$event.stopPropagation()"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-      <a ng-hide="model.isFavorited" ng-click="favoriteComment();$event.stopPropagation()"><span class="glyphicon glyphicon-star"></span> Favorite</a>
-      <span ng-show="model.isFavorited" style="color: #ff9b00;"><span class="glyphicon glyphicon-star"></span> Favorited</span>
+      <a href="#">
+        <span class="glyphicon glyphicon-share-alt"></span> Reply
+      </a>
+      <a ng-hide="model.authorId === userId || model.isRetweeted" hd-retweet-hirundo="model">
+        <span class="glyphicon glyphicon-retweet"></span> Retweet
+      </a>
+      <span ng-show="model.isRetweeted" style="color: #609928;">
+        <span class="glyphicon glyphicon-retweet"></span> Retweeted
+      </span>
+      <a ng-show="model.authorId === userId" hd-delete-hirundo="model">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </a>
+      <a ng-hide="model.isFavorited" hd-favorite-hirundo="model">
+        <span class="glyphicon glyphicon-star"></span> Favorite
+      </a>
+      <span ng-show="model.isFavorited" style="color: #ff9b00;">
+        <span class="glyphicon glyphicon-star"></span> Favorited
+      </span>
     </div>
     <div ng-show="model.isExpanded">
       <div class="list-group details" style="margin-bottom:8px;">
-        <a class="list-group-item inline-item" ng-show="model.retweets" ng-click="showRetweets();$event.stopPropagation()">
+        <a class="list-group-item inline-item" ng-show="model.retweets" hd-show-retweets="model">
           <strong class="list-group-item-heading">{{model.retweets | number: 0}}</strong><br>
           <span class="list-group-item-text">RETWEETS</span>
         </a>
-        <a class="list-group-item inline-item" ng-show="model.favorites" ng-click="showFavorites();$event.stopPropagation()">
+        <a class="list-group-item inline-item" ng-show="model.favorites" hd-show-favorites="model">
           <strong class="list-group-item-heading">{{model.favorites | number: 0}}</strong><br>
           <span class="list-group-item-text">FAVORITES</span>
         </a>
       </div>
-      <span class="date">{{model.publishDate | date:'h:mma - dd MMM yyyy'}}</span> · <a class="details" href="#">Details</a>
+      <span class="date">{{model.publishDate | date:'h:mma - dd MMM yyyy'}}</span> · <a class="details" ui-sref="hirundo({ id: model.commentId })">Details</a>
     </div>
   </div>
   <div class="replies" ng-show="model.isExpanded">
