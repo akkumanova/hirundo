@@ -5,6 +5,8 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+    <img class="navbar-brand col-sm-offset-7" src="/app/img/twitter-bird.gif" ng-hide="loading" />
+    <img class="navbar-brand col-sm-offset-7" src="/app/img/loader-white.gif" ng-show="loading" />
   </div>
   <div class="collapse navbar-collapse">
     <div class="container-medium">
@@ -30,17 +32,11 @@
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <div class="input-group">
-            <input type="text" class="form-control input-sm" placeholder="search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-            </span>
-          </div>
+          <input type="text" class="form-control input-sm" placeholder="search">
+          <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
         </div>
       </form>
-      <div class="navbar-right" style="width:25%;">
-        <img class="pull-left" src="/app/img/twitter-bird.gif" style="height:29px; margin-top:6px;" ng-hide="loading" />
-        <img class="pull-left" src="/app/img/loader-white.gif" style="height:35px; margin-top:6px;" ng-show="loading" />
+      <div class="navbar-right">
         <div class="pull-right" style="margin-top: 3px;">
           <span style="font-weight: bold;color: #999999;">{{username}}</span>
         </div>
