@@ -1,8 +1,26 @@
 ﻿/*global angular*/
 (function (angular) {
   'use strict';
-  
-  function NavbarCtrl($scope, $state, $window, $element, navigationConfig, User) {
+
+  var NewHirundoModalCtrl = function ($scope, $modalInstance, Comment, userId) {
+    $scope.sendHirundo = function (hirundo) {
+      var newComment = {
+        'Author': userId,
+        'Content': hirundo,
+        'PublishDate': new Date()
+      };
+
+      return Comment.comment.save(newComment).$promise.then(function () {
+        $modalInstance.close(true);
+      });
+    };
+
+    $scope.close = function () {
+      $modalInstance.close(false);
+    };
+  };
+
+  function NavbarCtrl($scope, $state, $window, $element, $modal, navigationConfig, User, Comment) {
     function mapItems(items) {
       return items.map(function (item) {
         var newItem = {
@@ -36,6 +54,28 @@
     $scope.loading = navigationConfig.loading;
     $scope.username = $window.user.username;
 
+    $scope.newHirundo = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'navigation/templates/newHirundo.html',
+        controller: NewHirundoModalCtrl,
+        windowClass: 'comment-modal',
+        resolve: {
+          Comment: function () {
+            return Comment;
+          },
+          userId: function () {
+            return $window.user.userId;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (result) {
+        if (result) {
+          $state.go($state.$current, {}, { reload: true });
+        }
+      });
+    };
+
     $scope.getUsers = function (username) {
       return User.userData.query({ username: username }).$promise.then(function (users) {
         return users;
@@ -51,13 +91,16 @@
       $state.go('search', { username: $scope.user.username || $scope.user });
     };
   }
+
   NavbarCtrl.$inject = [
     '$scope',
     '$state',
     '$window',
     '$element',
+    '$modal',
     'navigation.NavigationConfig',
-    'User'
+    'User',
+    'Comment'
   ];
 
   angular.module('navigation').controller('navigation.NavbarCtrl', NavbarCtrl);

@@ -3,7 +3,6 @@
   'use strict';
 
   function HomeCtrl($scope, $window, $state, User, Comment) {
-    $scope.hirundo = null;
     $scope.loaded = false;
 
     User.userData.get({ userId: $window.user.userId }).$promise.then(function (user) {
@@ -13,10 +12,10 @@
       $window.user.userImage = $scope.user.image;
     });
 
-    $scope.sendHirundo = function () {
+    $scope.sendHirundo = function (hirundo) {
       var newComment = {
         'Author': $scope.user.userId,
-        'Content': $scope.hirundo,
+        'Content': hirundo,
         'PublishDate': new Date()
       };
 

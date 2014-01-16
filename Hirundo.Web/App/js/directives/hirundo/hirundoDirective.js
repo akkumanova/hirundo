@@ -1,4 +1,4 @@
-﻿// Usage: <hd-hirundo model="<model_name>" send="<fn>" rows="<num>" placeholder="<text>">
+﻿// Usage: <hd-hirundo send="<fn>" rows="<num>" placeholder="<text>">
 // </hd-hirundo>
 
 /*global angular*/
@@ -11,14 +11,14 @@
       replace: true,
       templateUrl: 'directives/hirundo/hirundoDirective.html',
       scope: {
-        model: '=',
         placeholder: '@',
         send: '&'
       },
       link: function ($scope, element, attr) {
         var textarea = element.find('textarea');
 
-        $scope.collapsed = true;
+        $scope.fixed = attr.fixed !== undefined;
+        $scope.model = null;
 
         $scope.focused = function (isFocused) {
           if (isFocused === true || $scope.model) {
@@ -30,9 +30,10 @@
             textarea.prop('rows', 1);
           }
         };
+        $scope.focused($scope.fixed);
 
         $scope.sendHirundo = function () {
-          $scope.send().then(function () {
+          $scope.send({ hirundo: $scope.model }).then(function () {
             $scope.model = null;
             $scope.focused(false);
           });

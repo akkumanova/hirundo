@@ -18,7 +18,7 @@
         <h4 class="list-group-item-heading"><span class="badge">{{user.followersCount}}</span></h4>
         <span class="list-group-item-text">FOLLOWERS</span>
       </a>
-      <hd-hirundo class="list-group-item" model="hirundo" rows="8" send="sendHirundo()" placeholder="Compose new hirundo..."></hd-hirundo>
+      <hd-hirundo class="list-group-item" rows="8" send="sendHirundo(hirundo)" placeholder="Compose new hirundo..."></hd-hirundo>
     </div>
     <hd-comments ng-if="user" category="Timeline" resource="userTimeline" user="{{user.userId}}"></hd-comments>
   </div>

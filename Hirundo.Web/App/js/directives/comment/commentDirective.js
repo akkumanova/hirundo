@@ -9,11 +9,11 @@
       $scope.userId = $window.user.userId;
       $scope.userImg = $window.user.userImage;
 
-      $scope.sendReply = function () {
+      $scope.sendReply = function (hirundo) {
         var commentId = $scope.model.commentId;
         var reply = {
           'Author': $window.user.userId,
-          'Content': $scope.model.newReply,
+          'Content': hirundo,
           'PublishDate': new Date()
         };
 

@@ -41,7 +41,7 @@
   <div class="replies" ng-show="model.isExpanded">
     <div class="reply">
       <img ng-src="{{userImg}}" class="img-thumbnail">
-      <hd-hirundo model="model.newReply" send="sendReply()" rows="5" placeholder="Reply to {{model.author}}..." style="width:85%;display:inline-block;"></hd-hirundo>
+      <hd-hirundo send="sendReply(hirundo)" rows="5" placeholder="Reply to {{model.author}}..." style="width:85%;display:inline-block;"></hd-hirundo>
     </div>
     <div class="reply" ng-repeat="reply in model.replies" style="margin: 0px;background-color:#F8ECEC;">
       <img class="pull-left img-thumbnail" hd-profile-summary="reply.authorId" ng-src="{{reply.authorImg}}">

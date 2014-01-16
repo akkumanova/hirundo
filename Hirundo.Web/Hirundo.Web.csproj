@@ -189,7 +189,9 @@
     <Content Include="App\js\hirundo\hirundo.js" />
     <Content Include="App\js\hirundo\templates\hirundo.html" />
     <Content Include="App\js\navigation\controllers\searchResultsCtrl.js" />
+    <Content Include="App\js\navigation\templates\newHirundo.html" />
     <Content Include="App\js\navigation\templates\searchResults.html" />
+    <Content Include="App\js\navigation\templates\typeheadItems.html" />
     <Content Include="App\js\profile\controllers\favoritesCtrl.js" />
     <Content Include="App\js\profile\controllers\followersCtrl.js" />
     <Content Include="App\js\profile\controllers\followingCtrl.js" />
