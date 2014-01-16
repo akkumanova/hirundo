@@ -40,6 +40,19 @@ var users = [
   }
 ];
 
+for (var i = 0; i < 20; i++) {
+  users.push({
+    '_id': new ObjectID(),
+    "Username": "user" + i,
+    "Fullname": "Somebody",
+    "Email": "kost" + i + "a@yahoo.com",
+    "PasswordHash": "ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==",
+    "PasswordSalt": "chyK78xfQ1mOZtWFNN/Oug==",
+    "RegistrationDate": new Date("2013-10-09"),
+    "Following": [albsiId, hrtisitoId]
+  });
+}
+
 var comments = [];
 
 for (var i = 0; i < 15; i++) {
@@ -156,6 +169,11 @@ MongoClient.connect('mongodb://localhost:27017/hirundo', function (err, db) {
     gridStore.writeFile('./images/user.jpg', function (err, fileInfo) {
       gridStore.close(function (err, fileData) {
         users[2].ImgId = fileData._id;
+
+        for (var i = 3; i < 23; i++) {
+          users[i].ImgId = fileData._id;
+        }
+
         imageSaved();
       });
     });

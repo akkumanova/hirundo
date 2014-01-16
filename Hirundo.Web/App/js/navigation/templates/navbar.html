@@ -32,8 +32,13 @@
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control input-sm" placeholder="search">
-          <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+          <input type="text" class="form-control input-sm" placeholder="search" ng-model="user"
+              typeahead="user as user.username for user in getUsers($viewValue) | filter:{username: $viewValue}"
+              typeahead-wait-ms="1500"
+              typeahead-min-length="3"
+              typeahead-template-url="navigation/templates/typeheadItems.html"
+              typeahead-on-select="viewUser($item)">
+          <button type="submit" ng-click="search()"><span class="glyphicon glyphicon-search"></span></button>
         </div>
       </form>
       <div class="navbar-right">

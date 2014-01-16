@@ -24,6 +24,8 @@
 
         IEnumerable<User> GetUsers(List<ObjectId> userIds, int take, int skip);
 
+        IEnumerable<User> GetUsers(string username, int take, int skip);
+
         IEnumerable<User> GetFollowers(ObjectId userId, int take, int skip);
 
         IEnumerable<User> GetFollowing(ObjectId userId, int take, int skip);

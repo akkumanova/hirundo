@@ -11,6 +11,7 @@
             Bind<IMapper>().To<CommentDetailsMapper>();
             Bind<IMapper>().To<ReplyMapper>();
             Bind<IMapper>().To<UserMapper>();
+            Bind<IMapper>().To<UserDataMapper>();
         }
     }
 }

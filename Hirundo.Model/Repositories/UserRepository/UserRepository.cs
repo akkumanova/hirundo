@@ -105,8 +105,17 @@
             return this.userCollection.Find(query)
                         .OrderBy(u => u.Username)
                         .Skip(skip)
-                        .Take(take)
-                        .ToList();
+                        .Take(take);
+        }
+
+        public IEnumerable<User> GetUsers(string username, int take, int skip)
+        {
+            var query = Query<User>.Matches(u => u.Username, username);
+
+            return this.userCollection.Find(query)
+                        .OrderBy(u => u.Username)
+                        .Skip(skip)
+                        .Take(take);
         }
 
         public IEnumerable<User> GetFollowers(ObjectId userId, int take, int skip)
@@ -114,10 +123,9 @@
             var query = Query<User>.Where(u => u.Following.Contains(userId));
 
             return this.userCollection.Find(query)
-                            .OrderBy(u => u.Username)
-                            .Skip(skip)
-                            .Take(take)
-                            .ToList();
+                        .OrderBy(u => u.Username)
+                        .Skip(skip)
+                        .Take(take);
         }
 
         public IEnumerable<User> GetFollowing(ObjectId userId, int take, int skip)

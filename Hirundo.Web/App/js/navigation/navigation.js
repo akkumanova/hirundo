@@ -14,6 +14,17 @@
           templateUrl: 'navigation/templates/navbar.html'
         }
       }
+    })
+    .state({
+      name: 'search',
+      parent: 'root',
+      url: '/search?username',
+      views: {
+        'pageView@root': {
+          templateUrl: 'navigation/templates/searchResults.html',
+          controller: 'navigation.SearchResultsCtrl'
+        }
+      }
     });
   }]);
 }(angular));

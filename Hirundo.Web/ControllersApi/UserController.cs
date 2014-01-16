@@ -16,6 +16,7 @@
     public class UserController : ApiController
     {
         private const int UserComments = 2;
+        private const int MinUsers = 4;
 
         private UserContext userContext;
         private IUserRepository userRepository;
@@ -99,7 +100,7 @@
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
-                Mapper.Map<IEnumerable<User>, List<UserDO>>(users));
+                Mapper.Map<IEnumerable<User>, List<UserDataDO>>(users));
         }
 
         public HttpResponseMessage GetFollowing(string userId, int take, int skip = 0)
@@ -108,7 +109,7 @@
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
-                Mapper.Map<IEnumerable<User>, List<UserDO>>(users));
+                Mapper.Map<IEnumerable<User>, List<UserDataDO>>(users));
         }
 
         public HttpResponseMessage PostFollowing(string userId)
@@ -127,6 +128,19 @@
                 new ObjectId(userId));
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        public HttpResponseMessage GetUsers(string username, int? take = null, int skip = 0)
+        {
+            if (!take.HasValue)
+            {
+                take = MinUsers;
+            }
+
+            var users = this.userRepository.GetUsers(username, take.Value, skip);
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                Mapper.Map<IEnumerable<User>, List<UserDataDO>>(users));
         }
     }
 }

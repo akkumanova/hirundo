@@ -160,12 +160,14 @@
     <Compile Include="Mappers\Resolvers\UserImageResolver.cs" />
     <Compile Include="Mappers\Resolvers\UserInListResolver.cs" />
     <Compile Include="Mappers\Resolvers\UsernameResolver.cs" />
+    <Compile Include="Mappers\UserDataMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Models\Comment\CommentDO.cs" />
     <Compile Include="Models\Comment\CommentDataDO.cs" />
     <Compile Include="Models\Comment\CommentDetailsDO.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Comment\ReplyDO.cs" />
+    <Compile Include="Models\User\UserDataDO.cs" />
     <Compile Include="Models\User\UserDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -186,6 +188,8 @@
     <Content Include="App\js\hirundo\controllers\hirundoCtrl.js" />
     <Content Include="App\js\hirundo\hirundo.js" />
     <Content Include="App\js\hirundo\templates\hirundo.html" />
+    <Content Include="App\js\navigation\controllers\searchResultsCtrl.js" />
+    <Content Include="App\js\navigation\templates\searchResults.html" />
     <Content Include="App\js\profile\controllers\favoritesCtrl.js" />
     <Content Include="App\js\profile\controllers\followersCtrl.js" />
     <Content Include="App\js\profile\controllers\followingCtrl.js" />

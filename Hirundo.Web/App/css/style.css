@@ -407,6 +407,7 @@ form.navbar-form > div {
 form.navbar-form input {
     background-color: #ccc;
     border-radius: 13px;
+    border: 1px solid black;
 }
 
 form.navbar-form input:focus {
@@ -420,6 +421,27 @@ form.navbar-form button {
     top: -27px;
     left: 150px;
     color: #6B6767;
+}
+
+form.navbar-form ul {
+    background-color: #333333;
+    border: 1px solid black;
+    width: 250px;
+}
+
+form.navbar-form ul a {
+    color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+}
+
+form.navbar-form ul > li.active > a, form.navbar-form ul > li.active > a:hover, form.navbar-form ul > li.active > a:focus {
+    background-color: rgb(201, 161, 131);
+}
+
+form.navbar-form ul a > img {
+    height: 40px;
+    margin-right: 5px;
 }
 
 /*page*/

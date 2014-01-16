@@ -2,7 +2,7 @@
 (function (angular) {
   'use strict';
   
-  function NavbarCtrl($scope, $state, $window, navigationConfig) {
+  function NavbarCtrl($scope, $state, $window, $element, navigationConfig, User) {
     function mapItems(items) {
       return items.map(function (item) {
         var newItem = {
@@ -35,8 +35,30 @@
     $scope.items = mapItems(navigationConfig.items);
     $scope.loading = navigationConfig.loading;
     $scope.username = $window.user.username;
+
+    $scope.getUsers = function (username) {
+      return User.userData.query({ username: username }).$promise.then(function (users) {
+        return users;
+      });
+    };
+
+    $scope.viewUser = function (user) {
+      $state.go('profile', { id: user.userId });
+    };
+
+    $scope.search = function () {
+      $element.find('input').triggerHandler('blur');
+      $state.go('search', { username: $scope.user.username || $scope.user });
+    };
   }
-  NavbarCtrl.$inject = ['$scope', '$state', '$window', 'navigation.NavigationConfig'];
+  NavbarCtrl.$inject = [
+    '$scope',
+    '$state',
+    '$window',
+    '$element',
+    'navigation.NavigationConfig',
+    'User'
+  ];
 
   angular.module('navigation').controller('navigation.NavbarCtrl', NavbarCtrl);
 }(angular));
