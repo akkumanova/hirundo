@@ -2,7 +2,10 @@
 <div class="container-medium page-content" ng-show="loaded">
   <div class="row">
     <div class="col-xs-4 list-group menu">
-      <a ng-repeat="item in menu" class="list-group-item" ng-class="{active: item.isActive}" ng-click="activate(item)"><strong>{{item.name}}</strong></a>
+      <a class="list-group-item" ui-sref="profile.hirundos" ui-sref-active="active"><strong>Hirundos</strong></a>
+      <a class="list-group-item" ui-sref="profile.following" ui-sref-active="active"><strong>Following</strong></a>
+      <a class="list-group-item" ui-sref="profile.followers" ui-sref-active="active"><strong>Followers</strong></a>
+      <a class="list-group-item" ui-sref="profile.favorites" ui-sref-active="active"><strong>Favorites</strong></a>
     </div>
     <div class="col-xs-8 user-card">
        <div class="user-data">

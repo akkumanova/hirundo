@@ -222,6 +222,14 @@
     <Content Include="App\js\navigation\providers\navigationConfigProvider.js" />
     <Content Include="App\js\navigation\templates\navbar.html" />
     <Content Include="App\js\profile\templates\hirundos.html" />
+    <Content Include="App\js\settings\controllers\accountCtrl.js" />
+    <Content Include="App\js\settings\controllers\passwordCtrl.js" />
+    <Content Include="App\js\settings\controllers\profileCtrl.js" />
+    <Content Include="App\js\settings\settings.js" />
+    <Content Include="App\js\settings\templates\account.html" />
+    <Content Include="App\js\settings\templates\password.html" />
+    <Content Include="App\js\settings\templates\profile.html" />
+    <Content Include="App\js\settings\templates\settings.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">

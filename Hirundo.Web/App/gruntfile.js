@@ -102,6 +102,11 @@ module.exports = function (grunt) {
         src: ['js/hirundo/**/*.html'],
         dest: '<%= buildDir %>/templates/hirundo.js',
         module: 'hirundo.templates'
+      },
+      settings: {
+        src: ['js/settings/**/*.html'],
+        dest: '<%= buildDir %>/templates/settings.js',
+        module: 'settings.templates'
       }
     },
     watch:{

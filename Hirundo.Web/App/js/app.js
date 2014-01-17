@@ -9,7 +9,8 @@
     'navigation',
     'home',
     'profile',
-    'hirundo'
+    'hirundo',
+    'settings'
   ]).config([
     '$urlRouterProvider',
     '$stateProvider',
@@ -34,7 +35,7 @@
           state: 'profile',
           stateParams: { id: $windowProvider.$get().user.userId },
           items: [
-            { text: 'Settings', url: '/settings' },
+            { text: 'Settings', state: 'settings' },
             { text: 'Sign out', url: '/logout' }
           ]
         });
