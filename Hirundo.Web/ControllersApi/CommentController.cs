@@ -1,5 +1,6 @@
 ﻿namespace Hirundo.Web.ControllersApi
 {
+    using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
@@ -48,6 +49,12 @@
 
         public HttpResponseMessage PostComment(Comment comment)
         {
+            var currentUserId = new ObjectId(this.userContext.UserId);
+            if (comment.Author != currentUserId)
+            {
+                throw new Exception("Cannot comment!");
+            }
+
             this.commentRepository.AddComment(comment);
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
@@ -71,6 +78,12 @@
 
         public HttpResponseMessage PostReply(Reply reply, string commentId)
         {
+            var currentUserId = new ObjectId(this.userContext.UserId);
+            if (currentUserId != reply.Author)
+            {
+                throw new Exception("Cannot reply!");
+            }
+
             ObjectId id = new ObjectId(commentId);
             this.commentRepository.AddReply(id, reply);
             Comment comment = this.commentRepository.GetComment(id, MinReplies);
