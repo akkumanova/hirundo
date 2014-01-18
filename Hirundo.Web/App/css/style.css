@@ -14,10 +14,14 @@ div.upload {
 div.upload > input {
     position: absolute;
     top: 0px;
-    width: 116px;
+    width: 100px;
     opacity: 0;
 }
 
+/*has-error*/
+.has-error span {
+    color: #b94a48;
+}
 
 /*following*/
 button.following:focus, button.following:hover {
@@ -816,4 +820,8 @@ div.card a > .text > small {
 
 .edit .panel > .panel-body .form-group span {
     margin-bottom: 10px;
+}
+
+.edit .panel > .panel-body .form-group label {
+    font-size: 13px;
 }

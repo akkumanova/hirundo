@@ -168,6 +168,7 @@
     <Compile Include="Models\Comment\CommentDetailsDO.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Comment\ReplyDO.cs" />
+    <Compile Include="Models\User\PasswordDO.cs" />
     <Compile Include="Models\User\UserDataDO.cs" />
     <Compile Include="Models\User\UserDO.cs" />
     <Compile Include="Models\User\UserProfileDO.cs" />

@@ -6,6 +6,7 @@
     var userFactory = {
       userData: $resource('api/user/:userId', { userId: '@userId' }),
       userProfile: $resource('api/user/profile'),
+      userPassword: $resource('api/user/changePass'),
       userTimeline: $resource('api/user/:userId/timeline', { userId: '@userId' }),
       userComments: $resource( 'api/user/:userId/comments', { userId: '@userId' } ),
       userFavorites: $resource('api/user/:userId/favorites', { userId: '@userId' }),

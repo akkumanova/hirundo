@@ -45,6 +45,7 @@
             MapRoute(config, HttpMethod.Get   , "api/user"                   , "User", "GetUsers");
             MapRoute(config, HttpMethod.Get   , "api/user/profile"           , "User", "GetProfile");
             MapRoute(config, HttpMethod.Post  , "api/user/profile"           , "User", "PostUser");
+            MapRoute(config, HttpMethod.Post  , "api/user/changePass"        , "User", "PostPassowrd");
             MapRoute(config, HttpMethod.Get   , "api/user/{userId}"          , "User", "GetUser");
             MapRoute(config, HttpMethod.Get   , "api/user/{userId}/timeline" , "User", "GetTimeline");
             MapRoute(config, HttpMethod.Get   , "api/user/{userId}/comments" , "User", "GetComments");

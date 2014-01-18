@@ -71,6 +71,26 @@
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        public HttpResponseMessage PostPassowrd(PasswordDO passwords)
+        {
+            if (passwords.NewPassword != passwords.VerifyPassword)
+            {
+                throw new Exception("Passwords doesn't match!");
+            }
+
+            ObjectId userId = new ObjectId(this.userContext.UserId);
+            var user = this.userRepository.GetUser(userId);
+
+            if (!user.VerifyPassword(passwords.OldPassword))
+            {
+                return ControllerContext.Request.CreateResponse(HttpStatusCode.Unauthorized, "Password invalid!");
+            }
+
+            this.userRepository.ChangePassword(userId, passwords.NewPassword);
+
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         public HttpResponseMessage GetUserExists(string username = null, string email = null)
         {
             bool userExists = false;
