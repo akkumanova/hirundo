@@ -1,6 +1,8 @@
 ﻿namespace Hirundo.Model.Repositories.ImagesRepository
 {
     using System;
+    using System.IO;
+    using System.Text.RegularExpressions;
     using Hirundo.Model.Data;
     using MongoDB.Bson;
     using MongoDB.Driver.GridFS;
@@ -37,6 +39,20 @@
             }
 
             return imageSrc;
+        }
+
+        public ObjectId SaveImage(string image)
+        {
+            string pattern = @"^data:image/.*;base64,";
+            Regex rgx = new Regex(pattern);
+            image = rgx.Replace(image, "");
+
+            using (MemoryStream fileSrt = new MemoryStream(Convert.FromBase64String(image)))
+            {
+                var fileInfo = this.gridFs.Upload(fileSrt, new Guid().ToString());
+
+                return fileInfo.Id.AsObjectId;
+            }
         }
     }
 }

@@ -14,6 +14,8 @@
 
         void AddUser(string fullname, string email, string password, string username);
 
+        void UpdateUser(ObjectId userId, string fullname, string location, string website, string bio, ObjectId? imageId = null);
+
         void AddFollowing(ObjectId userId, ObjectId followedUserId);
 
         void DeleteFollowing(ObjectId userId, ObjectId followedUserId);

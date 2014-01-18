@@ -162,6 +162,7 @@
     <Compile Include="Mappers\Resolvers\UsernameResolver.cs" />
     <Compile Include="Mappers\UserDataMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="Mappers\UserProfileMapper.cs" />
     <Compile Include="Models\Comment\CommentDO.cs" />
     <Compile Include="Models\Comment\CommentDataDO.cs" />
     <Compile Include="Models\Comment\CommentDetailsDO.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Models\Comment\ReplyDO.cs" />
     <Compile Include="Models\User\UserDataDO.cs" />
     <Compile Include="Models\User\UserDO.cs" />
+    <Compile Include="Models\User\UserProfileDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,11 +224,10 @@
     <Content Include="App\js\navigation\providers\navigationConfigProvider.js" />
     <Content Include="App\js\navigation\templates\navbar.html" />
     <Content Include="App\js\profile\templates\hirundos.html" />
-    <Content Include="App\js\settings\controllers\accountCtrl.js" />
     <Content Include="App\js\settings\controllers\passwordCtrl.js" />
     <Content Include="App\js\settings\controllers\profileCtrl.js" />
+    <Content Include="App\js\settings\controllers\settingsCtrl.js" />
     <Content Include="App\js\settings\settings.js" />
-    <Content Include="App\js\settings\templates\account.html" />
     <Content Include="App\js\settings\templates\password.html" />
     <Content Include="App\js\settings\templates\profile.html" />
     <Content Include="App\js\settings\templates\settings.html" />

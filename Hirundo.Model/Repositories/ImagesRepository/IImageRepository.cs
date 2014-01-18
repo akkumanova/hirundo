@@ -5,5 +5,7 @@
     public interface IImageRepository
     {
         string GetImage(ObjectId imageId);
+
+        ObjectId SaveImage(string image);
     }
 }

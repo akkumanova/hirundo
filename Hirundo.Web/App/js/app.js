@@ -13,12 +13,14 @@
     'settings'
   ]).config([
     '$urlRouterProvider',
+    '$compileProvider',
     '$stateProvider',
     '$locationProvider',
     '$windowProvider',
     'navigation.NavigationConfigProvider',
     function (
       $urlRouterProvider,
+      $compileProvider,
       $stateProvider,
       $locationProvider,
       $windowProvider,
@@ -26,6 +28,7 @@
     ) {
       $locationProvider.html5Mode(false);
       $urlRouterProvider.otherwise('/home');
+      $compileProvider.imgSrcSanitizationWhitelist(/^\s*(data|blob):/);
 
       navigationConfigProvider
         .addItem({ text: 'Home', icon: 'glyphicon-home', state: 'home', items: [] })

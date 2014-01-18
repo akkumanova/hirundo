@@ -1,12 +1,18 @@
 ﻿<div class="container-medium page-content">
   <div class="row">
-    <div class="col-xs-4 list-group menu">
-      <a class="list-group-item" ui-sref="settings.account" ui-sref-active="active"><strong>Account</strong></a>
-      <a class="list-group-item" ui-sref="settings.password" ui-sref-active="active"><strong>Password</strong></a>
+    <div class="col-xs-4 list-group menu card">
+      <a ui-sref="profile({ id: user.userId })" class="list-group-item" style="height:70px;">
+         <img ng-src="{{user.userImg}}" class="img-thumbnail pull-left">
+         <div class="text">
+           <strong>{{user.username}}</strong>
+           <small>View my profile page</small>
+         </div>
+      </a>
       <a class="list-group-item" ui-sref="settings.profile" ui-sref-active="active"><strong>Profile</strong></a>
+      <a class="list-group-item" ui-sref="settings.password" ui-sref-active="active"><strong>Password</strong></a>
     </div>
-    <div class="col-xs-8 user-card">
-      <div style="margin-top: 15px;" ui-view="settingsView"></div>
+    <div class="col-xs-8 edit">
+      <div ui-view="settingsView"></div>
     </div>
   </div>
 </div>

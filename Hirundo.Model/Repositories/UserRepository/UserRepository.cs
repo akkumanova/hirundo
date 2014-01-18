@@ -63,6 +63,22 @@
             this.userCollection.Insert(user);
         }
 
+        public void UpdateUser(ObjectId userId, string fullname, string location, string website, string bio, ObjectId? imageId = null)
+        {
+            var query = Query<User>.EQ(u => u.Id, userId);
+            var update = Update<User>.Set(u => u.Fullname, fullname)
+                                    .Set(u => u.Location, location)
+                                    .Set(u => u.Website, website)
+                                    .Set(u => u.Bio, bio);
+
+            if (imageId.HasValue)
+            {
+                update = update.Set(u => u.ImgId, imageId);
+            }
+
+            this.userCollection.Update(query, update);
+        }
+
         public void AddFollowing(ObjectId userId, ObjectId followedUserId)
         {
             var query = Query<User>.EQ(u => u.Id, userId);

@@ -9,34 +9,43 @@ var albsiId = new ObjectID(),
 
 var users = [
   {
-    "_id": albsiId, //passowrd: alabala 
-    "Username": "albsi",
-    "Fullname": "Albena Kumanova",
-    "Email": "akumanova@yahoo.com",
-    "PasswordHash": "ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==",
-    "PasswordSalt": "chyK78xfQ1mOZtWFNN/Oug==",
-    "RegistrationDate": new Date("2013-07-09"),
-    "Following": [hrtisitoId, userId]
+    _id: albsiId, //passowrd: alabala 
+    Username: 'albsi',
+    Fullname: 'Albena Kumanova',
+    Email: 'akumanova@yahoo.com',
+    PasswordHash: 'ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==',
+    PasswordSalt: 'chyK78xfQ1mOZtWFNN/Oug==',
+    RegistrationDate: new Date('2013-07-09'),
+    Location: 'Sofia',
+    Website: 'https://twitter.com/',
+    Bio: 'alabala 1 2 3 in alabala',
+    Following: [hrtisitoId, userId]
   },
   {
-    "_id": hrtisitoId, //passowrd: alabala
-    "Username": "hrisito",
-    "Fullname": "Hristina Simeonova",
-    "Email": "hristina.sim@gmail.com",
-    "PasswordHash": "ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==",
-    "PasswordSalt": "chyK78xfQ1mOZtWFNN/Oug==",
-    "RegistrationDate": new Date("2013-07-10"),
-    "Following": [albsiId]
+    _id: hrtisitoId, //passowrd: alabala
+    Username: 'hrisito',
+    Fullname: 'Hristina Simeonova',
+    Email: 'hristina.sim@gmail.com',
+    PasswordHash: 'ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==',
+    PasswordSalt: 'chyK78xfQ1mOZtWFNN/Oug==',
+    RegistrationDate: new Date('2013-07-10'),
+    Location: 'Sofia',
+    Website: 'https://yahoo.com/',
+    Bio: 'bugi 1 2 3 in alabala',
+    Following: [albsiId]
   },
   {
-    "_id": userId, //passowrd: alabala
-    "Username": "user",
-    "Fullname": "Somebody",
-    "Email": "kosta@yahoo.com",
-    "PasswordHash": "ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==",
-    "PasswordSalt": "chyK78xfQ1mOZtWFNN/Oug==",
-    "RegistrationDate": new Date("2013-10-09"),
-    "Following": [albsiId, hrtisitoId]
+    _id: userId, //passowrd: alabala
+    Username: 'user',
+    Fullname: 'Somebody',
+    Email: 'kosta@yahoo.com',
+    PasswordHash: 'ABMzw8ytOgYmHvyGc4xkvMP/IzUSA5GvKqLBTeyjX06e56J9wauQaQiv5Rdhmc3rTQ==',
+    PasswordSalt: 'chyK78xfQ1mOZtWFNN/Oug==',
+    RegistrationDate: new Date('2013-10-09'),
+    Location: 'Plovdiv',
+    Website: 'https://gmail.com/',
+    Bio: 'mainite sa smotani',
+    Following: [albsiId, hrtisitoId]
   }
 ];
 

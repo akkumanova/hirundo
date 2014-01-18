@@ -5,6 +5,20 @@
     background-image:url('/app/img/background.jpg');
 }
 
+/*upload*/
+div.upload {
+    position: relative;
+    display: inline-block;
+}
+
+div.upload > input {
+    position: absolute;
+    top: 0px;
+    width: 116px;
+    opacity: 0;
+}
+
+
 /*following*/
 button.following:focus, button.following:hover {
     background-image: linear-gradient(#ee5f5b,#c43c35);
@@ -498,6 +512,16 @@ div.card a:hover, div.card a:focus {
 
 div.card a > img {
     width: 35px;
+    margin-right: 5px;
+}
+
+div.card a > .text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div.card a > .text > small {
+    display: block;
 }
 
 /*users-list*/
@@ -770,4 +794,26 @@ div.card a > img {
 .comment-details div.replies .reply > .reply-data .timestamp {
     color: #999;
     font-size: 12px;
+}
+
+/*edit*/
+.edit .panel > .panel-heading {
+    border-bottom: 1px solid #e8e8e8;
+    padding: 5px;
+    color: #66757f;
+}
+
+.edit .panel > .panel-heading > h2 {
+    margin: 0px;
+    font-size: 22px;
+    font-weight: 200;
+}
+
+.edit .panel > .panel-body .form-group p {
+    color: #999;
+    font-size: 12px;
+}
+
+.edit .panel > .panel-body .form-group span {
+    margin-bottom: 10px;
 }

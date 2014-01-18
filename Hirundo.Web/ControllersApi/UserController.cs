@@ -1,5 +1,6 @@
 ﻿namespace Hirundo.Web.ControllersApi
 {
+    using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
@@ -8,6 +9,7 @@
     using Hirundo.Model.Infrastructure;
     using Hirundo.Model.Models;
     using Hirundo.Model.Repositories.CommentRepository;
+    using Hirundo.Model.Repositories.ImagesRepository;
     using Hirundo.Model.Repositories.UserRepository;
     using Hirundo.Web.Models.Comment;
     using Hirundo.Web.Models.User;
@@ -21,15 +23,18 @@
         private UserContext userContext;
         private IUserRepository userRepository;
         private ICommentRepository commentRepository;
+        private IImageRepository imageRepository;
 
         public UserController(
             IUserContextProvider userContextProvider,
             IUserRepository userRepository,
-            ICommentRepository commentRepository)
+            ICommentRepository commentRepository,
+            IImageRepository imageRepository)
         {
             this.userContext = userContextProvider.GetCurrentUserContext();
             this.userRepository = userRepository;
             this.commentRepository = commentRepository;
+            this.imageRepository = imageRepository;
         }
 
         public HttpResponseMessage GetUser(string userId)
@@ -39,6 +44,31 @@
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,
                 Mapper.Map<User, UserDO>(user));
+        }
+
+        public HttpResponseMessage PostUser(UserProfileDO user)
+        {
+            var currentUserId = new ObjectId(this.userContext.UserId);
+            if (currentUserId != user.UserId)
+            {
+                throw new Exception("Cannot edit other user's profile!");
+            }
+
+            ObjectId? imageId = null;
+            if (user.Image != null)
+            {
+                imageId = this.imageRepository.SaveImage(user.Image);
+            }
+
+            this.userRepository.UpdateUser(
+                currentUserId,
+                user.Fullname,
+                user.Location,
+                user.Website,
+                user.Bio,
+                imageId);
+
+            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
         }
 
         public HttpResponseMessage GetUserExists(string username = null, string email = null)
@@ -58,6 +88,15 @@
             }
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, userExists);
+        }
+
+        public HttpResponseMessage GetProfile()
+        {
+            var user = this.userRepository.GetUser(new ObjectId(this.userContext.UserId));
+
+            return ControllerContext.Request.CreateResponse(
+                HttpStatusCode.OK,
+                Mapper.Map<User, UserProfileDO>(user));
         }
 
         public HttpResponseMessage GetTimeline(string userId, int take, int skip = 0)

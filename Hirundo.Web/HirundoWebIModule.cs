@@ -12,6 +12,7 @@
             Bind<IMapper>().To<ReplyMapper>();
             Bind<IMapper>().To<UserMapper>();
             Bind<IMapper>().To<UserDataMapper>();
+            Bind<IMapper>().To<UserProfileMapper>();
         }
     }
 }

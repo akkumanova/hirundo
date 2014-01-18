@@ -13,6 +13,12 @@
 
         public string Image { get; set; }
 
+        public string Bio { get; set; }
+
+        public string Location { get; set; }
+
+        public string Website { get; set; }
+
         public long FollowersCount { get; set; }
 
         public long FollowingCount { get; set; }

@@ -33,6 +33,12 @@
 
         public DateTime RegistrationDate { get; set; }
 
+        public string Location { get; set; }
+
+        public string Website { get; set; }
+
+        public string Bio { get; set; }
+
         public List<ObjectId> Following { get; set; }
 
         public bool VerifyPassword(string password)

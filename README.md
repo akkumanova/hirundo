@@ -9,7 +9,9 @@ hirundo
   * Install the required npm packages with `npm install`
   * Install the required bower components with `bower install`
   * Build the js app with `grunt`
-5. Open the solution `Hirundo.sln` and run the web project `Hirundo.Web`
+5. Go to `bower_components` folder
+  * download image-upload running `git clone https://github.com/Mischi/angularjs-imageupload-directive.git`
+6. Open the solution `Hirundo.sln` and run the web project `Hirundo.Web`
 
 #### Create database
 First install Mongo as described here: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/

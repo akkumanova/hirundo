@@ -4,12 +4,13 @@
   angular.module('settings', [
     'ng',
     'navigation',
+    'imageupload',
     'settings.templates'
   ]).config([
     '$urlRouterProvider',
     '$stateProvider',
     function ($urlRouterProvider, $stateProvider) {
-      $urlRouterProvider.when('/settings', '/settings/account');
+      $urlRouterProvider.when('/settings', '/settings/profile');
 
       $stateProvider
         .state({
@@ -18,18 +19,8 @@
           url: '/settings',
           views: {
             'pageView@root': {
-              templateUrl: 'settings/templates/settings.html'
-            }
-          }
-        })
-        .state({
-          name: 'settings.account',
-          parent: 'settings',
-          url: '/account',
-          views: {
-            'settingsView@settings': {
-              templateUrl: 'settings/templates/account.html',
-              controller: 'settings.AccountCtrl'
+              templateUrl: 'settings/templates/settings.html',
+              controller: 'settings.SettingsCtrl'
             }
           }
         })

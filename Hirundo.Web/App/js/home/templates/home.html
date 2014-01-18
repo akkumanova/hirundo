@@ -2,9 +2,12 @@
 <div class="container-medium page-content" ng-show="loaded">
   <div class="row">
     <div class="col-xs-4 list-group card">
-      <a href="#" class="list-group-item">
+      <a ui-sref="profile({ id: user.userId })" class="list-group-item">
         <img ng-src="{{user.image}}" class="img-circle">
-        <strong>{{user.fullname}}</strong>
+        <div class="text">
+          <strong>{{user.fullname}}</strong>
+          <small>View my profile page</small>
+        </div>
       </a>
       <a ui-sref="profile.hirundos({ id: user.userId })" class="list-group-item inline-item">
         <h4 class="list-group-item-heading"><span class="badge">{{user.commentsCount}}</span></h4>
