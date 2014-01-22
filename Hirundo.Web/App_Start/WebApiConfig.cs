@@ -42,6 +42,7 @@
         public static void RegisterRoutes(HttpConfiguration config)
         {
             // User
+            MapRoute(config, HttpMethod.Get   , "api/userExists"             , "User", "GetUserExists");
             MapRoute(config, HttpMethod.Get   , "api/user"                   , "User", "GetUsers");
             MapRoute(config, HttpMethod.Get   , "api/user/profile"           , "User", "GetProfile");
             MapRoute(config, HttpMethod.Post  , "api/user/profile"           , "User", "PostUser");
@@ -54,7 +55,6 @@
             MapRoute(config, HttpMethod.Get   , "api/user/{userId}/following", "User", "GetFollowing");
             MapRoute(config, HttpMethod.Post  , "api/user/{userId}/following", "User", "PostFollowing");
             MapRoute(config, HttpMethod.Delete, "api/user/{userId}/following", "User", "DeleteFollowing");
-            MapRoute(config, HttpMethod.Get   , "api/userExists"             , "User", "GetUserExists");
 
             // Comments
             MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}"         , "Comment", "GetComment");
