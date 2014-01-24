@@ -12,7 +12,7 @@
 
         public ObjectId CommentId { get; set; }
 
-        public int Retweets { get; set; }
+        public int Sharings { get; set; }
 
         public int Favorites { get; set; }
 

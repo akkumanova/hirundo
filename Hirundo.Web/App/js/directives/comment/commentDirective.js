@@ -19,7 +19,7 @@
 
         return Comment.reply.save({ commentId: commentId }, reply).$promise
                             .then(function (commentDetails) {
-          $scope.model.retweets = commentDetails.retweets;
+          $scope.model.sharings = commentDetails.sharings;
           $scope.model.favorites = commentDetails.favorites;
           $scope.model.replies = commentDetails.replies;
         });
@@ -31,7 +31,7 @@
         if ($scope.model.isExpanded) {
           Comment.commentDetails.get({ commentId: $scope.model.commentId })
                  .$promise.then(function (commentDetails) {
-            $scope.model.retweets = commentDetails.retweets;
+            $scope.model.sharings = commentDetails.sharings;
             $scope.model.favorites = commentDetails.favorites;
             $scope.model.replies = commentDetails.replies;
           });

@@ -63,8 +63,8 @@
             MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/details" , "Comment", "GetCommentDetails");
             MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/reply"   , "Comment", "GetReplies");
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/reply"   , "Comment", "PostReply");
-            MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/retweet" , "Comment", "PostRetweet");
-            MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/retweet" , "Comment", "GetRetweets");
+            MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/share"   , "Comment", "PostSharing");
+            MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/share"   , "Comment", "GetSharings");
             MapRoute(config, HttpMethod.Post  , "api/comments/{commentId}/favorite", "Comment", "PostFavorite");
             MapRoute(config, HttpMethod.Get   , "api/comments/{commentId}/favorite", "Comment", "GetFavorites");
         }

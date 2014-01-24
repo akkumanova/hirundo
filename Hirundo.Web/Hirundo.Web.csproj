@@ -180,12 +180,12 @@
     <Content Include="App\js\directives\deleteHirundo\deleteHirundoDirective.js" />
     <Content Include="App\js\directives\deleteHirundo\deleteModal.html" />
     <Content Include="App\js\directives\favoriteHirundo\favoriteHirundoDirective.js" />
-    <Content Include="App\js\directives\retweetHirundo\retweetHirundoDirective.js" />
-    <Content Include="App\js\directives\retweetHirundo\retweetsModal.html" />
+    <Content Include="App\js\directives\shareHirundo\shareHirundoDirective.js" />
+    <Content Include="App\js\directives\shareHirundo\shareModal.html" />
     <Content Include="App\js\directives\showFavorites\favoritesModal.html" />
     <Content Include="App\js\directives\showFavorites\showFavoritesDirective.js" />
-    <Content Include="App\js\directives\showRetweets\retweetsModal.html" />
-    <Content Include="App\js\directives\showRetweets\showRetweetsDirective.js" />
+    <Content Include="App\js\directives\showSharings\sharingsModal.html" />
+    <Content Include="App\js\directives\showSharings\showSharingsDirective.js" />
     <Content Include="App\js\directives\users\usersDirective.html" />
     <Content Include="App\js\directives\users\usersDirective.js" />
     <Content Include="App\js\hirundo\controllers\hirundoCtrl.js" />

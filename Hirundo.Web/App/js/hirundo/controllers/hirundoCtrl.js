@@ -19,9 +19,9 @@
       $scope.comment.authorId = comment.commentData.authorId;
       $scope.comment.author = comment.commentData.author;
       $scope.comment.content = comment.commentData.content;
-      $scope.comment.retweets = comment.commentDetails.retweets;
+      $scope.comment.sharings = comment.commentDetails.sharings;
       $scope.comment.favorites = comment.commentDetails.favorites;
-      $scope.comment.isRetweeted = comment.commentData.isRetweeted;
+      $scope.comment.isShared = comment.commentData.isShared;
       $scope.comment.isFavorited = comment.commentData.isFavorited;
       $scope.comment.publishDate = comment.commentData.publishDate;
       $scope.comment.replies = comment.commentDetails.replies;

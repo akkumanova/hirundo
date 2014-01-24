@@ -2,9 +2,9 @@
 (function (angular) {
   'use strict';
 
-  function RetweetHirundoDirective($modal, Comment) {
-    var RetweetHirundoLink = function ($scope, element, attrs) {
-      var RetweetModalCtrl = function ($scope, $modalInstance, commentData) {
+  function ShareHirundoDirective($modal, Comment) {
+    var ShareHirundoLink = function ($scope, element, attrs) {
+      var ShareModalCtrl = function ($scope, $modalInstance, commentData) {
         $scope.commentData = commentData;
 
         $scope.cancel = function () {
@@ -17,11 +17,11 @@
       };
 
       element.bind('click', function (event) {
-        var comment = $scope.$eval(attrs.hdRetweetHirundo);
+        var comment = $scope.$eval(attrs.hdShareHirundo);
 
         var modalInstance = $modal.open({
-          templateUrl: 'directives/retweetHirundo/retweetModal.html',
-          controller: RetweetModalCtrl,
+          templateUrl: 'directives/shareHirundo/shareModal.html',
+          controller: ShareModalCtrl,
           windowClass: 'comment-modal',
           resolve: {
             commentData: function () {
@@ -37,10 +37,10 @@
 
         modalInstance.result.then(function (result) {
           if (result) {
-            Comment.retweet.save({ commentId: $scope.$eval(attrs.hdRetweetHirundo).commentId })
+            Comment.share.save({ commentId: $scope.$eval(attrs.hdShareHirundo).commentId })
                   .$promise.then(function (commentDetails) {
-              comment.isRetweeted = true;
-              comment.retweets = commentDetails.retweets;
+              comment.isShared = true;
+              comment.sharings = commentDetails.sharings;
               comment.favorites = commentDetails.favorites;
             });
           }
@@ -55,15 +55,15 @@
       compile: function compile(tElement) {
         tElement.attr('style', 'cursor: pointer;');
 
-        return RetweetHirundoLink;
+        return ShareHirundoLink;
       }
     };
   }
 
-  RetweetHirundoDirective.$inject = [
+  ShareHirundoDirective.$inject = [
     '$modal',
     'Comment'
   ];
 
-  angular.module('directives').directive('hdRetweetHirundo', RetweetHirundoDirective);
+  angular.module('directives').directive('hdShareHirundo', ShareHirundoDirective);
 }(angular));

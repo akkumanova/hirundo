@@ -17,7 +17,7 @@
 
         public DateTime PublishDate { get; set; }
 
-        public bool IsRetweeted { get; set; }
+        public bool IsShared { get; set; }
 
         public bool IsFavorited { get; set; }
     }

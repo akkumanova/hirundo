@@ -8,9 +8,9 @@
     </div>
     <div class="comment-data">
       <div class="list-group" style="margin-bottom:8px;">
-        <a class="list-group-item inline-item" ng-show="comment.retweets" hd-show-retweets="comment">
-          <strong class="list-group-item-heading">{{comment.retweets | number: 0}}</strong><br>
-          <span class="list-group-item-text">RETWEETS</span>
+        <a class="list-group-item inline-item" ng-show="comment.sharings" hd-show-sharings="comment">
+          <strong class="list-group-item-heading">{{comment.sharings | number: 0}}</strong><br>
+          <span class="list-group-item-text">SHARINGS</span>
         </a>
         <a class="list-group-item inline-item" ng-show="comment.favorites" hd-show-favorites="comment">
           <strong class="list-group-item-heading">{{comment.favorites | number: 0}}</strong><br>
@@ -21,11 +21,11 @@
         <a href="#">
           <span class="glyphicon glyphicon-share-alt"></span> Reply
         </a>
-        <a ng-hide="comment.authorId === currentUserId || comment.isRetweeted" hd-retweet-hirundo="comment">
-          <span class="glyphicon glyphicon-retweet"></span> Retweet
+        <a ng-hide="comment.authorId === currentUserId || comment.isShared" hd-share-hirundo="comment">
+          <span class="glyphicon glyphicon-retweet"></span> Share
         </a>
-        <span ng-show="comment.isRetweeted" style="color: #609928;">
-          <span class="glyphicon glyphicon-retweet"></span> Retweeted
+        <span ng-show="comment.isShared" style="color: #609928;">
+          <span class="glyphicon glyphicon-retweet"></span> Shared
         </span>
         <a ng-show="comment.authorId === currentUserId" hd-delete-hirundo="comment">
           <span class="glyphicon glyphicon-trash"></span> Delete

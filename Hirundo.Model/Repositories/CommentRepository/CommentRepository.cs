@@ -48,10 +48,10 @@
             this.commentCollection.Update(query, update, WriteConcern.Acknowledged);
         }
 
-        public void AddRetweet(ObjectId commentId, ObjectId userId)
+        public void AddSharing(ObjectId commentId, ObjectId userId)
         {
             var query = Query<Comment>.EQ(c => c.Id, commentId);
-            var update = Update<Comment>.Push<ObjectId>(c => c.RetweetedBy, userId);
+            var update = Update<Comment>.Push<ObjectId>(c => c.SharedBy, userId);
 
             this.commentCollection.Update(query, update, WriteConcern.Acknowledged);
         }

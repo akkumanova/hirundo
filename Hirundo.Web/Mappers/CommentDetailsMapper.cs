@@ -10,7 +10,7 @@
         {
             Mapper.CreateMap<Comment, CommentDetailsDO>()
                 .ForMember(cd => cd.CommentId, m => m.MapFrom(c => c.Id))
-                .ForMember(cd => cd.Retweets, m => m.MapFrom(c => c.RetweetedBy.Count))
+                .ForMember(cd => cd.Sharings, m => m.MapFrom(c => c.SharedBy.Count))
                 .ForMember(cd => cd.Favorites, m => m.MapFrom(c => c.FavoritedBy.Count));
         }
     }

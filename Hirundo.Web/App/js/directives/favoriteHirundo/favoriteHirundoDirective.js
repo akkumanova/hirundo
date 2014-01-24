@@ -10,7 +10,7 @@
         Comment.favorite.save({ commentId: comment.commentId }).$promise
               .then(function (commentDetails) {
           comment.isFavorited = true;
-          comment.retweets = commentDetails.retweets;
+          comment.sharings = commentDetails.sharings;
           comment.favorites = commentDetails.favorites;
         });
 

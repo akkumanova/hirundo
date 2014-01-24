@@ -65,18 +65,18 @@ for (var i = 0; i < 20; i++) {
 var comments = [];
 
 for (var i = 0; i < 15; i++) {
-  var retweetedBy = [],
+  var sharedBy = [],
       favoritedBy = [];
 
   if (i % 2 === 0) {
     favoritedBy.push(userId);
   }
   if (i % 3 === 0) {
-    retweetedBy.push(hrtisitoId);
+    sharedBy.push(hrtisitoId);
     favoritedBy.push(hrtisitoId);
   }
   if (i % 5 === 0) {
-    retweetedBy.push(userId);
+    sharedBy.push(userId);
     favoritedBy.push(albsiId);
   }
 
@@ -99,24 +99,24 @@ for (var i = 0; i < 15; i++) {
       }
     ],
     'PublishDate': new Date('2013-10-' + (i + 1)),
-    'RetweetedBy': retweetedBy,
+    'SharedBy': sharedBy,
     'FavoritedBy': favoritedBy
   });
 }
 
 for (var i = 0; i < 15; i++) {
-  var retweetedBy = [],
+  var sharedBy = [],
       favoritedBy = [];
 
   if (i % 2 === 0) {
     favoritedBy.push(userId);
   }
   if (i % 3 === 0) {
-    retweetedBy.push(albsiId);
+    sharedBy.push(albsiId);
     favoritedBy.push(hrtisitoId);
   }
   if (i % 5 === 0) {
-    retweetedBy.push(userId);
+    sharedBy.push(userId);
     favoritedBy.push(albsiId);
   }
 
@@ -139,7 +139,7 @@ for (var i = 0; i < 15; i++) {
       }
     ],
     'PublishDate': new Date('2013-9-' + (i + 1)),
-    'RetweetedBy': retweetedBy,
+    'SharedBy': sharedBy,
     'FavoritedBy': favoritedBy
   });
 }

@@ -14,7 +14,7 @@
 
         void AddReply(ObjectId commentId, Reply reply);
 
-        void AddRetweet(ObjectId commentId, ObjectId userId);
+        void AddSharing(ObjectId commentId, ObjectId userId);
 
         void AddFavotite(ObjectId commentId, ObjectId userId);
 

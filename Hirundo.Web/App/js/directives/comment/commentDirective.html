@@ -8,11 +8,11 @@
       <a href="#">
         <span class="glyphicon glyphicon-share-alt"></span> Reply
       </a>
-      <a ng-hide="model.authorId === userId || model.isRetweeted" hd-retweet-hirundo="model">
-        <span class="glyphicon glyphicon-retweet"></span> Retweet
+      <a ng-hide="model.authorId === userId || model.isShared" hd-share-hirundo="model">
+        <span class="glyphicon glyphicon-retweet"></span> Share
       </a>
-      <span ng-show="model.isRetweeted" style="color: #609928;">
-        <span class="glyphicon glyphicon-retweet"></span> Retweeted
+      <span ng-show="model.isShared" style="color: #609928;">
+        <span class="glyphicon glyphicon-retweet"></span> Shared
       </span>
       <a ng-show="model.authorId === userId" hd-delete-hirundo="model">
         <span class="glyphicon glyphicon-trash"></span> Delete
@@ -26,9 +26,9 @@
     </div>
     <div ng-show="model.isExpanded">
       <div class="list-group details" style="margin-bottom:8px;">
-        <a class="list-group-item inline-item" ng-show="model.retweets" hd-show-retweets="model">
-          <strong class="list-group-item-heading">{{model.retweets | number: 0}}</strong><br>
-          <span class="list-group-item-text">RETWEETS</span>
+        <a class="list-group-item inline-item" ng-show="model.sharings" hd-show-sharings="model">
+          <strong class="list-group-item-heading">{{model.sharings | number: 0}}</strong><br>
+          <span class="list-group-item-text">SHARINGS</span>
         </a>
         <a class="list-group-item inline-item" ng-show="model.favorites" hd-show-favorites="model">
           <strong class="list-group-item-heading">{{model.favorites | number: 0}}</strong><br>

@@ -102,11 +102,11 @@
                 Mapper.Map<Comment, CommentDetailsDO>(comment));
         }
 
-        public HttpResponseMessage PostRetweet(string commentId)
+        public HttpResponseMessage PostSharing(string commentId)
         {
             ObjectId id = new ObjectId(commentId);
 
-            this.commentRepository.AddRetweet(
+            this.commentRepository.AddSharing(
                 id,
                 new ObjectId(this.userContext.UserId));
             Comment comment = this.commentRepository.GetComment(new ObjectId(commentId), MinReplies);
@@ -116,9 +116,9 @@
                 Mapper.Map<Comment, CommentDetailsDO>(comment));
         }
 
-        public HttpResponseMessage GetRetweets(string commentId)
+        public HttpResponseMessage GetSharings(string commentId)
         {
-            var userIds = this.commentRepository.GetComment(new ObjectId(commentId)).RetweetedBy;
+            var userIds = this.commentRepository.GetComment(new ObjectId(commentId)).SharedBy;
             var users = this.userRepository.GetUsers(userIds, Users, 0);
 
             return ControllerContext.Request.CreateResponse(

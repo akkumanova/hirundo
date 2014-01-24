@@ -2,13 +2,13 @@
 (function (angular) {
   'use strict';
 
-  function ShowRetweetsDirective($modal, $window, Comment) {
-    var ShowRetweetsLink = function ($scope, element, attrs) {
-      var RetweetModalCtrl = function ($scope, $modalInstance, commentData, users) {
+  function ShowSharingsDirective($modal, $window, Comment) {
+    var ShowSharingsLink = function ($scope, element, attrs) {
+      var SharingsModalCtrl = function ($scope, $modalInstance, commentData, users) {
         $scope.commentData = commentData;
-        $scope.header = 'Retweeted ' +
-                        commentData.retweets +
-                        (commentData.retweets === 1 ? ' time.' : ' times.');
+        $scope.header = 'Shared ' +
+                        commentData.sharings +
+                        (commentData.sharings === 1 ? ' time.' : ' times.');
         $scope.loading = true;
 
         users.$promise.then(function (result) {
@@ -22,11 +22,11 @@
       };
 
       element.bind('click', function (event) {
-        var comment = $scope.$eval(attrs.hdShowRetweets);
+        var comment = $scope.$eval(attrs.hdShowSharings);
 
         $modal.open({
-          templateUrl: 'directives/showRetweets/retweetsModal.html',
-          controller: RetweetModalCtrl,
+          templateUrl: 'directives/showSharings/sharingsModal.html',
+          controller: SharingsModalCtrl,
           windowClass: 'users-modal',
           resolve: {
             commentData: function () {
@@ -35,11 +35,11 @@
                 authorImg: comment.authorImg,
                 publishDate: comment.publishDate,
                 content: comment.content,
-                retweets: comment.retweets
+                sharings: comment.sharings
               };
             },
             users: function () {
-              return Comment.retweet.query({ commentId: comment.commentId });
+              return Comment.share.query({ commentId: comment.commentId });
             }
           }
         });
@@ -53,12 +53,12 @@
       compile: function compile(tElement) {
         tElement.attr('style', 'cursor: pointer;');
 
-        return ShowRetweetsLink;
+        return ShowSharingsLink;
       }
     };
   }
 
-  ShowRetweetsDirective.$inject = ['$modal', '$window', 'Comment'];
+  ShowSharingsDirective.$inject = ['$modal', '$window', 'Comment'];
 
-  angular.module('directives').directive('hdShowRetweets', ShowRetweetsDirective);
+  angular.module('directives').directive('hdShowSharings', ShowSharingsDirective);
 }(angular));

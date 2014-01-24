@@ -10,7 +10,7 @@
         public Comment()
         {
             this.Replies = new List<Reply>();
-            this.RetweetedBy = new List<ObjectId>();
+            this.SharedBy = new List<ObjectId>();
             this.FavoritedBy = new List<ObjectId>();
         }
 
@@ -24,7 +24,7 @@
 
         public DateTime PublishDate { get; set; }
 
-        public List<ObjectId> RetweetedBy { get; set; }
+        public List<ObjectId> SharedBy { get; set; }
 
         public List<ObjectId> FavoritedBy { get; set; }
     }
