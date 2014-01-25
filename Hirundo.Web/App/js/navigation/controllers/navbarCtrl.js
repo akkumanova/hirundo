@@ -6,7 +6,8 @@
     $scope.sendHirundo = function (hirundo) {
       var newComment = {
         'Author': userId,
-        'Content': hirundo,
+        'Content': hirundo.content,
+        'Location': hirundo.location,
         'PublishDate': new Date()
       };
 

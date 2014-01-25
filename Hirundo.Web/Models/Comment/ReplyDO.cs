@@ -13,6 +13,8 @@
 
         public string Content { get; set; }
 
+        public string Location { get; set; }
+
         public DateTime PublishDate { get; set; }
     }
 }

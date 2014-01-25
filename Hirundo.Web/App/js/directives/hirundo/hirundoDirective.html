@@ -9,7 +9,8 @@
   <div class="row" ng-hide="collapsed">
     <div class="form-group col-xs-6" style="padding-left: 0px;">
       <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-camera"></span></button>
-      <button class="btn btn-default btn-sm" ng-click="findLocation()"><span class="glyphicon glyphicon-map-marker"></span></button>
+      <button class="btn btn-default btn-sm" ng-click="findLocation()" ng-class="{active: location}"><span class="glyphicon glyphicon-map-marker"></span></button>
+      <span>{{location}}</span>
     </div>
     <div class="form-group col-xs-6" style="padding-right: 0px;text-align:right">
       <span ng-class="{'error': model.length > 140}">{{140 - model.length}}</span>

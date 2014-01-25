@@ -17,6 +17,8 @@
 
         public DateTime PublishDate { get; set; }
 
+        public string Location { get; set; }
+
         public bool IsShared { get; set; }
 
         public bool IsFavorited { get; set; }

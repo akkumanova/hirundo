@@ -33,28 +33,40 @@
         $scope.focused($scope.fixed);
 
         $scope.sendHirundo = function () {
-          $scope.send({ hirundo: $scope.model }).then(function () {
+          var hirundo = {
+            content: $scope.model,
+            location: $scope.location
+          };
+
+          $scope.send({ hirundo: hirundo }).then(function () {
             $scope.model = null;
+            $scope.location = null;
             $scope.focused(false);
           });
         };
 
         $scope.findLocation = function () {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var address = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' +
-                  position.coords.latitude + ',' +
-                  position.coords.longitude + '&sensor=true';
+          if ($scope.location) {
+            $scope.location = null;
+            return;
+          }
 
-                $.ajax({
-                    type: 'GET',
-                    url: address,
-                    success: function (data) {
-                        var newData = data.results[0].formatted_address;
-                        textarea.val(textarea.val() + " Posted -at " + newData);
-                    },
-                    dataType: 'json'
-                });
+          navigator.geolocation.getCurrentPosition(function (position) {
+            var address = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' +
+                position.coords.latitude + ',' +
+                position.coords.longitude + '&sensor=true';
+
+            $.ajax({
+              type: 'GET',
+              url: address,
+              success: function (data) {
+                $scope.location = data.results[0].address_components[2].long_name + ', ' +
+                  data.results[0].address_components[4].short_name;
+                $scope.$digest();
+              },
+              dataType: 'json'
             });
+          });
         };
       }
     };

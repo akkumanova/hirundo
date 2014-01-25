@@ -4,7 +4,8 @@
     <strong hd-profile-summary="model.authorId">{{model.author}}</strong>
     <span am-time-ago="model.publishDate" class="pull-right timestamp"></span>
     <p>{{model.content}}</p>
-    <div class="actions">
+    <span class="location"> {{model.location}}</span>
+    <div class="actions" ng-class="{'inline': model.location}">
       <a href="#">
         <span class="glyphicon glyphicon-share-alt"></span> Reply
       </a>
@@ -49,6 +50,7 @@
         <strong>{{reply.author}}</strong>
         <span am-time-ago="reply.publishDate" class="pull-right timestamp"></span>
         <p>{{reply.content}}</p>
+        <span class="location"> {{reply.location}}</span>
       </div>
     </div>
   </div>

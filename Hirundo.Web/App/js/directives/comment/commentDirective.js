@@ -13,7 +13,8 @@
         var commentId = $scope.model.commentId;
         var reply = {
           'Author': $window.user.userId,
-          'Content': hirundo,
+          'Content': hirundo.content,
+          'Location': hirundo.location,
           'PublishDate': new Date()
         };
 
