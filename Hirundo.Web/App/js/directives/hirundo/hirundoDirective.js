@@ -1,8 +1,8 @@
 ﻿// Usage: <hd-hirundo send="<fn>" rows="<num>" placeholder="<text>">
 // </hd-hirundo>
 
-/*global angular*/
-(function (angular) {
+/*global angular, $, navigator*/
+(function (angular, $) {
   'use strict';
 
   function HirundoDirective() {
@@ -38,9 +38,26 @@
             $scope.focused(false);
           });
         };
+
+        $scope.findLocation = function () {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var address = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' +
+                  position.coords.latitude + ',' +
+                  position.coords.longitude + '&sensor=true';
+
+                $.ajax({
+                    type: 'GET',
+                    url: address,
+                    success: function (data) {
+                        var newData = data.results[0].formatted_address;
+                        textarea.val(textarea.val() + " Posted -at " + newData);
+                    },
+                    dataType: 'json'
+                });
+            });
+        };
       }
     };
   }
-
   angular.module('directives').directive('hdHirundo', HirundoDirective);
-}(angular));
+}(angular, $));
