@@ -807,14 +807,14 @@ div.card a > .text > small {
 
 .comment-details div.replies .reply > img {
     height: 40px;
-
+    vertical-align: top;
 }
 
 .comment-details div.replies .reply > .reply-data {
     margin-left: 50px;
 }
 
-.comment-details div.replies .reply > .reply-data .timestamp {
+.comment-details div.replies .reply > .reply-data .timestamp, .comment-details div.replies .reply > .reply-data .location {
     color: #999;
     font-size: 12px;
 }

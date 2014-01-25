@@ -48,6 +48,7 @@
         $scope.findLocation = function () {
           if ($scope.location) {
             $scope.location = null;
+            $scope.$digest();
             return;
           }
 

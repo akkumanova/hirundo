@@ -24,15 +24,17 @@
       $scope.comment.isShared = comment.commentData.isShared;
       $scope.comment.isFavorited = comment.commentData.isFavorited;
       $scope.comment.publishDate = comment.commentData.publishDate;
+      $scope.comment.location = comment.commentData.location;
       $scope.comment.replies = comment.commentDetails.replies;
 
       $scope.loaded = true;
     });
 
-    $scope.sendReply = function () {
+    $scope.sendReply = function (hirundo) {
       var reply = {
         'Author': $window.user.userId,
-        'Content': $scope.newReply,
+        'Content': hirundo.content,
+        'Location': hirundo.location,
         'PublishDate': new Date()
       };
 

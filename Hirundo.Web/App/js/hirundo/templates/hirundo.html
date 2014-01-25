@@ -38,11 +38,12 @@
         </span>
       </div>
       <span>{{comment.publishDate | date:'h:mma - dd MMM yyyy'}}</span>
+      <span>{{comment.location}}</span>
     </div>
     <div class="replies">
       <div class="reply">
         <img ng-src="{{currentUserImage}}" class="img-thumbnail">
-        <hd-hirundo model="newReply" send="sendReply()" rows="5" placeholder="Reply to {{comment.author}}..." style="width:85%;display:inline-block;"></hd-hirundo>
+        <hd-hirundo model="newReply" send="sendReply(hirundo)" rows="5" placeholder="Reply to {{comment.author}}..." style="width:85%;display:inline-block;"></hd-hirundo>
       </div>
       <div hd-when-scrolled="loadMore()">
         <div class="reply" ng-repeat="reply in comment.replies" style="margin: 0px;background-color:#F8ECEC;">
@@ -51,6 +52,7 @@
             <strong>{{reply.author}}</strong>
             <span am-time-ago="reply.publishDate" class="pull-right timestamp"></span>
             <p>{{reply.content}}</p>
+            <span class="location"> {{reply.location}}</span>
           </div>
         </div>
       </div>
