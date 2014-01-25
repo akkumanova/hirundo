@@ -17,6 +17,7 @@
         'Author': $scope.user.userId,
         'Content': hirundo.content,
         'Location': hirundo.location,
+        'Image': hirundo.image,
         'PublishDate': new Date()
       };
 

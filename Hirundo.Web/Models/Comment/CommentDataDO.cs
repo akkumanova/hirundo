@@ -19,6 +19,10 @@
 
         public string Location { get; set; }
 
+        public string Image { get; set; }
+
+        public ObjectId ImgId { get; set; }
+
         public bool IsShared { get; set; }
 
         public bool IsFavorited { get; set; }

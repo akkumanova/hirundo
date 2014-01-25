@@ -10,6 +10,7 @@
     using Hirundo.Model.Models;
     using Hirundo.Model.Repositories.CommentRepository;
     using Hirundo.Model.Repositories.UserRepository;
+    using Hirundo.Model.Repositories.ImagesRepository;
     using Hirundo.Web.Models.Comment;
     using Hirundo.Web.Models.User;
     using MongoDB.Bson;
@@ -23,21 +24,24 @@
         private UserContext userContext;
         private ICommentRepository commentRepository;
         private IUserRepository userRepository;
+        private IImageRepository imageRepository;
 
         public CommentController(
             IUserContextProvider userContextProvider,
             ICommentRepository commentRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            IImageRepository imageRepository)
         {
             this.userContext = userContextProvider.GetCurrentUserContext();
             this.commentRepository = commentRepository;
             this.userRepository = userRepository;
+            this.imageRepository = imageRepository;
         }
 
         public HttpResponseMessage GetComment(string commentId)
         {
             Comment comment = this.commentRepository.GetComment(new ObjectId(commentId), MaxReplies);
-
+            comment.Image = this.imageRepository.GetImage(comment.ImgId);
             CommentDO commentDO = new CommentDO
             {
                 CommentData = Mapper.Map<Comment, CommentDataDO>(comment),
@@ -53,6 +57,14 @@
             if (comment.Author != currentUserId)
             {
                 throw new Exception("Cannot comment!");
+            }
+
+            ObjectId? imageId = null;
+            if (comment.Image != null)
+            {
+                imageId = this.imageRepository.SaveImage(comment.Image);
+                comment.ImgId = (ObjectId) imageId;
+                comment.Image = null; //dont have to save it to comment collection
             }
 
             this.commentRepository.AddComment(comment);

@@ -25,6 +25,7 @@
       $scope.comment.isFavorited = comment.commentData.isFavorited;
       $scope.comment.publishDate = comment.commentData.publishDate;
       $scope.comment.location = comment.commentData.location;
+      $scope.comment.image = comment.commentData.image;
       $scope.comment.replies = comment.commentDetails.replies;
 
       $scope.loaded = true;
@@ -35,6 +36,7 @@
         'Author': $window.user.userId,
         'Content': hirundo.content,
         'Location': hirundo.location,
+        'Image': hirundo.image,
         'PublishDate': new Date()
       };
 
@@ -43,6 +45,10 @@
         $state.go($state.$current, {}, { reload: true });
       });
     };
+
+    $scope.hasPhoto = function () {
+        return $scope.comment.image;
+    }
 
     $scope.loadMore = function () {
       if (moreReplies && !$scope.pending && $scope.loaded) {

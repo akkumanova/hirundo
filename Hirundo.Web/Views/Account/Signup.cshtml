@@ -170,6 +170,8 @@
             <button type="submit" class="btn" disabled>Create account</button>
           </div>
         </form>
+        Already have an account?
+        <a id="#backToLogin" href="@Url.Content("~/login?ReturnUrl=" + Url.Encode(Request.QueryString["ReturnUrl"]))">Back to login page »</a>
       </div>
     </div>
   </div>

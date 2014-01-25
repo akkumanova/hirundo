@@ -38,6 +38,9 @@
         </span>
       </div>
       <span>{{comment.publishDate | date:'h:mma - dd MMM yyyy'}}</span>
+      <div class="row" ng-show="hasPhoto()">
+        <img ng-src="{{comment.image}}" class="img-thumbnail pull-left" style="height:210px;margin-bottom:10px;"/>
+      </div>
       <span>{{comment.location}}</span>
     </div>
     <div class="replies">

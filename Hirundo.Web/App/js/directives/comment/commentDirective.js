@@ -15,6 +15,7 @@
           'Author': $window.user.userId,
           'Content': hirundo.content,
           'Location': hirundo.location,
+          'Image': hirundo.image,
           'PublishDate': new Date()
         };
 
@@ -25,6 +26,10 @@
           $scope.model.replies = commentDetails.replies;
         });
       };
+
+      $scope.hasPhoto = function () {
+          return $scope.model.image;
+      }
 
       $scope.commentClick = function () {
         $scope.model.isExpanded = !$scope.model.isExpanded;

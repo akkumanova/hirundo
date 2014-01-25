@@ -33,17 +33,24 @@
         $scope.focused($scope.fixed);
 
         $scope.sendHirundo = function () {
+          $scope.image = $scope.image ? $scope.image.dataURL : null;
           var hirundo = {
             content: $scope.model,
-            location: $scope.location
+            location: $scope.location,
+            image: $scope.image
           };
 
           $scope.send({ hirundo: hirundo }).then(function () {
             $scope.model = null;
             $scope.location = null;
+            $scope.image = null;
             $scope.focused(false);
           });
         };
+
+        $scope.hasPhoto = function () {
+            return $scope.image;
+        }
 
         $scope.findLocation = function () {
           if ($scope.location) {
