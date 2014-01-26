@@ -54,5 +54,10 @@
                 return fileInfo.Id.AsObjectId;
             }
         }
+
+        public void RemoveImage(ObjectId imageId)
+        {
+            this.gridFs.DeleteById(imageId);
+        }
     }
 }

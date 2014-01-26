@@ -7,7 +7,10 @@
     </div>
   </div>
   <div class="row" ng-show="image">
-    <img ng-src="{{image.url || null}}" class="img-thumbnail pull-left" style="height:70px;margin-bottom:10px;"/>
+    <div class="img-container">
+      <img ng-src="{{image.url || null}}" class="img-thumbnail pull-left" />
+      <button type="button" class="close" aria-hidden="true" ng-click="image = null">&times;</button>
+    </div>
   </div>
   <div class="row" ng-hide="collapsed">
     <div class="form-group col-xs-6" style="padding-left: 0px;">

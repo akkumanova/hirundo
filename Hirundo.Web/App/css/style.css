@@ -237,6 +237,21 @@ form.hirundo textarea {
     max-width: 100%;
 }
 
+form.hirundo .img-container {
+    position: relative;
+    display: inline-block;
+}
+
+form.hirundo .img-container > img {
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+form.hirundo .img-container > button {
+    position: absolute;
+    right: 5px;
+}
+
 /*sign-in*/
 .sign-in h1 {
     font-size:63px;

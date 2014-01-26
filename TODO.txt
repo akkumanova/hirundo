@@ -8,9 +8,6 @@
   - unfavotite
 * direct messages
 
-Нисък приоритет:
-* при създаване на ново hirundo, да може да се маха вече сложената снимка
-
 За Facepalm: 
 * rename hirundos -> posts (or sth like that)
 * 

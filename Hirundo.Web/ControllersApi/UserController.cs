@@ -57,6 +57,9 @@
             ObjectId? imageId = null;
             if (user.Image != null)
             {
+                var currentUser = this.userRepository.GetUser(currentUserId);
+                this.imageRepository.RemoveImage(currentUser.ImgId);
+
                 imageId = this.imageRepository.SaveImage(user.Image);
             }
 

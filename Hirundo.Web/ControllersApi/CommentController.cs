@@ -72,7 +72,14 @@
 
         public HttpResponseMessage DeleteComment(string commentId)
         {
-            this.commentRepository.DeleteComment(new ObjectId(commentId));
+            ObjectId id = new ObjectId(commentId);
+            var comment = this.commentRepository.GetComment(id);
+            if (!comment.ImgId.Equals(ObjectId.Empty))
+            {
+                this.imageRepository.RemoveImage(comment.ImgId);
+            }
+
+            this.commentRepository.DeleteComment(id);
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
         }

@@ -7,5 +7,7 @@
         string GetImage(ObjectId imageId);
 
         ObjectId SaveImage(string image);
+
+        void RemoveImage(ObjectId imageId);
     }
 }
