@@ -9,4 +9,8 @@
 * direct messages
 
 Нисък приоритет:
-* hirundo директивата да поддържа качване на снимки
+* при създаване на ново hirundo, да може да се маха вече сложената снимка
+
+За Facepalm: 
+* rename hirundos -> posts (or sth like that)
+* 

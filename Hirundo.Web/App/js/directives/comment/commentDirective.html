@@ -4,8 +4,8 @@
     <strong hd-profile-summary="model.authorId">{{model.author}}</strong>
     <span am-time-ago="model.publishDate" class="pull-right timestamp"></span>
     <p>{{model.content}}</p>
-    <div class="row" ng-show="hasPhoto()">
-      <img ng-src="{{model.image}}" class="img-thumbnail pull-left" style="height:70px;margin-bottom:10px;"/>
+    <div class="row" ng-show="model.image">
+      <img ng-src="{{model.image}}" class="img-thumbnail comment-image"/>
     </div>
     <span class="location"> {{model.location}}</span>
     <div class="actions" ng-class="{'inline': model.location}">

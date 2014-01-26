@@ -6,7 +6,7 @@
               ng-model="model"></textarea>
     </div>
   </div>
-  <div class="row" ng-show="hasPhoto()">
+  <div class="row" ng-show="image">
     <img ng-src="{{image.url || null}}" class="img-thumbnail pull-left" style="height:70px;margin-bottom:10px;"/>
   </div>
   <div class="row" ng-hide="collapsed">

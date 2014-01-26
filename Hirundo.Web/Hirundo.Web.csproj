@@ -153,7 +153,6 @@
     <Compile Include="Mappers\CommentDetailsMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\ReplyMapper.cs" />
-    <Compile Include="Mappers\Resolvers\CommentImageResolver.cs" />
     <Compile Include="Mappers\Resolvers\CommentsCountResolver.cs" />
     <Compile Include="Mappers\Resolvers\FollowedResolver.cs" />
     <Compile Include="Mappers\Resolvers\FollowersResolver.cs" />

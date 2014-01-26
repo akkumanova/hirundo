@@ -5,6 +5,9 @@
       <img class="pull-left img-thumbnail" ng-src="{{comment.authorImg}}" hd-profile-summary="comment.authorId" />
       <strong class="author" hd-profile-summary="comment.authorId">{{comment.author}}</strong>
       <p>{{comment.content}}</p>
+      <div class="row" ng-show="comment.image">
+        <img ng-src="{{comment.image}}" class="img-thumbnail comment-image" />
+      </div>
     </div>
     <div class="comment-data">
       <div class="list-group" style="margin-bottom:8px;">
@@ -38,9 +41,6 @@
         </span>
       </div>
       <span>{{comment.publishDate | date:'h:mma - dd MMM yyyy'}}</span>
-      <div class="row" ng-show="hasPhoto()">
-        <img ng-src="{{comment.image}}" class="img-thumbnail pull-left" style="height:210px;margin-bottom:10px;"/>
-      </div>
       <span>{{comment.location}}</span>
     </div>
     <div class="replies">

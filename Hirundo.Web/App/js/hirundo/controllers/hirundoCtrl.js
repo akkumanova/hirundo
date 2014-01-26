@@ -46,10 +46,6 @@
       });
     };
 
-    $scope.hasPhoto = function () {
-        return $scope.comment.image;
-    }
-
     $scope.loadMore = function () {
       if (moreReplies && !$scope.pending && $scope.loaded) {
         var promise = Comment.reply.query({ commentId: commentId, take: take, skip: skip })

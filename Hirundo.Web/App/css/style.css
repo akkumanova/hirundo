@@ -606,6 +606,14 @@ div.card a > .text > small {
     margin-right: 10px
 }
 
+.comments .list-group-item img.comment-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
 .comments .list-group-item div.actions {
     text-align: right;
 }
@@ -743,6 +751,14 @@ div.card a > .text > small {
 .comment-details .author-data img {
     height: 60px;
     margin-right: 10px;
+}
+
+.comment-details .author-data img.comment-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 210px;
+    margin-bottom: 10px;
 }
 
 .comment-details .author-data .author {

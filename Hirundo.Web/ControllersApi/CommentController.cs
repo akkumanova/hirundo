@@ -41,7 +41,6 @@
         public HttpResponseMessage GetComment(string commentId)
         {
             Comment comment = this.commentRepository.GetComment(new ObjectId(commentId), MaxReplies);
-            comment.Image = this.imageRepository.GetImage(comment.ImgId);
             CommentDO commentDO = new CommentDO
             {
                 CommentData = Mapper.Map<Comment, CommentDataDO>(comment),
@@ -59,11 +58,10 @@
                 throw new Exception("Cannot comment!");
             }
 
-            ObjectId? imageId = null;
             if (comment.Image != null)
             {
-                imageId = this.imageRepository.SaveImage(comment.Image);
-                comment.ImgId = (ObjectId) imageId;
+                var imageId = this.imageRepository.SaveImage(comment.Image);
+                comment.ImgId = imageId;
                 comment.Image = null; //dont have to save it to comment collection
             }
 

@@ -7,17 +7,14 @@
     using MongoDB.Bson;
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
-    using MongoDB.Driver.GridFS;
 
     public class CommentRepository : ICommentRepository
     {
         private MongoCollection<Comment> commentCollection;
-        private MongoGridFS gridFs;
 
         public CommentRepository(IHirundoContext mongoContext)
         {
             this.commentCollection = mongoContext.GetCollection<Comment>();
-            this.gridFs = mongoContext.GetGridFs();
         }
 
         public Comment GetComment(ObjectId commentId, int replies = 0)

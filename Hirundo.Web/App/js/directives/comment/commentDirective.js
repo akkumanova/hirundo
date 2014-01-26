@@ -27,10 +27,6 @@
         });
       };
 
-      $scope.hasPhoto = function () {
-          return $scope.model.image;
-      }
-
       $scope.commentClick = function () {
         $scope.model.isExpanded = !$scope.model.isExpanded;
 

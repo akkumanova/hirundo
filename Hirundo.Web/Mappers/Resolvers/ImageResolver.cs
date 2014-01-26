@@ -15,7 +15,11 @@
 
         protected override string ResolveCore(ObjectId imageId)
         {
-            return this.imageRepository.GetImage(imageId);
+            string image = imageId.Equals(ObjectId.Empty) ?
+                null :
+                this.imageRepository.GetImage(imageId);
+
+            return image;
         }
     }
 }

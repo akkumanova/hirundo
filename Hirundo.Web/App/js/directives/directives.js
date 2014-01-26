@@ -6,6 +6,7 @@
     'ng',
     'ui.bootstrap',
     'navigation',
+    'imageupload',
     'directives.templates'
   ]);
 }(angular));

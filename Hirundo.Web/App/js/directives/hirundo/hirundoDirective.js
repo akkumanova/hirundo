@@ -48,10 +48,6 @@
           });
         };
 
-        $scope.hasPhoto = function () {
-            return $scope.image;
-        }
-
         $scope.findLocation = function () {
           if ($scope.location) {
             $scope.location = null;
