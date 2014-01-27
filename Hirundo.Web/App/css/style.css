@@ -244,7 +244,7 @@ form.hirundo .img-container {
 
 form.hirundo .img-container > img {
     height: 70px;
-    margin-bottom: 10px;
+    margin: 0 0 10px 0;
 }
 
 form.hirundo .img-container > button {
@@ -621,11 +621,22 @@ div.card a > .text > small {
     margin-right: 10px
 }
 
+.comments .list-group-item div.image-container {
+    overflow: hidden;
+}
+
+.comments .list-group-item div.image-container.small {
+    border-radius: 4px;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
 .comments .list-group-item img.comment-image {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 70px;
+    height: auto;
+    width: 100%;
     margin-bottom: 10px;
 }
 
@@ -772,7 +783,8 @@ div.card a > .text > small {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 210px;
+    height: auto;
+    width: 100%;
     margin-bottom: 10px;
 }
 

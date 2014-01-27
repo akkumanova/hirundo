@@ -1,11 +1,16 @@
 ﻿// Usage: <hd-comments model="<model_name>"></hd-comments>
 
-/*global angular*/
-(function (angular) {
+/*global angular, $*/
+(function (angular, $) {
   'use strict';
 
   function CommentDirective($window, Comment) {
-    function CommentLink($scope) {
+    function CommentLink($scope, element) {
+      var commentImg = $(element).find('img.comment-image');
+      commentImg.load(function () {
+        resizeImage();
+      });
+
       $scope.userId = $window.user.userId;
       $scope.userImg = $window.user.userImage;
 
@@ -38,7 +43,22 @@
             $scope.model.replies = commentDetails.replies;
           });
         }
+
+        resizeImage();
       };
+
+      function resizeImage() {
+        var margin = (250 - commentImg.height()) / 2;
+
+        if (commentImg.height() > 250 && !$scope.model.isExpanded) {
+          commentImg.css('margin-top', margin + 'px');
+          commentImg.css('margin-bottom', margin + 'px');
+        }
+        else {
+          commentImg.css('margin-top', 'auto');
+          commentImg.css('margin-bottom', 'auto');
+        }
+      }
     }
 
     return {
@@ -55,4 +75,4 @@
   CommentDirective.$inject = ['$window', 'Comment'];
 
   angular.module('directives').directive('hdComment', CommentDirective);
-}(angular));
+}(angular, $));
