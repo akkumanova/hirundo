@@ -12,8 +12,8 @@
     <div class="container-medium">
       <ul class="nav navbar-nav">
         <li ng-repeat="item in items"
-          ng-class="{'active': item.active, 'dropdown': item.items.length > 0}">
-          <a ng-if="item.url" ng-href="{{item.url}}" target="{{item.newTab && '_blank' || '_self' }}">
+          ng-class="{'dropdown': item.items.length > 0}">
+          <a ng-if="item.url" ng-href="{{item.url}}">
             <span ng-if="item.icon" class="glyphicon" ng-class="item.icon"></span>
             <span>{{item.text}}</span>
           </a>
@@ -22,7 +22,7 @@
           </a>
           <ul ng-if="item.items.length > 0" class="dropdown-menu pull-right">
             <li ng-repeat="item in item.items">
-              <a ng-href="{{item.url}}" target="{{item.newTab && '_blank' || '_self' }}">
+              <a ng-href="{{item.url}}">
                 <span ng-if="item.icon" class="glyphicon" ng-class="item.icon"></span>
                 <span>{{item.text}}</span>
               </a>

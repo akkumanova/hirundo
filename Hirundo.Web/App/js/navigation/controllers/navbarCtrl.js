@@ -26,10 +26,8 @@
     function mapItems(items) {
       return items.map(function (item) {
         var newItem = {
-          active: false,
           text: item.text,
           icon: item.icon,
-          newTab: item.newTab,
           items: item.items ? mapItems(item.items) : []
         };
 

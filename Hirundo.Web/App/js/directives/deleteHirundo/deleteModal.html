@@ -7,6 +7,10 @@
     <strong>{{commentData.author}}</strong>
     <span am-time-ago="commentData.publishDate" class="pull-right timestamp"></span>
     <p>{{commentData.content}}</p>
+    <div class="row" ng-show="commentData.image">
+      <img ng-src="{{commentData.image}}" class="img-thumbnail comment-image"/>
+    </div>
+    <span class="location"> {{commentData.location}}</span>
   </div>
   <div class="modal-footer">
     <button class="btn btn-sm btn-default" ng-click="cancel()">Cancel</button>

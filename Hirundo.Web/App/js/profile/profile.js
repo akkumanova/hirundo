@@ -8,15 +8,9 @@
   ]).config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state({
-        name: 'rootProfile',
-        url: '/profile',
-        parent: 'root',
-        'abstract': true
-      })
-      .state({
         name: 'profile',
-        parent: 'rootProfile',
-        url: '/:id',
+        parent: 'root',
+        url: '/profile/:id',
         views: {
           'pageView@root': {
             templateUrl: 'profile/templates/profile.html',

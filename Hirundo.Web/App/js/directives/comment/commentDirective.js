@@ -12,7 +12,7 @@
       });
 
       $scope.userId = $window.user.userId;
-      $scope.userImg = $window.user.userImage;
+      $scope.userImg = $window.user.userImg;
 
       $scope.sendReply = function (hirundo) {
         var commentId = $scope.model.commentId;

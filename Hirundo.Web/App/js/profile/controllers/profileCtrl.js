@@ -11,16 +11,6 @@
       $scope.user = user;
     });
 
-    $scope.$on('$stateChangeSuccess', function (event, toState) {
-      angular.forEach($scope.menu, function (item) {
-        item.isActive = false;
-
-        if (item.state === toState.name) {
-          item.isActive = true;
-        }
-      });
-    });
-
     $scope.follow = function () {
       User.userFollowing.save({ userId: $stateParams.id }).$promise.then(function () {
         $state.go($state.$current, {}, { reload: true });

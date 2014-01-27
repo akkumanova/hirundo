@@ -20,11 +20,7 @@
 
     return {
       restrict: 'A',
-      compile: function compile(tElement) {
-        tElement.attr('style', 'cursor: pointer;');
-
-        return FavoriteHirundoLink;
-      }
+      link: FavoriteHirundoLink
     };
   }
 

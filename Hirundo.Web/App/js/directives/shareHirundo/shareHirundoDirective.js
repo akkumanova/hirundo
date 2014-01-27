@@ -29,7 +29,9 @@
                 author: comment.author,
                 authorImg: comment.authorImg,
                 publishDate: comment.publishDate,
-                content: comment.content
+                content: comment.content,
+                image: comment.image,
+                location: comment.location
               };
             }
           }
@@ -52,11 +54,7 @@
 
     return {
       restrict: 'A',
-      compile: function compile(tElement) {
-        tElement.attr('style', 'cursor: pointer;');
-
-        return ShareHirundoLink;
-      }
+      link: ShareHirundoLink
     };
   }
 

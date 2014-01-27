@@ -9,7 +9,7 @@
       $scope.user = user;
       $scope.loaded = true;
 
-      $window.user.userImage = $scope.user.image;
+      $window.user.userImg = $scope.user.image;
     });
 
     $scope.sendHirundo = function (hirundo) {

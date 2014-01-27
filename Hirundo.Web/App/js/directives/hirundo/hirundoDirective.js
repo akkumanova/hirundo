@@ -33,11 +33,11 @@
         $scope.focused($scope.fixed);
 
         $scope.sendHirundo = function () {
-          $scope.image = $scope.image ? $scope.image.dataURL : null;
+          var image = $scope.image ? $scope.image.dataURL : null;
           var hirundo = {
             content: $scope.model,
             location: $scope.location,
-            image: $scope.image
+            image: image
           };
 
           $scope.send({ hirundo: hirundo }).then(function () {

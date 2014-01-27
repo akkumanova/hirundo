@@ -66,9 +66,16 @@ button.following:focus, button.following:hover {
     margin-right: 10px
 }
 
-.comment .timestamp, .users .modal-body .timestamp {
+.comment .timestamp, .comment .location, .users .modal-body .timestamp, .users .location {
     font-size:12px;
     color: #999;
+}
+
+.comment img.comment-image, .users img.comment-image {
+    display: block;
+    height: auto;
+    width: 300px;
+    margin: 10px auto;
 }
 
 .users .modal-footer .list-group {
@@ -594,7 +601,12 @@ div.card a > .text > small {
 }
 
 .comments .list-group-item:hover div.actions a, .comments .list-group-item.selected div.actions a {
-    color: #999;
+    color: #ddd;
+}
+
+.comments .list-group-item div.actions a {
+    color: #ddd;
+    cursor: pointer;
 }
 
 .comments .list-group-item.selected, .comments .list-group-item.selected:hover, .comments .list-group-item.selected:focus {
@@ -671,14 +683,11 @@ div.card a > .text > small {
     color: #999;
 }
 
-.comments .list-group-item div.actions a {
-    color: #ddd;
-}
-
 .comments .list-group-item div.details > a {
     border-radius: 0px;
     padding: 4px;
     border: 1px solid #e8e8e8;
+    cursor: pointer;
 }
 
 .comments .list-group a.inline-item:not(:last-of-type) {
@@ -691,7 +700,8 @@ div.card a > .text > small {
 }
 
 .comments .list-group-item div.replies .reply {
-    margin-top: 10px;
+    margin: 0px;
+    background-color: #F8ECEC;
     padding-top: 10px;
     border-top: 1px solid #ddd;
     min-height: 50px;
@@ -840,7 +850,8 @@ div.card a > .text > small {
 }
 
 .comment-details div.replies .reply {
-    margin-top: 10px;
+    margin: 0px;
+    background-color: #F8ECEC;
     padding-top: 10px;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;

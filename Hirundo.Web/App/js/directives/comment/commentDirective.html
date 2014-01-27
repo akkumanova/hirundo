@@ -47,7 +47,7 @@
       <img ng-src="{{userImg}}" class="img-thumbnail">
       <hd-hirundo send="sendReply(hirundo)" rows="5" placeholder="Reply to {{model.author}}..." style="width:85%;display:inline-block;"></hd-hirundo>
     </div>
-    <div class="reply" ng-repeat="reply in model.replies" style="margin: 0px;background-color:#F8ECEC;">
+    <div class="reply" ng-repeat="reply in model.replies">
       <img class="pull-left img-thumbnail" hd-profile-summary="reply.authorId" ng-src="{{reply.authorImg}}">
       <div class="reply-data">
         <strong>{{reply.author}}</strong>
