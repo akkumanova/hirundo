@@ -81,6 +81,14 @@
                         .Take(take);
         }
 
+        public IEnumerable<Comment> GetComments(List<ObjectId> userIds, ObjectId takeToId)
+        {
+            var query = Query<Comment>.In<ObjectId>(c => c.Author, userIds);
+
+            return this.commentCollection.Find(query)
+                        .OrderByDescending(c => c.PublishDate)
+                        .TakeWhile(c => c.Id != takeToId);
+        }
 
         public IEnumerable<Comment> GetComments(ObjectId userId, int take, int skip)
         {

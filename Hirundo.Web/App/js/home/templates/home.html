@@ -23,6 +23,6 @@
       </a>
       <hd-hirundo class="list-group-item" rows="8" send="sendHirundo(hirundo)" placeholder="Compose new hirundo..."></hd-hirundo>
     </div>
-    <hd-comments ng-if="user" category="Timeline" resource="userTimeline" user="{{user.userId}}"></hd-comments>
+    <hd-comments ng-if="user" category="Timeline" resource="userTimeline" user="{{user.userId}}" autoload></hd-comments>
   </div>
 </div>

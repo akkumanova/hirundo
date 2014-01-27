@@ -122,14 +122,16 @@
                 Mapper.Map<User, UserProfileDO>(user));
         }
 
-        public HttpResponseMessage GetTimeline(string userId, int take, int skip = 0)
+        public HttpResponseMessage GetTimeline(string userId, int take = 0, int skip = 0, string takeToId = null)
         {
             ObjectId id = new ObjectId(userId);
             User currentUser = this.userRepository.GetUser(id);
 
             var userIds = currentUser.Following;
             userIds.Add(id);
-            IEnumerable<Comment> comments = this.commentRepository.GetComments(userIds, take, skip);
+            IEnumerable<Comment> comments = takeToId != null ?
+                this.commentRepository.GetComments(userIds, new ObjectId(takeToId)) :
+                this.commentRepository.GetComments(userIds, take, skip);
 
             return ControllerContext.Request.CreateResponse(
                 HttpStatusCode.OK,

@@ -22,6 +22,8 @@
 
         IEnumerable<Comment> GetComments(List<ObjectId> userIds, int take, int skip);
 
+        IEnumerable<Comment> GetComments(List<ObjectId> userIds, ObjectId takeToId);
+
         IEnumerable<Comment> GetComments(ObjectId userId, int take, int skip);
 
         IEnumerable<Comment> GetFavorites(ObjectId userId, int take, int skip);

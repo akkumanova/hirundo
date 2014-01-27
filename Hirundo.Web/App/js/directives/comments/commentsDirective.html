@@ -1,6 +1,7 @@
 ﻿<section class="col-xs-8 comments" hd-when-scrolled="loadMore()" ng-show="comments">
   <h4 class="title">{{category}}</h4>
   <div class="list-group">
+    <div class="list-group-item reload" ng-show="newComments" ng-click="loadHirundos()">{{newComments.length}} new {{newComments.length === 1 ? 'hirundo' : 'hirundos'}}</div>
     <hd-comment ng-repeat="comment in comments track by comment.commentId" model="comment"></hd-comment>
     <img src="/app/img/initial-loader.gif" ng-show="pending" class="loader">
   </div>

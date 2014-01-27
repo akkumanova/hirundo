@@ -591,6 +591,12 @@ div.card a > .text > small {
     border-radius: 0px;
 }
 
+.comments .list-group-item.reload {
+    cursor: pointer;
+    text-align: center;
+    color: rgb(255, 112, 0);
+}
+
 .comments .list-group-item .data {
     cursor: pointer;
     margin-left: 60px;
