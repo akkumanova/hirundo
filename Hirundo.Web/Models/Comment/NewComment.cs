@@ -1,9 +1,9 @@
-﻿namespace Hirundo.Model.Models
-{
-    using System;
-    using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
 
-    public class Reply
+namespace Hirundo.Web.Models.Comment
+{
+    public class NewComment
     {
         public ObjectId Author { get; set; }
 
@@ -11,7 +11,7 @@
 
         public string Location { get; set; }
 
-        public ObjectId ImageId { get; set; }
+        public string Image { get; set; }
 
         public DateTime PublishDate { get; set; }
     }

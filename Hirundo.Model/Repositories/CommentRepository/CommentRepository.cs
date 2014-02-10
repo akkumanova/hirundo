@@ -1,5 +1,6 @@
 ﻿namespace Hirundo.Model.Repositories.CommentRepository
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Hirundo.Model.Data;
@@ -28,9 +29,22 @@
             return comment;
         }
 
-        public void AddComment(Comment comment)
+        public void AddComment(ObjectId authorId, string content, DateTime publishDate, string location, ObjectId? imageId)
         {
-            this.commentCollection.Insert(comment, WriteConcern.Acknowledged);
+            Comment newComment = new Comment
+            {
+                Author = authorId,
+                Content = content,
+                PublishDate = publishDate,
+                Location = location,
+            };
+
+            if (imageId.HasValue)
+            {
+                newComment.ImgId = imageId.Value;
+            }
+
+            this.commentCollection.Insert(newComment, WriteConcern.Acknowledged);
         }
 
         public void DeleteComment(ObjectId commentId)
@@ -40,8 +54,21 @@
             this.commentCollection.Remove(query, WriteConcern.Acknowledged);
         }
 
-        public void AddReply(ObjectId commentId, Reply reply)
+        public void AddReply(ObjectId commentId, ObjectId authorId, string content, DateTime publishDate, string location, ObjectId? imageId)
         {
+            Reply reply = new Reply
+            {
+                Author = authorId,
+                Content = content,
+                PublishDate = publishDate,
+                Location = location
+            };
+
+            if (imageId.HasValue)
+            {
+                reply.ImageId = imageId.Value;
+            }
+
             var query = Query<Comment>.EQ(c => c.Id, commentId);
             var update = Update<Comment>.Push<Reply>(c => c.Replies, reply);
 

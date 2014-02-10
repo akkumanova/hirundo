@@ -55,6 +55,9 @@
             <strong>{{reply.author}}</strong>
             <span am-time-ago="reply.publishDate" class="pull-right timestamp"></span>
             <p>{{reply.content}}</p>
+            <div class="row" ng-show="reply.image">
+              <img ng-src="{{reply.image}}" class="img-thumbnail comment-image"/>
+            </div>
             <span class="location"> {{reply.location}}</span>
           </div>
         </div>

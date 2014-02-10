@@ -14,11 +14,11 @@
 
     $scope.sendHirundo = function (hirundo) {
       var newComment = {
-        'Author': $scope.user.userId,
-        'Content': hirundo.content,
-        'Location': hirundo.location,
-        'Image': hirundo.image,
-        'PublishDate': new Date()
+        Author: $scope.user.userId,
+        Content: hirundo.content,
+        Location: hirundo.location,
+        Image: hirundo.image,
+        PublishDate: new Date()
       };
 
       return Comment.comment.save(newComment).$promise.then(function () {

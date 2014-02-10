@@ -50,7 +50,7 @@
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, commentDO);
         }
 
-        public HttpResponseMessage PostComment(Comment comment)
+        public HttpResponseMessage PostComment(NewComment comment)
         {
             var currentUserId = new ObjectId(this.userContext.UserId);
             if (comment.Author != currentUserId)
@@ -58,14 +58,18 @@
                 throw new Exception("Cannot comment!");
             }
 
+            ObjectId? imageId = null;
             if (comment.Image != null)
             {
-                var imageId = this.imageRepository.SaveImage(comment.Image);
-                comment.ImgId = imageId;
-                comment.Image = null; //dont have to save it to comment collection
+                imageId = this.imageRepository.SaveImage(comment.Image);
             }
 
-            this.commentRepository.AddComment(comment);
+            this.commentRepository.AddComment(
+                comment.Author,
+                comment.Content,
+                comment.PublishDate,
+                comment.Location,
+                imageId);
 
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -93,7 +97,7 @@
                 Mapper.Map<IEnumerable<Reply>, List<ReplyDO>>(replies));
         }
 
-        public HttpResponseMessage PostReply(Reply reply, string commentId)
+        public HttpResponseMessage PostReply(NewComment reply, string commentId)
         {
             var currentUserId = new ObjectId(this.userContext.UserId);
             if (currentUserId != reply.Author)
@@ -102,7 +106,20 @@
             }
 
             ObjectId id = new ObjectId(commentId);
-            this.commentRepository.AddReply(id, reply);
+
+            ObjectId? imageId = null;
+            if (reply.Image != null)
+            {
+                imageId = this.imageRepository.SaveImage(reply.Image);
+            }
+
+            this.commentRepository.AddReply(
+                id,
+                reply.Author,
+                reply.Content,
+                reply.PublishDate,
+                reply.Location,
+                imageId);
             Comment comment = this.commentRepository.GetComment(id, MinReplies);
 
             return ControllerContext.Request.CreateResponse(

@@ -33,11 +33,11 @@
 
     $scope.sendReply = function (hirundo) {
       var reply = {
-        'Author': $window.user.userId,
-        'Content': hirundo.content,
-        'Location': hirundo.location,
-        'Image': hirundo.image,
-        'PublishDate': new Date()
+        Author: $window.user.userId,
+        Content: hirundo.content,
+        Location: hirundo.location,
+        Image: hirundo.image,
+        PublishDate: new Date()
       };
 
       return Comment.reply.save({ commentId: commentId }, reply).$promise

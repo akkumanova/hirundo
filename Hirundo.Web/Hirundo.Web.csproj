@@ -166,6 +166,7 @@
     <Compile Include="Models\Comment\CommentDO.cs" />
     <Compile Include="Models\Comment\CommentDataDO.cs" />
     <Compile Include="Models\Comment\CommentDetailsDO.cs" />
+    <Compile Include="Models\Comment\NewComment.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Comment\ReplyDO.cs" />
     <Compile Include="Models\User\PasswordDO.cs" />

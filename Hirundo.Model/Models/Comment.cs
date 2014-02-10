@@ -22,8 +22,6 @@
 
         public string Location { get; set; }
 
-        public string Image { get; set; }
-
         public ObjectId ImgId { get; set; }
 
         public List<Reply> Replies { get; set; }

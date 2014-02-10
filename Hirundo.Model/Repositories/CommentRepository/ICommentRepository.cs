@@ -1,18 +1,19 @@
 ﻿namespace Hirundo.Model.Repositories.CommentRepository
 {
-    using System.Collections.Generic;
-    using Hirundo.Model.Models;
-    using MongoDB.Bson;
+    using System;
+using System.Collections.Generic;
+using Hirundo.Model.Models;
+using MongoDB.Bson;
 
     public interface ICommentRepository
     {
         Comment GetComment(ObjectId commentId, int replies = 0);
 
-        void AddComment(Comment comment);
+        void AddComment(ObjectId authorId, string content, DateTime publishDate, string location, ObjectId? imageId);
 
         void DeleteComment(ObjectId commentId);
 
-        void AddReply(ObjectId commentId, Reply reply);
+        void AddReply(ObjectId commentId, ObjectId authorId, string content, DateTime publishDate, string location, ObjectId? imageId);
 
         void AddSharing(ObjectId commentId, ObjectId userId);
 
