@@ -81,6 +81,9 @@
             var update = Update<Comment>.Push<ObjectId>(c => c.SharedBy, userId);
 
             this.commentCollection.Update(query, update, WriteConcern.Acknowledged);
+
+            Comment commentToShare = GetComment(commentId);
+            AddComment(userId, commentToShare.Content, DateTime.Now, commentToShare.Location, commentToShare.ImgId);
         }
 
         public void AddFavotite(ObjectId commentId, ObjectId userId)
@@ -101,7 +104,7 @@
         public IEnumerable<Comment> GetComments(List<ObjectId> userIds, int take, int skip)
         {
             var query = Query<Comment>.In<ObjectId>(c => c.Author, userIds);
-
+            
             return this.commentCollection.Find(query)
                         .OrderByDescending(c => c.PublishDate)
                         .Skip(skip)
@@ -111,7 +114,7 @@
         public IEnumerable<Comment> GetComments(List<ObjectId> userIds, ObjectId takeToId)
         {
             var query = Query<Comment>.In<ObjectId>(c => c.Author, userIds);
-
+            
             return this.commentCollection.Find(query)
                         .OrderByDescending(c => c.PublishDate)
                         .TakeWhile(c => c.Id != takeToId);
@@ -120,7 +123,7 @@
         public IEnumerable<Comment> GetComments(ObjectId userId, int take, int skip)
         {
             var query = Query<Comment>.EQ(c => c.Author, userId);
-
+            
             return this.commentCollection.Find(query)
                         .OrderByDescending(c => c.PublishDate)
                         .Skip(skip)
