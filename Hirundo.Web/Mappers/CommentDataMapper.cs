@@ -13,6 +13,8 @@
                 .ForMember(cd => cd.CommentId, m => m.MapFrom(c => c.Id))
                 .ForMember(cd => cd.Author, m => m.ResolveUsing<UsernameResolver>().FromMember(c => c.Author))
                 .ForMember(cd => cd.AuthorId, m => m.MapFrom(c => c.Author))
+                .ForMember(cd => cd.OriginalAuthor, m => m.ResolveUsing<UsernameResolver>().FromMember(c => c.OriginalAuthor))
+                .ForMember(cd => cd.OriginalAuthorId, m => m.MapFrom(c => c.OriginalAuthor))
                 .ForMember(cd => cd.Image, m => m.ResolveUsing<ImageResolver>().FromMember(c => c.ImgId))
                 .ForMember(cd => cd.AuthorImg, m => m.ResolveUsing<UserImageResolver>().FromMember(c => c.Author))
                 .ForMember(cd => cd.IsShared, m => m.ResolveUsing<UserInListResolver>().FromMember(c => c.SharedBy))

@@ -2,6 +2,10 @@
   <img class="pull-left img-thumbnail" ng-src="{{model.authorImg}}" hd-profile-summary="model.authorId">
   <div class="data" ng-click="commentClick()">
     <strong hd-profile-summary="model.authorId">{{model.author}}</strong>
+    <span ng-show="model.authorId != model.originalAuthorId"
+          class="author" hd-profile-summary="comment.originalAuthorId">
+          via <strong class="author">{{model.originalAuthor}}</strong>
+    </span>
     <span am-time-ago="model.publishDate" class="pull-right timestamp"></span>
     <p>{{model.content}}</p>
     <div class="row image-container" ng-show="model.image" ng-class="{'small': !model.isExpanded}">

@@ -17,7 +17,9 @@
       $scope.comment.commentId = comment.commentData.commentId;
       $scope.comment.authorImg = comment.commentData.authorImg;
       $scope.comment.authorId = comment.commentData.authorId;
+      $scope.comment.originalAuthorId = comment.commentData.originalAuthorId;
       $scope.comment.author = comment.commentData.author;
+      $scope.comment.originalAuthor = comment.commentData.originalAuthor;
       $scope.comment.content = comment.commentData.content;
       $scope.comment.sharings = comment.commentDetails.sharings;
       $scope.comment.favorites = comment.commentDetails.favorites;

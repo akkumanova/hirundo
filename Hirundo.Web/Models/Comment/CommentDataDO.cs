@@ -11,6 +11,10 @@
 
         public ObjectId AuthorId { get; set; }
 
+        public string OriginalAuthor { get; set; }
+
+        public ObjectId OriginalAuthorId { get; set; }
+
         public string AuthorImg { get; set; }
 
         public string Content { get; set; }

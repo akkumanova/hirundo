@@ -66,6 +66,7 @@
 
             this.commentRepository.AddComment(
                 comment.Author,
+                comment.Author,
                 comment.Content,
                 comment.PublishDate,
                 comment.Location,

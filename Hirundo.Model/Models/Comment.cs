@@ -18,6 +18,8 @@
 
         public ObjectId Author { get; set; }
 
+        public ObjectId OriginalAuthor { get; set; }
+
         public string Content { get; set; }
 
         public string Location { get; set; }

@@ -4,6 +4,10 @@
     <div class="author-data">
       <img class="pull-left img-thumbnail" ng-src="{{comment.authorImg}}" hd-profile-summary="comment.authorId" />
       <strong class="author" hd-profile-summary="comment.authorId">{{comment.author}}</strong>
+      <span ng-show="comment.authorId != comment.originalAuthorId" 
+            class="author" hd-profile-summary="comment.originalAuthorId">
+          via <strong class="author">{{comment.originalAuthor}}</strong>
+      </span>
       <p>{{comment.content}}</p>
       <div class="row" ng-show="comment.image">
         <img ng-src="{{comment.image}}" class="img-thumbnail comment-image" />

@@ -29,11 +29,12 @@
             return comment;
         }
 
-        public void AddComment(ObjectId authorId, string content, DateTime publishDate, string location, ObjectId? imageId)
+        public void AddComment(ObjectId authorId, ObjectId orAuthorId, string content, DateTime publishDate, string location, ObjectId? imageId)
         {
             Comment newComment = new Comment
             {
                 Author = authorId,
+                OriginalAuthor = orAuthorId,
                 Content = content,
                 PublishDate = publishDate,
                 Location = location,
@@ -83,7 +84,7 @@
             this.commentCollection.Update(query, update, WriteConcern.Acknowledged);
 
             Comment commentToShare = GetComment(commentId);
-            AddComment(userId, commentToShare.Content, DateTime.Now, commentToShare.Location, commentToShare.ImgId);
+            AddComment(userId, commentToShare.Author, commentToShare.Content, DateTime.Now, commentToShare.Location, commentToShare.ImgId);
         }
 
         public void AddFavotite(ObjectId commentId, ObjectId userId)

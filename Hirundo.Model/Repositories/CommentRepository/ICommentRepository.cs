@@ -9,7 +9,7 @@ using MongoDB.Bson;
     {
         Comment GetComment(ObjectId commentId, int replies = 0);
 
-        void AddComment(ObjectId authorId, string content, DateTime publishDate, string location, ObjectId? imageId);
+        void AddComment(ObjectId authorId, ObjectId orAuthorId, string content, DateTime publishDate, string location, ObjectId? imageId);
 
         void DeleteComment(ObjectId commentId);
 

@@ -72,16 +72,15 @@ for (var i = 0; i < 15; i++) {
     favoritedBy.push(userId);
   }
   if (i % 3 === 0) {
-    sharedBy.push(hrtisitoId);
     favoritedBy.push(hrtisitoId);
   }
   if (i % 5 === 0) {
-    sharedBy.push(userId);
     favoritedBy.push(albsiId);
   }
 
   comments.push({
     'Author': albsiId,
+    'OriginalAuthor': albsiId,
     'Content': 'albsi comment' + i,
     'Replies': [
       {
@@ -112,16 +111,15 @@ for (var i = 0; i < 15; i++) {
     favoritedBy.push(userId);
   }
   if (i % 3 === 0) {
-    sharedBy.push(albsiId);
     favoritedBy.push(hrtisitoId);
   }
   if (i % 5 === 0) {
-    sharedBy.push(userId);
     favoritedBy.push(albsiId);
   }
 
   comments.push({
     'Author': hrtisitoId,
+    'OriginalAuthor': hrtisitoId,
     'Content': 'hrisito comment' + i,
     'Replies': [
       {
